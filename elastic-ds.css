@@ -1,0 +1,343 @@
+/* =====================================================================
+   ELASTIC DESIGN SYSTEM  ·  elastic-ds.css
+   ---------------------------------------------------------------------
+   Single source of truth for the marketing site. Link this on every
+   page; edits here propagate everywhere.
+
+   Load order:
+     1. Google Fonts (Inter, Space Mono, IBM Plex Mono)     — <link>
+     2. elastic-ds-fonts.css  (embedded Lilex)              — <link>
+     3. elastic-ds.css        (this file)                   — <link>
+
+   Contents:
+     A. Tokens (:root)         F. Cards
+     B. Reset / base           G. Badges & pills
+     C. Layout primitives      H. Marquee
+     D. Typography             I. Tabs / carousel
+     E. Buttons & links        J. Accordion / disclosure
+                               K. Utilities
+   ===================================================================== */
+
+/* ========================= A. TOKENS ========================= */
+:root{
+  /* --- Core palette --- */
+  --blue:#0B64DD;        /* primary / links / focus */
+  --blue-hover:#0A57C0;  /* primary button hover */
+  --blue-tint:#F2F7FE;   /* secondary button hover */
+  --pink:#F04E98;
+  --yellow:#FEC514;
+  --lpoppy:#FF957D;
+  --lteal:#48EFCF;
+  --teal:#02BCB7;
+  --skyblue:#45A8FF;
+  --poppy:#FA744E;
+  /* --- Grayscale --- */
+  --ink:#1C1E23;         /* Dark Ink — headings, borders */
+  --ink2:#343741;        /* Ink — body text */
+  --dgray:#9AA4B4;       /* Dark Gray — subtle borders, muted text */
+  --mgray:#DCE2EA;       /* Medium Gray — hairlines, dividers */
+  --lgray:#F5F7FA;       /* Light Gray — section tints */
+  --white:#FFFFFF;
+
+  /* --- Solution accents (used across cards, rails, dots) --- */
+  --acc-security:#FA744E;      --wash-security:rgba(250,116,78,.15);
+  --acc-observability:#F04E98; --wash-observability:rgba(240,78,152,.13);
+  --acc-elasticsearch:#02BCB7; --wash-elasticsearch:rgba(2,188,183,.13);
+
+  /* --- Spacing scale (inline / component spacing) --- */
+  --sp-00:0px; --sp-01:2px; --sp-02:4px;  --sp-03:8px;  --sp-04:12px;
+  --sp-05:16px; --sp-06:24px; --sp-07:32px; --sp-08:40px; --sp-09:48px;
+
+  /* --- Vertical rhythm (section padding) --- */
+  --sec-y:clamp(44px,5.6vw,80px);
+  --sec-y-lg:clamp(56px,7vw,112px);
+
+  /* --- Grid: Bootstrap containers · 12 cols · 32px gutter ---
+     Breakpoints  Mobile 576 · Tablet 768 · L 992 · XL 1280.
+     The comp draws content at 1248 (96px margins on 1440), one gutter
+     narrower than the 1280 XL container. Both are tokenised; layout
+     follows the comp. */
+  --bp-mobile:576px; --bp-tablet:768px; --bp-l:992px; --bp-xl:1280px;
+  --container-mobile:576px; --container-tablet:768px;
+  --container-l:992px; --container-xl:1280px;
+  --grid-cols:12;
+  --gutter:var(--sp-07);
+  --measure:1440px;   /* max board width */
+  --pad:20px;         /* page margin — steps up per breakpoint below */
+  --col:calc((100% - 11 * var(--gutter)) / 12);
+
+  /* --- Radii / borders / elevation --- */
+  --r-sm:4px; --r-md:8px; --r-pill:48px;
+  --border:1px solid var(--mgray);
+  --border-ink:1px solid var(--ink);
+  --shadow-card:0 4px 20px rgba(0,0,0,.10);
+  --shadow-float:0 4px 20px rgba(0,0,0,.13);
+  --shadow-hard:0 8px 0 0 var(--ink);   /* offset "printed" edge */
+
+  /* --- Motion --- */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --dur:.26s;
+
+  /* --- Type families --- */
+  --mono:'Lilex','Mono Symbols',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --spmono:'Space Mono','Mono Symbols',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  /* --- Fluid type ramp (min, preferred, max) --- */
+  --t-h1:clamp(31px,4.4vw,64px);
+  --t-h2:clamp(23px,2.55vw,32px);
+  --t-h3:clamp(22px,2.3vw,30px);
+  --t-h4:clamp(17px,1.4vw,18px);
+  --t-quote:clamp(17px,1.62vw,21px);
+  --t-stat:clamp(40px,4.7vw,66px);
+  --t-kick:clamp(12px,1.15vw,16px);
+  --t-body:clamp(14px,1.1vw,16px);
+}
+@media (min-width:576px){:root{--pad:24px}}
+@media (min-width:768px){:root{--pad:32px}}
+@media (min-width:992px){:root{--pad:48px}}
+@media (min-width:1280px){:root{--pad:96px}}
+
+/* ========================= B. RESET / BASE ========================= */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--white);color:var(--ink);font-family:var(--body);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+/* Skip link — visually hidden until focused */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+a.sr-only:focus-visible{
+  position:fixed;top:12px;left:12px;z-index:200;width:auto;height:auto;clip:auto;overflow:visible;
+  padding:var(--sp-04) var(--sp-06);background:var(--blue);color:#fff;border-radius:var(--r-sm);font-weight:500;
+}
+
+/* ========================= C. LAYOUT ========================= */
+/* .container — the page measure with responsive side padding.
+   .section  — standard vertical rhythm; .section--lg for hero/CTA bands.
+   .grid12   — the 12-column grid; span with .col-N (see utilities). */
+.container{width:100%;max-width:var(--measure);margin-inline:auto;padding-inline:var(--pad)}
+.section{padding-block:var(--sec-y)}
+.section--lg{padding-block:var(--sec-y-lg)}
+.grid12{display:grid;grid-template-columns:repeat(var(--grid-cols),minmax(0,1fr));gap:var(--gutter)}
+.stack{display:flex;flex-direction:column}
+.stack-06{display:flex;flex-direction:column;gap:var(--sp-06)}
+.center{text-align:center}
+.measure-text{max-width:60ch}
+
+/* full-bleed to the board width, contained beyond it (deploy/CTA pattern) */
+.bleed-to-board{width:100%;margin-inline:auto}
+@media (min-width:1441px){.bleed-to-board{max-width:calc(var(--measure) - 2 * var(--pad))}}
+
+/* dotted background texture */
+.dots{
+  position:absolute;pointer-events:none;
+  background-image:radial-gradient(circle at center,#B9C1CE 1px,transparent 1.15px);
+  background-size:12px 12px;
+}
+
+/* ========================= D. TYPOGRAPHY ========================= */
+/* Display / headings are Lilex (mono). Body is Inter. Kickers & ASCII
+   accents are Space Mono. Never set raw px in pages — use these classes. */
+.kick{font-family:var(--mono);font-weight:700;font-size:var(--t-kick);letter-spacing:.2em;line-height:1.2;color:var(--blue);text-transform:uppercase}
+.h1{font-family:var(--mono);font-weight:500;font-size:var(--t-h1);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+.h2{font-family:var(--mono);font-weight:500;font-size:var(--t-h2);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+.h3{font-family:var(--mono);font-weight:500;font-size:var(--t-h3);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+.h4{font-family:var(--mono);font-weight:600;font-size:var(--t-h4);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+.quote{font-family:var(--mono);font-weight:500;font-size:var(--t-quote);letter-spacing:-.02em;line-height:1.24;color:var(--ink)}
+.stat{font-family:var(--mono);font-weight:500;font-size:var(--t-stat);letter-spacing:-.02em;line-height:1.15;color:var(--blue)}
+.attrib{font-family:var(--mono);font-weight:400;font-size:clamp(13px,1.05vw,14px);line-height:1.4;color:var(--ink2)}
+.b16{font-family:var(--body);font-size:var(--t-body);line-height:1.54;color:var(--ink2)}
+.b14{font-family:var(--body);font-size:clamp(13.5px,1.05vw,14px);line-height:1.54;color:var(--ink2)}
+
+
+/* ---- Reading sizes -----------------------------------------------------
+   .lede  section subhead — deliberately larger than card copy so the eye
+          lands on it after the heading. Capped at ~68ch for readability.
+   .b15   the default card/paragraph size. 14px at 1.29 (the comp's value)
+          is a UI density, not a reading size; prose sits at 15/1.6.
+   ---------------------------------------------------------------------- */
+.lede{
+  font-family:var(--body);font-weight:400;
+  font-size:clamp(16px,1.4vw,20px);line-height:1.5;color:var(--ink2);
+  max-width:68ch;
+}
+.b15{font-family:var(--body);font-weight:400;font-size:15px;line-height:1.6;color:var(--ink2);max-width:62ch}
+.b13{font-family:var(--body);font-weight:400;font-size:13px;line-height:1.5;color:var(--ink2)}
+
+/* Card title one step up from .h4, for primary content cards. */
+.h4-lg{font-family:var(--mono);font-weight:600;font-size:clamp(18px,1.7vw,20px);letter-spacing:-.02em;line-height:1.35;color:var(--ink)}
+
+/* ========================= E. BUTTONS & LINKS ========================= */
+/* Primary / Secondary / White (on dark) + tertiary text link with arrow. */
+.btn{
+  min-height:40px;border-radius:var(--r-sm);display:inline-flex;align-items:center;justify-content:center;
+  padding:var(--sp-03) var(--sp-06);font-family:var(--body);font-weight:500;font-size:15px;line-height:1.3;
+  text-align:center;white-space:nowrap;transition:background-color .2s,color .2s,border-color .2s;
+}
+.btn-p{background:var(--blue);color:#fff}
+.btn-p:hover{background:var(--blue-hover)}
+.btn-s{background:#fff;border:2px solid var(--blue);color:var(--blue)}
+.btn-s:hover{background:var(--blue-tint)}
+.btn-w{background:#fff;color:var(--blue)}
+.btn-w:hover{background:var(--blue-tint)}
+.btn-row{display:flex;gap:var(--sp-05);flex-wrap:wrap}
+@media (max-width:400px){.btn-row{flex-direction:column;align-items:stretch}.btn-row .btn{width:100%}}
+
+/* Tertiary link — "Discover Elastic Security →". Arrow travels on hover. */
+.link{
+  font-family:var(--body);font-weight:500;font-size:14px;line-height:1.5;color:var(--blue);
+  display:inline-flex;align-items:center;gap:var(--sp-03);min-height:24px;padding-block:var(--sp-02);
+}
+.link .arw{transition:transform var(--dur) var(--ease)}
+.link:hover .arw{transform:translateX(4px)}
+@media (prefers-reduced-motion:reduce){.link .arw{transition:none}}
+
+/* ========================= F. CARDS ========================= */
+/* .card        — neutral hairline card (r-md, soft shadow)
+   .card-print  — hard 8px offset edge (news / testimonial / FAQ)
+   .card-accent — solution card: 2px top rule + wash on hover/selected,
+                  tinted per --acc / --wash (set a modifier class). */
+.card{background:#fff;border:var(--border);border-radius:var(--r-md);box-shadow:var(--shadow-card)}
+.card-print{background:#fff;border:var(--border-ink);box-shadow:var(--shadow-hard)}
+
+.card-accent{
+  position:relative;overflow:hidden;background-clip:padding-box;
+  display:flex;flex-direction:column;gap:var(--sp-05);padding:var(--sp-05);cursor:pointer;
+  transition:background-image var(--dur) ease;
+}
+.card-accent::before{
+  content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:var(--acc);
+  opacity:0;transition:opacity var(--dur) ease;z-index:3;
+}
+.card-accent:hover,.card-accent:focus-within,.card-accent[data-on="1"]{
+  background-image:linear-gradient(180deg,var(--wash) 0%,rgba(255,255,255,0) 100%);
+}
+.card-accent:hover::before,.card-accent:focus-within::before,.card-accent[data-on="1"]::before{opacity:1}
+.card-accent:hover .link .arw,.card-accent[data-on="1"] .link .arw{transform:translateX(4px)}
+.is-security     {--acc:var(--acc-security);     --wash:var(--wash-security)}
+.is-observability{--acc:var(--acc-observability);--wash:var(--wash-observability)}
+.is-elasticsearch{--acc:var(--acc-elasticsearch);--wash:var(--wash-elasticsearch)}
+@media (prefers-reduced-motion:reduce){.card-accent,.card-accent::before{transition:none}}
+@media (forced-colors:active){.card-accent[data-on="1"]::before,.card-accent:hover::before{opacity:1;background:Highlight}}
+
+
+/* Hard-edge card: 1px rule with a heavier bottom edge. Used by the homepage
+   news cards and by the Observability stat / review / split cards. */
+.card-edge{background:#fff;border:1px solid var(--ink);border-bottom-width:4px;background-clip:padding-box}
+.card-edge--lg{border-bottom-width:8px}
+
+/* Small section eyebrow (Space Grotesk). Distinct from .kick, which is the
+   large tracked-out Lilex kicker used above section headings. */
+.eyebrow{
+  font-family:'Space Grotesk',var(--body);font-weight:700;font-size:12px;line-height:1;
+  color:var(--blue);text-transform:uppercase;letter-spacing:.02em;
+}
+
+
+/* ---- Card anatomy ------------------------------------------------------
+   One rhythm for every content card, so eyebrows, titles, body, CTAs and
+   footers line up across sections and across pages:
+
+     padding                 24  (--sp-06)
+     eyebrow -> title         8  (--sp-03)
+     title   -> body          8  (--sp-03)
+     body    -> CTA          16  (--sp-05)
+     content -> footer       24  (--sp-06), pinned to the card bottom
+
+   .card-foot uses margin-top:auto, so footers (tags, figures, logos) sit on
+   a shared baseline whenever cards share a grid row. ------------------- */
+.card-pad{padding:var(--sp-06)}
+.card-stack{display:flex;flex-direction:column;gap:var(--sp-03)}
+.card-cta{margin-top:var(--sp-05)}
+.card-foot{margin-top:auto;padding-top:var(--sp-06)}
+
+/* Dense card grids sit tighter than the 32px page gutter but stay on scale. */
+:root{--gutter-tight:var(--sp-05)}
+.grid-tight{display:grid;gap:var(--gutter-tight)}
+
+/* Statistic figure: everything rides the numeral's baseline. */
+.figure{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--sp-03)}
+.figure .figure-num{font-family:var(--body);font-weight:700;color:#153385;font-size:clamp(44px,4.9vw,70px);line-height:1;letter-spacing:-.02em}
+.figure .figure-unit{font-family:var(--body);font-weight:700;color:#153385;font-size:clamp(26px,2.8vw,40px);line-height:1}
+.figure .figure-lede,.figure .figure-cap{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:-.025em;color:rgba(0,0,0,.51);line-height:1.35}
+.figure .figure-cap{max-width:20ch}
+
+/* ========================= G. BADGES & PILLS ========================= */
+.badge{
+  display:inline-flex;align-items:center;align-self:flex-start;padding:var(--sp-01) var(--sp-03);
+  border-radius:2px;font-family:var(--mono);font-weight:700;font-size:clamp(12px,1.05vw,14px);
+  letter-spacing:.08em;line-height:1.14;text-transform:uppercase;
+}
+.badge-news{background:rgba(254,197,20,.28);color:#7E5200}
+.badge-blog{background:rgba(240,78,152,.2);color:#B20058}
+
+/* dashed reference chip ("See also"). Text goes blue on hover. */
+.chip{
+  display:inline-flex;align-items:center;gap:var(--sp-03);padding:4px 6px;border-radius:var(--r-sm);
+  background:#fff;border:1px dashed var(--dgray);font-family:var(--body);font-weight:500;font-size:14px;color:var(--ink);
+  transition:color .18s ease;
+}
+.chip .chip-label{display:inline-flex;align-items:center;line-height:1}
+.chip .chip-ico{width:16px;height:16px;background:var(--ink);flex:none;align-self:center}
+.chip:hover{color:var(--blue)}
+.chip{white-space:nowrap}
+.chip-row{display:flex;flex-wrap:wrap;gap:var(--sp-03)}
+
+/* ========================= H. MARQUEE ========================= */
+/* Continuous horizontal scroll (logo parade, stat ticker). Duplicate the
+   set once inside .marquee-track; the keyframe shifts exactly one set. */
+.marquee{position:relative;overflow:hidden}
+.marquee-track{display:flex;width:max-content;animation:ds-marquee var(--mq-dur,34s) linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes ds-marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+.marquee-fade-l,.marquee-fade-r{position:absolute;top:0;bottom:0;width:clamp(48px,10vw,157px);z-index:3;pointer-events:none}
+.marquee-fade-l{left:0;background:linear-gradient(90deg,#fff 22%,rgba(255,255,255,0) 100%)}
+.marquee-fade-r{right:0;background:linear-gradient(270deg,#fff 18%,rgba(255,255,255,0) 100%)}
+
+/* ========================= I. TABS / CAROUSEL ========================= */
+/* Horizontal swipe deck with snap + centred rails. JS pairs selection to
+   scroll position; the active rule doubles as an autoplay progress bar. */
+.deck{
+  display:flex;gap:var(--sp-05);overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;
+}
+.deck::-webkit-scrollbar{display:none}
+.deck>*{scroll-snap-align:center;scroll-snap-stop:always;flex:0 0 var(--deck-item,min(320px,78vw))}
+.deck-dots{display:flex;gap:var(--sp-01);justify-content:center;margin-top:var(--sp-06)}
+.deck-dot{width:24px;height:36px;display:grid;place-items:center;background:none}
+.deck-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--dgray);transition:width .25s ease,border-radius .25s ease,background .25s ease}
+.deck-dot[aria-current="true"]::before{width:24px;border-radius:var(--r-sm);background:var(--acc,var(--blue))}
+@media (prefers-reduced-motion:reduce){.deck-dot::before{transition:none}}
+
+.progress-rule{width:min(201px,100%);height:4px;border-radius:2px;background:transparent;overflow:hidden}
+.progress-rule[data-on="1"]{background:var(--mgray)}
+.progress-rule i{display:block;height:4px;width:0;background:var(--blue);border-radius:2px}
+.progress-rule[data-on="1"] i{animation:ds-progress var(--dwell,9s) linear forwards}
+@keyframes ds-progress{from{width:0}to{width:100%}}
+@media (prefers-reduced-motion:reduce){.progress-rule[data-on="1"] i{animation:none;width:100%}}
+
+/* ========================= J. ACCORDION ========================= */
+/* Grid-rows 0fr→1fr disclosure. Pair .disclosure-btn[aria-expanded]
+   with the panel via + combinator. Works for FAQ and footer groups. */
+.disclosure-item{border-bottom:var(--border-ink)}
+.disclosure-btn{width:100%;text-align:left;display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp-05);padding:0 var(--sp-05) var(--sp-03)}
+.disclosure-caret{display:inline-block;transition:transform .34s var(--ease);transform-origin:50% 46%}
+.disclosure-btn[aria-expanded="true"] .disclosure-caret{transform:rotate(180deg)}
+.disclosure-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.disclosure-btn[aria-expanded="true"]+.disclosure-panel{grid-template-rows:1fr}
+.disclosure-panel>div{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.disclosure-panel,.disclosure-caret{transition:none}}
+
+/* ========================= K. UTILITIES ========================= */
+.mt-05{margin-top:var(--sp-05)} .mt-06{margin-top:var(--sp-06)} .mt-07{margin-top:var(--sp-07)} .mt-08{margin-top:var(--sp-08)}
+.gap-04{gap:var(--sp-04)} .gap-05{gap:var(--sp-05)} .gap-06{gap:var(--sp-06)} .gap-07{gap:var(--sp-07)}
+.col-4{grid-column:span 4} .col-6{grid-column:span 6} .col-8{grid-column:span 8} .col-12{grid-column:span 12}
+@media (max-width:991px){.col-4,.col-6,.col-8{grid-column:1/-1}}
