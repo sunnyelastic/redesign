@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Elastic Observability — Full-scale agentic observability at half the cost</title>
-<meta name="description" content="Elastic Observability doesn't just collect data — it understands your systems, discovers what is important, and takes action. Faster and cheaper than the alternatives.">
+<title>Elastic Security &mdash; Agentic SOC</title>
+<meta name="description" content="Elastic is a context database platform driven by search technology that transforms vast data into instant insights and actions for humans and agents.">
 <style>
 /* ==== elastic-ds-fonts.css (inlined) ==== */
 /* =====================================================================
@@ -757,169 +757,217 @@ a.sr-only:focus-visible{
 @media (prefers-reduced-motion:reduce){.faq-panel,.faq-d{transition:none}}
 
 
+/* ---------- KEY MESSAGES (new) ---------- */
+.o-keys .in{padding-block:0 0}
+.o-keys-head{display:flex;flex-direction:column;align-items:center;text-align:center}
+.o-keys-head .kick{letter-spacing:3.2px}
+.o-keys-head .h2{margin-top:var(--sp-06);max-width:805px}
+.o-keys-note{
+  font-family:var(--body);font-size:20px;line-height:29px;color:var(--ink);
+  text-align:center;margin-top:var(--sp-04);max-width:812px;margin-inline:auto;
+}
+.o-keys-grid{display:grid;gap:var(--sp-09) clamp(24px,7.2vw,103px);margin-top:45px}
+@media (min-width:900px){.o-keys-grid{grid-template-columns:repeat(3,minmax(0,349px));justify-content:space-between}}
+.o-key{display:flex;flex-direction:column;gap:10px}
+.o-key .t{font-family:var(--mono);font-weight:600;font-size:18px;letter-spacing:-.36px;line-height:1.2;color:var(--ink);margin-top:0}
+.o-key .d{font-family:var(--body);font-size:16px;line-height:26.4px;color:var(--ink);margin-top:6px}
 
+
+/* ===== METRICS — unchanged from the previous build, per direction ===== */
+/* ---------- METRICS — two rows, distinct anatomy ---------- */
+.o-metrics .in{padding-block:var(--sec-y-lg)}
+.o-metrics-head{display:flex;flex-direction:column;gap:var(--sp-05);text-align:center;align-items:center;margin-bottom:var(--sp-09)}
+.o-metrics-head .lede{max-width:815px}
+.o-stat-grid{display:grid;gap:var(--gutter-tight)}
+@media (min-width:900px){.o-stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.o-stat-grid+.o-stat-grid{margin-top:var(--gutter-tight)}
+.o-stat{
+  background:#fff;border:1px dashed var(--ink);
+  padding:var(--sp-06);display:flex;flex-direction:column;
+}
+.o-stat .t{margin-top:var(--sp-04)}
+.o-stat .d{margin-top:var(--sp-04)}
+/* row 1: headline figure, no body copy */
+.o-figrow{
+  margin-top:auto;padding-top:var(--sp-07);
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--sp-04);
+}
+.o-figrow .lede-sm,.o-figrow .cap-sm{
+  font-family:var(--body);font-size:15px;line-height:1.4;color:var(--ink);
+}
+.o-figrow .big{
+  font-family:var(--mono);font-weight:700;color:#FF6200;
+  font-size:clamp(36px,3.4vw,48px);line-height:1;letter-spacing:-.02em;
+}
+/* row 2: media slot carrying the comparison bars */
+.o-slot{margin-top:auto;padding-top:var(--sp-07)}
+.o-bars{display:flex;flex-direction:column;gap:var(--sp-02)}
+.o-bar{display:grid;grid-template-columns:104px 1fr auto;gap:var(--sp-03);align-items:center}
+.o-bar .n,.o-bar .v{font-family:var(--spmono);font-size:9px;color:var(--ink)}
+.o-bar .v{font-weight:700;text-align:right;white-space:nowrap}
+.o-bar .v.best{color:#C74A16}
+.o-bar .track{display:flex;gap:2px}
+.o-bar .track i{width:6px;height:9px;background:#C74A16;border-radius:1px}
+.o-bar .track i.off{background:#DCE2EA}
+
+
+
+/* ---------- COMMUNITY (comp y6488) ---------- */
+.o-comm .in{padding-block:var(--sec-y)}
+.o-comm-head{display:flex;flex-direction:column;gap:var(--sp-04);text-align:center;align-items:center;margin-bottom:54px}
+.o-comm-head .sub{max-width:68ch}
+.o-comm-grid{display:grid;gap:var(--gutter)}
+@media (min-width:640px){.o-comm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){.o-comm-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.o-comm-card{padding:var(--sp-06);display:flex;flex-direction:column;gap:var(--sp-07)}
+
+.o-comm-card .d{font-family:var(--body);font-size:15px;line-height:1.6;color:var(--ink2);margin-top:var(--sp-03)}
+
+
+/* ---- Desktop vertical rhythm ----------------------------------------
+   Every section's internal padding is zeroed at >=1280 and the gaps are
+   carried by margins, so each block lands on its Figma board y without
+   paddings compounding. Values are calibrated against the board. */
+@media (min-width:1280px){
+  .o-hero .in{padding-block:110px 0}
+  .o-keys .in,.o-cap .in,.o-metrics .in,.o-story .in,.o-rev .in,.o-comm .in{padding-block:0}
+  .deploy .in{padding-block:0 0}
+  .deploy{padding-bottom:0}
+  .faq-sec .in{padding-block:0 var(--sec-y)}
+  .o-splits .container{padding-block:0}
+  .o-keys   {margin-top:var(--mt-keys,120px)}
+  .o-cap    {margin-top:var(--mt-cap,163px)}
+  .o-metrics{margin-top:var(--mt-metrics,144px)}
+  .deploy   {margin-top:var(--mt-deploy,72px)}
+  .o-splits {margin-top:var(--mt-splits,64px)}
+  .o-story  {margin-top:var(--mt-story,0px)}
+  .o-rev    {margin-top:var(--mt-rev,110px)}
+  .o-comm   {margin-top:var(--mt-comm,110px)}
+  .faq-sec  {margin-top:var(--mt-faq,110px)}
+}
+@media (max-width:1279px){
+  .o-hero .in{padding-block:var(--sec-y-lg) var(--sec-y)}
+  .o-keys .in,.o-cap .in,.o-metrics .in,.o-rev .in,.o-comm .in,.o-story .in{padding-block:var(--sec-y) 0}
+  .faq-sec .in{padding-block:var(--sec-y)}
+  .o-splits .container{padding-top:var(--sec-y)}
+}
+
+/* ===== CUSTOMERS (restored) ===== */
+.customers{margin-top:110px}
 /* =====================================================================
-   CAPABILITIES SECTION — Figma 3593:11066
-   Two labelled groups ("for metrics", "for logs") of three cards each.
-   Row 1 cards carry the dark stat band (536 tall); row 2 cards do not
-   (422 tall). All values taken from the frame.
+   CUSTOMERS
    ===================================================================== */
-.o-caps{background:#F5F7FA;position:relative;overflow:hidden}
-.o-caps .in{position:relative;z-index:2;padding-block:80px 74px}
+.customers{position:relative;overflow:hidden}
+.customers .in{padding-block:0 clamp(20px,2.1vw,30px)}
+.customers .dots.l{left:0;top:34%;width:210px;height:52%;
+  -webkit-mask-image:linear-gradient(88deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 48%,rgba(0,0,0,0) 92%);
+          mask-image:linear-gradient(88deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 48%,rgba(0,0,0,0) 92%)}
+.customers .dots.r{right:0;top:14%;width:min(510px,42%);height:34%;
+  -webkit-mask-image:radial-gradient(96% 110% at 88% 10%,rgba(0,0,0,.85) 0%,rgba(0,0,0,.38) 44%,rgba(0,0,0,0) 82%);
+          mask-image:radial-gradient(96% 110% at 88% 10%,rgba(0,0,0,.85) 0%,rgba(0,0,0,.38) 44%,rgba(0,0,0,0) 82%)}
+.cust-head{display:flex;flex-direction:column;gap:var(--sp-06);text-align:center;margin-bottom:var(--sp-09)}
 
-/* the dots plate, bottom-right, rotated as the comp places it */
-.o-caps-dots{
-  position:absolute;z-index:1;left:1148px;top:635px;width:962px;height:552px;
-  pointer-events:none;transform:rotate(180deg) scaleY(-1);
-  background-image:radial-gradient(circle at center,#C9D2DE 1px,transparent 1.5px);
-  background-size:16px 16px;opacity:.85;
-  -webkit-mask-image:linear-gradient(to right,#000 0%,transparent 72%);
-          mask-image:linear-gradient(to right,#000 0%,transparent 72%);
+/* tab strip — scrolls horizontally on small screens */
+.ctabs{
+  display:flex;gap:0;position:relative;z-index:2;
+  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;
+  scrollbar-width:none;-ms-overflow-style:none;
+  margin-bottom:0;padding-bottom:var(--sp-01);
 }
-@media (max-width:1279px){.o-caps-dots{display:none}}
-
-/* ---- header: 820 wide, centred ---- */
-.o-caps-head{
-  max-width:820px;margin-inline:auto;text-align:center;
-  display:flex;flex-direction:column;gap:24px;
+.ctabs::-webkit-scrollbar{display:none}
+.ctab{
+  flex:1 0 132px;min-width:132px;scroll-snap-align:center;
+  display:flex;flex-direction:column;align-items:center;
+  opacity:.5;transition:opacity .3s ease;padding:var(--sp-02) var(--sp-02) 0;
 }
-.o-caps-head .o-caps-hb{display:flex;flex-direction:column;gap:16px}
-.o-caps-head .h2{
-  font-family:var(--mono);font-weight:500;font-size:32px;line-height:1.2;
-  letter-spacing:-.64px;color:#1C1E23;max-width:none;
+@media (min-width:768px){
+  .ctabs{justify-content:space-between}
+  .ctab{flex:0 0 auto;min-width:0}
 }
-.o-caps-head p.b16{font-family:var(--body);font-size:16px;line-height:1.54;color:#343741}
-
-/* ---- group label + rule ---- */
-.o-caps-group{margin-top:42px}
-.o-caps-group + .o-caps-group{margin-top:48px}
-.o-caps-label{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:#1C1E23;padding:6px 8px;
-  font-family:var(--mono);font-weight:700;font-size:16px;line-height:1.2;
-  letter-spacing:3.2px;text-transform:uppercase;color:#fff;white-space:nowrap;
+@media (max-width:767px){.ctabs{gap:var(--sp-05)}}
+.ctab:hover{opacity:.85}
+.ctab[aria-selected="true"]{opacity:1}
+.ctab-inner{
+  display:flex;flex-direction:column;align-items:center;gap:var(--sp-05);
+  width:fit-content;max-width:100%;
 }
-/* the comp sits the rule on the label's bottom edge, not below it */
-.o-caps-rule{display:block;height:1px;background:#1C1E23;width:100%;margin-top:-1px}
+.ctab-mark{height:38px;display:grid;place-items:center;width:auto;max-width:100%}
+.ctab-mark svg{max-width:100%;height:auto}
+.ctab-rule{width:100%;height:4px;border-radius:2px;background:transparent;overflow:hidden}
+.ctab[aria-selected="true"] .ctab-rule{background:var(--mgray)}
+.ctab-rule i{display:block;height:4px;width:0;background:var(--blue);border-radius:2px}
+.ctab[aria-selected="true"] .ctab-rule i{animation:ctab-fill var(--dwell,9s) linear forwards}
+@keyframes ctab-fill{from{width:0}to{width:100%}}
+@media (prefers-reduced-motion:reduce){.ctab[aria-selected="true"] .ctab-rule i{animation:none;width:100%}}
 
-/* ---- card grid: 3 x 395 with 32 gutters ---- */
-.o-caps-grid{display:grid;gap:32px;margin-top:32px}
-@media (min-width:992px){.o-caps-grid{grid-template-columns:repeat(3,minmax(0,395px));justify-content:space-between}}
-.cap-card{
-  background:#fff;border:1px solid #1C1E23;border-bottom-width:4px;
-  padding:24px;display:flex;flex-direction:column;gap:24px;align-items:flex-start;
+/* testimonial card */
+.cust-card{
+  margin-top:clamp(24px,3vw,40px);
+  position:relative;z-index:2;background:#fff;border:1px solid var(--ink);
+  box-shadow:0 8px 0 0 var(--ink);
+  display:grid;gap:0;
 }
-.cap-card-hp{display:flex;flex-direction:column;gap:8px;width:100%}
-.cap-card .t{
-  font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.2;color:#1C1E23;
+@media (min-width:768px){
+  .cust-card{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 }
-/* line-height:0 keeps the marker from adding height to the heading */
-.cap-card .t sup{font-size:11.61px;line-height:0;vertical-align:super}
-.cap-card .d{font-family:var(--body);font-size:14px;line-height:1.54;color:#343741}
-
-/* ---- benchmark bars ---- */
-.cap-bars{display:flex;flex-direction:column;width:100%}
-.cap-bar{
-  background:#F5F7FA;border-top:1px solid #ABB4C4;
-  padding:8px 8px 12px;display:flex;flex-direction:column;gap:4px;width:100%;
+@media (min-width:1100px){
+  .cust-card{grid-template-columns:minmax(0,485fr) minmax(0,420fr) minmax(0,225fr)}
 }
-.cap-bar-row{
-  display:flex;align-items:center;justify-content:space-between;width:100%;
-  font-family:var(--body);font-size:14px;line-height:1.2;color:#343741;white-space:nowrap;
+.cust-media{padding:var(--sp-05)}
+@media (min-width:1100px){.cust-media{padding:var(--sp-05) 0 var(--sp-05) var(--sp-05)}}
+.imgph{
+  width:100%;aspect-ratio:485/441;
+  background-color:#EEF1F5;border:1px solid var(--mgray);
+  background-image:
+    linear-gradient(to top right,transparent calc(50% - .6px),#D3DAE4 calc(50% - .6px),#D3DAE4 calc(50% + .6px),transparent calc(50% + .6px)),
+    linear-gradient(to top left, transparent calc(50% - .6px),#D3DAE4 calc(50% - .6px),#D3DAE4 calc(50% + .6px),transparent calc(50% + .6px));
+  display:flex;align-items:center;justify-content:center;
 }
-.cap-bar-row .nm{font-weight:400}
-.cap-bar-row .vl{font-weight:700;text-align:right}
-.cap-bar--lead .cap-bar-row .nm,
-.cap-bar--lead .cap-bar-row .vl{font-weight:700}
-.cap-track{position:relative;width:100%;height:4px}
-.cap-track i{position:absolute;left:0;top:0;height:4px;display:block}
-.cap-track .fill{background:#ABB4C4;width:var(--w,50%)}
-.cap-bar--lead .cap-track .fill{background:#DD0A73;top:2px}
-
-/* ---- dark stat band (metrics row only) ---- */
-.cap-stat{
-  background:#1C1E23;border-radius:4px;padding:16px;width:100%;
-  display:flex;align-items:baseline;justify-content:center;gap:9px;white-space:nowrap;
+@media (max-width:767px){.imgph{aspect-ratio:16/10}}
+.imgph span{
+  background:#fff;border:1px solid var(--mgray);border-radius:4px;
+  padding:var(--sp-03) var(--sp-05);
+  font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:#69737F;text-align:center;line-height:1.5;
 }
-.cap-stat .pre,.cap-stat .post{font-family:var(--body);font-size:16px;line-height:1.2;color:#fff}
-.cap-stat .post sup{font-size:10.32px;line-height:0;vertical-align:super}
-.cap-stat .fig{font-family:var(--mono);font-weight:500;font-size:48px;line-height:1.2;color:#F990C6}
-
-/* ---- tags ---- */
-.cap-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
-.cap-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px dashed #343741;padding:5px 6px;background:#fff;
-  font-family:var(--mono);font-weight:500;font-size:14px;line-height:13px;color:#000;
-  white-space:nowrap;min-height:26px;
+.imgph span em{display:block;font-style:normal;font-weight:400;letter-spacing:.1em;color:#78828F;font-size:10px;margin-top:3px}
+.cust-body{padding:var(--sp-06) var(--sp-05);display:flex;flex-direction:column;align-items:flex-start}
+@media (min-width:1100px){.cust-body{padding:var(--sp-08) var(--sp-07)}}
+.cust-body .attrib{margin-top:var(--sp-07)}
+.cust-body .btn{margin-top:var(--sp-07)}
+.cust-stats{
+  padding:0 var(--sp-05) var(--sp-06);
+  display:grid;gap:var(--sp-07);grid-template-columns:repeat(2,minmax(0,1fr));
 }
-.cap-tag svg{width:16px;height:16px;flex:none}
-
-
-/* =====================================================================
-   STACK / FAN-OUT
-   Every card is fully open the whole time. What animates is the SPACING:
-   the group blocks start bunched on top of one another and scroll spreads
-   them into place. Once spread they stay — nothing re-collapses.
-
-   Transform + margin only; content is never clipped or height-animated,
-   so nothing reflows and no card is ever partly rendered.
-   ===================================================================== */
-.o-fold{background:#F5F7FA;position:relative;overflow:hidden}
-.o-fold .in{padding-block:80px 74px}
-.o-fold-head{max-width:820px;margin-inline:auto;text-align:center;display:flex;flex-direction:column;gap:16px}
-
-.o-fold-list{margin-top:48px;display:flex;flex-direction:column}
-
-/* --- the stack: each group is pulled up over the one before it --- */
-.fold-item{
-  --i:0;
-  position:relative;z-index:calc(10 - var(--i));
-  transform:translateY(calc(var(--i) * var(--bunch,-320px))) scale(var(--sc,.985));
-  opacity:var(--op,.55);
-  transition:transform .9s var(--ease), opacity .7s var(--ease), margin-top .9s var(--ease);
-  will-change:transform;
+@media (max-width:479px){.cust-stats{grid-template-columns:1fr;gap:var(--sp-08)}}
+@media (min-width:768px){.cust-stats{grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr));padding:0 var(--sp-05) var(--sp-06)}}
+@media (min-width:1100px){
+  .cust-stats{grid-column:auto;grid-template-columns:1fr;gap:var(--sp-08);padding:var(--sp-08) var(--sp-07) var(--sp-08) 0}
+  /* All three columns centre on the card's mid-line, so the CTA stays with
+     its paragraph and the figures read as a tight pair beside it. */
+  .cust-card{align-items:center}
+  .cust-body,.cust-stats{align-self:center}
+  .cust-stats{gap:var(--sp-07)}
 }
-.fold-item + .fold-item{margin-top:var(--gap,-300px)}
-
-/* spread: everything returns to its natural position, full size, full opacity */
-.o-fold[data-spread="1"] .fold-item{
-  transform:none;opacity:1;
-}
-.o-fold[data-spread="1"] .fold-item + .fold-item{margin-top:56px}
-
-/* stagger so they fan rather than snap as one block */
-.fold-item[data-i="1"]{transition-delay:.10s}
-.fold-item[data-i="2"]{transition-delay:.20s}
-.fold-item[data-i="3"]{transition-delay:.30s}
-
-/* --- group head: the label + rule, same component as capabilities --- */
-.fold-head{display:flex;align-items:center;width:100%;background:transparent;border:0;padding:0;text-align:left}
-.fold-head .lab{
-  display:inline-flex;align-items:center;justify-content:center;flex:none;
-  background:#1C1E23;padding:12px 8px;min-height:43px;min-width:154px;
-  font-family:var(--mono);font-weight:700;font-size:16px;line-height:1.2;
-  letter-spacing:3.2px;text-transform:uppercase;color:#fff;white-space:nowrap;
-}
-.fold-head .ln{flex:1;height:1.39px;background:#1C1E23;min-width:0}
-
-/* --- the card row: the real metrics card component, three across --- */
-.fold-row{display:grid;gap:32px;margin-top:24px}
-@media (min-width:992px){.fold-row{grid-template-columns:repeat(3,minmax(0,395px));justify-content:space-between}}
-@media (min-width:992px){.fold-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.stat-item .b14{margin-top:var(--sp-00)}
+.cust-more{display:flex;justify-content:center;margin-top:clamp(32px,3.4vw,48px)}
+.cfade{animation:cfade .42s ease both}
+@keyframes cfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.cfade{animation:none}}
 
 
-
-
-
-/* stacking is a desktop flourish; small screens just get the list */
-@media (max-width:991px){
-  .fold-item{transform:none;opacity:1}
-  .fold-item + .fold-item{margin-top:48px}
-}
-@media (prefers-reduced-motion:reduce){
-  .fold-item{transform:none;opacity:1;transition:none}
-  .fold-item + .fold-item{margin-top:56px}
+.ctabs-wrap{position:relative;display:flex;align-items:center;gap:var(--sp-03)}
+.ctabs{flex:1 1 auto;min-width:0}
+.ctabs-nav{display:none}
+@media (max-width:767px){
+  .ctabs-nav{
+    display:grid;place-items:center;flex:none;
+    width:36px;height:36px;border-radius:50%;
+    background:#fff;border:1px solid var(--mgray);color:var(--ink);
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+  }
+  .ctabs-nav:disabled{opacity:.3}
+  .ctabs{scroll-snap-type:x mandatory}
 }
 
 /* ===== CUSTOMERS (restored) ===== */
@@ -1069,6 +1117,161 @@ a.sr-only:focus-visible{
 
 
 
+/* ---------- HERO (left column + bleeding media) ---------- */
+.o-hero{position:relative;overflow:hidden;background:#fff}
+.o-hero .in{position:relative;padding-block:clamp(56px,9vw,129px) clamp(56px,8.4vw,120px)}
+.o-hero .dots-a,.o-hero .dots-b{
+  position:absolute;pointer-events:none;
+  background-image:radial-gradient(circle at center,#C3CAD6 1px,transparent 1.15px);
+  background-size:12px 12px;
+}
+.o-hero .dots-a{left:38%;top:34%;width:66%;height:76%;
+  -webkit-mask-image:radial-gradient(74% 74% at 40% 46%,#000 0%,rgba(0,0,0,.4) 52%,transparent 84%);
+          mask-image:radial-gradient(74% 74% at 40% 46%,#000 0%,rgba(0,0,0,.4) 52%,transparent 84%)}
+.o-hero .dots-b{right:-12%;top:-14%;width:66%;height:76%;
+  -webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000 0%,rgba(0,0,0,.32) 50%,transparent 82%);
+          mask-image:radial-gradient(70% 70% at 50% 50%,#000 0%,rgba(0,0,0,.32) 50%,transparent 82%)}
+.o-hero-grid{position:relative;z-index:2;display:grid;gap:var(--sp-08)}
+@media (min-width:992px){
+  .o-hero-grid{grid-template-columns:minmax(0,573px) minmax(0,1fr);align-items:start;gap:var(--sp-07)}
+}
+.o-hero-copy{display:flex;flex-direction:column;gap:var(--sp-07)}
+.o-hero-head{display:flex;flex-direction:column;gap:var(--sp-05)}
+.o-hero-head .h1{max-width:573px}
+.o-hero-head .b16{max-width:516px;opacity:.9}
+/* media sits 14px lower than the copy and bleeds past the board edge */
+.o-hero-media{
+  position:relative;margin-top:14px;width:858px;max-width:none;
+  aspect-ratio:858/474;background:var(--lgray);border:1px dashed var(--mgray);
+  display:flex;align-items:center;justify-content:center;
+}
+@media (max-width:991px){.o-hero-media{width:100%;margin-top:0;aspect-ratio:16/9}}
+.o-hero-media span{
+  font-family:var(--body);font-weight:500;font-size:18px;color:#5F6875;text-align:center;
+}
+
+
+/* =====================================================================
+   SECURITY PAGE — Figma 3161:7464 (1450 x 9357)
+   Rhythm is gap-based, not absolute-y: each section carries the gap the
+   comp draws between it and the one above, so differing content heights
+   can never open a void.
+   ===================================================================== */
+
+/* ---------- HERO — the shared module, identical on all three pages ----
+   Styles come from snip/sec_hero.css (same source as Observability and the
+   homepage). Nothing page-specific here beyond the media placeholder label. */
+.o-hero-media span{font-family:var(--body);font-weight:500;font-size:18px;color:#5F6875;text-align:center}
+
+/* ---------- SECTION HEADERS (shared) ---------- */
+.s-head{display:flex;flex-direction:column;align-items:center;text-align:center}
+.s-head .kick{letter-spacing:3.2px}
+.s-head .h2{margin-top:var(--sp-05);max-width:699px}
+.s-head .lede{margin-top:var(--sp-05);max-width:812px}
+.s-head--wide .h2{max-width:1193px}
+.s-head--left{align-items:flex-start;text-align:left}
+
+/* ---------- FEATURE CARD (Figma component 3393:9976) ------------------
+   608 x 672 · 24 padding · 32 gap · 1px ink border with a 4px bottom.
+   Built on the DS .card-edge so it stays in step with every other card. */
+.s-feat-grid{display:grid;gap:24px 33px}
+@media (min-width:900px){.s-feat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.s-feat{
+  background:#fff;border:1px solid var(--ink);border-bottom-width:4px;
+  padding:var(--sp-06);display:flex;flex-direction:column;gap:var(--sp-07);
+}
+.s-feat-content{display:flex;flex-direction:column;gap:var(--sp-06)}
+.s-feat-main{display:flex;flex-direction:column;gap:var(--sp-05)}
+.s-feat-hp{display:flex;flex-direction:column;gap:var(--sp-03)}
+.s-feat .t{font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.2;color:var(--ink)}
+.s-feat .d{font-family:var(--body);font-size:14px;line-height:1.54;color:var(--ink2)}
+.s-feat .cta{font-family:var(--body);font-weight:500;font-size:14px;line-height:1.54;color:var(--blue);white-space:pre-wrap}
+.s-shot{
+  position:relative;width:100%;aspect-ratio:560/315;background:var(--mgray);border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--body);font-size:15px;line-height:1.2;color:#000;
+}
+.s-feat .o-tags{margin-top:auto}
+.o-tags{display:flex;flex-wrap:wrap;gap:var(--sp-04)}
+
+/* ---------- 3 EASY STEPS — horizontal scroller ---------- */
+.s-steps-head{display:grid;gap:var(--sp-07)}
+@media (min-width:992px){.s-steps-head{grid-template-columns:minmax(0,479px) minmax(0,606px);justify-content:space-between;align-items:end}}
+.s-steps-head .lede{margin-top:0;max-width:606px}
+.s-steps-wrap{position:relative;margin-top:98px}
+.s-steps{
+  display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;padding-bottom:var(--sp-05);
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.s-steps::-webkit-scrollbar{display:none}
+.s-step{flex:0 0 501px;max-width:100%;scroll-snap-align:start}
+@media (max-width:600px){.s-step{flex:0 0 calc(100vw - 2 * var(--pad))}}
+.s-step .s-shot{aspect-ratio:446/315;background:var(--mgray)}
+.s-steps-nav{position:absolute;top:-64px;right:0;display:flex;gap:var(--sp-04)}
+.s-steps-nav button{
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  background:#fff;border:1px solid var(--mgray);color:var(--ink);
+}
+.s-steps-nav button:disabled{opacity:.3}
+
+/* ---------- OPEN AGENTIC WORKFLOWS (provider card) ---------- */
+.s-open-grid{display:grid;gap:24px 34px}
+@media (min-width:900px){.s-open-grid{grid-template-columns:minmax(0,610px) minmax(0,1fr);align-items:stretch}}
+.s-open-col{display:flex;flex-direction:column;gap:32px}
+.s-open-col .s-open-card{flex:1;min-height:0;justify-content:flex-start}
+.s-open-card{
+  background:#fff;border:1px solid var(--ink);border-bottom-width:4px;border-radius:2px;
+  padding:23px;display:flex;flex-direction:column;gap:var(--sp-04);
+}
+.s-open-card .t{font-family:var(--mono);font-weight:600;font-size:18px;letter-spacing:-.36px;line-height:1.2;color:var(--ink)}
+.s-open-card .d{font-family:var(--body);font-size:14px;line-height:18px;letter-spacing:-.14px;color:#000}
+.s-open-card .cta{font-family:var(--body);font-weight:500;font-size:14px;line-height:1.5;color:var(--blue);white-space:pre-wrap}
+.s-open-card--tall{min-height:0}
+.s-open-card--tall .s-open-media{margin-top:var(--sp-06)}
+/* capped at 129px so the whole module stays compact — the card was being
+   driven tall by the image, which in turn stretched the two cards beside it */
+.s-open-media{
+  width:100%;height:129px;background:var(--lgray);border:1px dashed var(--mgray);
+  margin-top:var(--sp-05);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#69737F;
+}
+/* provider links use the design-system .chip — the same anchor tag as the
+   Observability "See also" list, so tags are one component site-wide */
+.s-provs{display:flex;flex-wrap:wrap;gap:var(--sp-04);margin-top:auto;padding-top:var(--sp-06)}
+
+/* ---------- THE FOUR TAXES ---------- */
+.s-tax{display:grid;gap:var(--sp-08)}
+@media (min-width:900px){.s-tax{grid-template-columns:minmax(0,537px) minmax(0,1fr);gap:clamp(24px,3.4vw,48px);align-items:center}}
+.s-tax-media{
+  width:100%;aspect-ratio:537/373;background:var(--lgray);border:1px dashed var(--mgray);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#69737F;
+}
+.s-tax-copy{display:flex;flex-direction:column;gap:var(--sp-06)}
+.s-tax-copy .t{font-family:var(--mono);font-weight:600;font-size:26px;line-height:36px;color:#0A2540;max-width:666px}
+.s-tax-copy .d{font-family:var(--body);font-size:16px;line-height:1.4;letter-spacing:.2px;color:#425466}
+.s-tax-list{display:flex;flex-direction:column;gap:var(--sp-04);margin-top:var(--sp-04)}
+.s-tax-item{display:flex;align-items:flex-start;gap:10px;font-family:var(--body);font-size:14px;line-height:24px;letter-spacing:-.075px;color:#000}
+.s-tax-item svg{flex:none;margin-top:2px}
+
+/* ---------- ANALYST CARDS ---------- */
+.s-analyst-grid{display:grid;gap:34px}
+@media (min-width:900px){.s-analyst-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.s-analyst{
+  background:#fff;border:1px solid var(--ink);border-bottom-width:4px;
+  padding:var(--sp-06);display:flex;flex-direction:column;gap:var(--sp-05);
+}
+.s-analyst .kick{letter-spacing:3.2px}
+.s-analyst .t{font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.2;color:var(--ink);max-width:562px}
+.s-analyst .cta{font-family:var(--body);font-weight:500;font-size:14px;line-height:1.54;color:var(--blue);white-space:pre-wrap}
+.s-analyst-media{
+  margin-top:auto;width:100%;height:129px;background:var(--lgray);border:1px dashed var(--mgray);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#69737F;
+}
+
+/* ---------- CLOSING CTA BAND ---------- */
 .s-cta{position:relative;overflow:hidden;background:#101C3F;color:#fff}
 .s-cta::before,.s-cta::after{
   content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(2px);
@@ -1082,712 +1285,62 @@ a.sr-only:focus-visible{
 .s-cta-grid{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-08);width:100%;flex-wrap:wrap}
 .s-cta h2{font-family:var(--mono);font-weight:600;font-size:clamp(24px,2.6vw,32px);line-height:1.2;color:#fff;max-width:828px}
 
-/* =====================================================================
-   OBSERVABILITY — Aug 19 revision (Figma 2495:15641, 1440 x 8262)
-   Desktop vertical rhythm is driven by explicit paddings so each section
-   lands on its board y; below 1280 everything goes fluid.
-   ===================================================================== */
 
-/* ---------- HERO (Figma 3663:9396) ----------
-   THE DESIGN VIEWPORT IS 1440. The frame reads 1576 only because the
-   product UI overhangs the right edge by 136px; the gradient rect in Figma
-   is 1440 x 624 and that is the viewport.
-
-   So the hero is a fixed 1440 board, centred. Above 1440 it does NOT keep
-   growing — the board stays 1440 and the page background shows either side.
-   The panel sits at x=736, 840 wide, so its right 136px is clipped by the
-   board edge: the bleed reads identically at every width, and nothing
-   scales past the size it was drawn at.
-   -------------------------------------------------------------------- */
-/* Gradient is FULL BLEED. The board caps the copy at 1440, but the gradient
-   must not, or the panel would visibly cross a background edge mid-screen.
-   overflow-x:clip is also load-bearing: at the locked 54px the word
-   "observability" is 402px wide and overflows the column below ~430px.
-   Without it that becomes page-level horizontal scroll on mobile. */
-.o-hero{overflow-x:clip;
-  background:linear-gradient(180deg,var(--lgray) 0%,#FFFFFF 100%)}
-
-/* The board caps the COPY at 1440 and centres it. It does NOT clip: the
-   panel is capped at its drawn 840 and allowed to run out of the board, so
-   past ~1712 you see all of it and it simply stops. Clipping at the board
-   edge instead left it cut off mid-screen with empty page beside it. */
-.o-hero .in{position:relative;height:624px;padding-block:0}
-
-.o-hero-grid{display:block;height:100%}
-
-/* copy — 608 wide on the 96px margin, 123px down, 40px to the CTA row */
-.o-hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;
-  gap:40px;width:608px;max-width:100%;padding-top:123px}
-.o-hero-head{display:flex;flex-direction:column;gap:var(--sp-05)}
-/* Figma draws this h1 at 52px / -1.04px, but the stylesheet carries an
-   explicit cross-page lock — "every hero headline is 54px, on every page",
-   set with !important. That's a deliberate decision, so it stands and only
-   the measure changes here. To follow Figma instead:
-       .o-hero-head .h1{font-size:52px!important;letter-spacing:-1.04px} */
-.o-hero-head .h1{max-width:608px}
-.o-hero-head .b16{max-width:516px;color:var(--ink2)}
-
-/* product UI — drawn size, drawn position, 16:9, overhang clipped by the board */
-.o-hero-media{position:absolute;top:73px;left:736px;width:840px;
-  aspect-ratio:16/9;
-  background:var(--lgray);
-  border:7px solid #FFFFFF;border-radius:8px;
-  box-shadow:0 4px 20px rgba(0,0,0,.13);
-  display:flex;align-items:center;justify-content:center;overflow:hidden}
-.o-hero-media span{font-family:var(--body);font-weight:500;font-size:18px;color:#5F6875;text-align:center}
-
-/* Below 1280 the side-by-side stops working — stack and contain.
-   minmax(0,1fr) stops the column being stretched to the h1's min-content
-   width (402px at the locked 54px), which would drag the media out too. */
-@media (max-width:1279px){
-  .o-hero .in{height:auto}
-  .o-hero-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--sp-08)}
-  .o-hero-copy{width:100%;padding-top:clamp(48px,7vw,88px);gap:var(--sp-07)}
-  .o-hero-media{position:static;width:100%;min-width:0;max-width:100%;
-    aspect-ratio:16/9;margin-bottom:clamp(48px,7vw,88px)}
-}
-
-/* ---------- KEY MESSAGES (new) ---------- */
-.o-keys .in{padding-block:0 0}
-.o-keys-head{display:flex;flex-direction:column;align-items:center;text-align:center}
-.o-keys-head .kick{letter-spacing:3.2px}
-.o-keys-head .h2{margin-top:var(--sp-06);max-width:805px}
-.o-keys-note{
-  font-family:var(--body);font-size:20px;line-height:29px;color:var(--ink);
-  text-align:center;margin-top:var(--sp-04);max-width:812px;margin-inline:auto;
-}
-.o-keys-grid{display:grid;gap:var(--sp-09) clamp(24px,7.2vw,103px);margin-top:45px}
-@media (min-width:900px){.o-keys-grid{grid-template-columns:repeat(3,minmax(0,349px));justify-content:space-between}}
-.o-key{display:flex;flex-direction:column;gap:10px}
-.o-key .t{font-family:var(--mono);font-weight:600;font-size:18px;letter-spacing:-.36px;line-height:1.2;color:var(--ink);margin-top:0}
-.o-key .d{font-family:var(--body);font-size:16px;line-height:26.4px;color:var(--ink);margin-top:6px}
-
-/* ---------- CAPABILITIES ---------- */
-.o-cap{background:#fff}
-.o-cap .in{padding-block:0}
-.o-cap-head{display:flex;flex-direction:column;align-items:center;text-align:center}
-.o-cap-head .kick{letter-spacing:3.2px}
-.o-cap-head .h2{margin-top:var(--sp-05);max-width:699px}
-.o-cap-head .lede{margin-top:var(--sp-05);max-width:812px}
-.o-cap-grid{display:grid;gap:32px 34px;margin-top:58px}
-@media (min-width:900px){.o-cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.o-card{
-  background:#fff;border:1px solid var(--ink);border-bottom-width:4px;
-  padding:var(--sp-06);display:flex;flex-direction:column;gap:var(--sp-07);
-}
-.o-card .inner{display:flex;flex-direction:column;gap:var(--sp-06)}
-.o-card .main{display:flex;flex-direction:column;gap:var(--sp-05)}
-.o-card .hp{display:flex;flex-direction:column;gap:var(--sp-03)}
-.o-card .t{font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.2;color:var(--ink)}
-.o-card .d{font-family:var(--body);font-size:14px;line-height:1.54;color:var(--ink2)}
-.o-card .d a{text-decoration:underline;text-underline-offset:2px;color:inherit}
-.o-card .cta{font-family:var(--body);font-weight:500;font-size:14px;line-height:1.54;color:var(--blue);white-space:pre-wrap}
-.o-card .o-tags{margin-top:auto}
-.o-tags{display:flex;flex-wrap:wrap;gap:var(--sp-04)}
-
-/* wide card */
-.o-wide{
-  background:#fff;border:1px solid var(--ink);border-bottom-width:4px;
-  padding:var(--sp-06);margin-top:32px;display:flex;flex-direction:column;gap:var(--sp-07);
-}
-.o-wide .inner{display:flex;flex-direction:column;gap:var(--sp-06)}
-.o-wide .main{display:flex;flex-direction:column;gap:var(--sp-05)}
-.o-wide .hp{display:flex;flex-direction:column;gap:var(--sp-03)}
-.o-wide .t{font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.2;color:var(--ink)}
-.o-wide .d{font-family:var(--body);font-size:14px;line-height:1.54;color:var(--ink2)}
-.o-wide .cta{font-family:var(--body);font-weight:500;font-size:14px;line-height:1.54;color:var(--blue);white-space:pre-wrap}
-.o-wide .o-tags{gap:12px}
-
-/* ---------- DEPLOY BANNER ---------- */
-.o-banner-h{font-family:var(--mono);font-weight:700;font-size:clamp(26px,2.6vw,32px);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
-
-/* =====================================================================
-   PRODUCT UI  ·  pinned scroll sequence
-   ---------------------------------------------------------------------
-   The section is 5 viewports tall. A sticky pane holds the title, the
-   step rail, the copy and the product view; each viewport of scroll
-   advances one step, swapping copy AND product view together.
-
-   The page keeps scrolling at its natural rate — scroll is never
-   intercepted or re-timed — so this reads as a pinned sequence rather
-   than hijacked scrolling, and the user can always leave by scrolling on.
-   Below 992px it unpins into a plain stack. Reduced motion drops the
-   cross-fades but keeps the sequence.
-   ===================================================================== */
-.o-story{position:relative}
-/* 5 steps. 6 viewport-heights meant a full screen of empty scroll per beat;
-   ~0.78vh per step keeps the pin readable without the dead run. */
-@media (min-width:992px){ .o-story{height:calc(5 * 78vh)} }
-
-.o-story-pin{display:block}
-@media (min-width:992px){
-  .o-story-pin{
-    position:sticky;top:0;height:100vh;overflow:hidden;
-    display:flex;flex-direction:column;
-    padding-block:clamp(48px,7vh,104px) clamp(32px,5vh,72px);
-  }
-  .o-story-pin > .container{display:flex;flex-direction:column;flex:1;min-height:0}
-  /* the grid takes all remaining height; the media stretches into it */
-  /* grid fills the pane; the media absorbs the slack but is capped so a
-     product view can never end up taller than it is wide */
-  .o-story-grid{flex:1;min-height:0;align-items:center}
-  .o-copy,.o-media{min-height:0}
-  .o-media{height:100%;max-height:min(100%,620px)}
-}
-/* invisible scroll markers, one per step */
-.o-scene{position:absolute;left:0;width:1px;height:100vh;pointer-events:none}
-@media (max-width:991px){.o-scene{display:none}}
-
-/* title spans the full measure, above everything */
-.o-story-head{display:flex;flex-direction:column;gap:var(--sp-05);width:100%;max-width:none}
-.o-story-head .h2{max-width:none}
-
-.o-story-grid{display:grid;gap:var(--sp-08);margin-top:clamp(32px,4vw,56px);width:100%}
-@media (min-width:992px){
-  .o-story-grid{grid-template-columns:minmax(0,245px) minmax(0,320px) minmax(0,1fr);
-    gap:clamp(24px,2.6vw,56px);align-items:start}
-}
-
-/* step rail — all five always visible */
-.o-rail{display:flex;flex-direction:column}
-.o-step{
-  display:block;width:100%;text-align:left;padding:12px;border-left:2px solid transparent;
-  font-family:var(--mono);font-weight:500;font-size:16px;line-height:1.15;color:var(--ink);
-  opacity:.35;transition:opacity .32s var(--ease),background-color .32s var(--ease),border-color .32s var(--ease);
-}
-.o-step[aria-current="true"]{
-  opacity:1;border-left-color:var(--teal);
-  background:linear-gradient(90deg,rgba(2,188,183,.10),rgba(2,188,183,0));
-}
-
-/* copy + media swap together */
-.o-copy,.o-media{position:relative}
-
-.o-block,.o-shot{
-  opacity:0;transition:opacity .38s var(--ease),transform .38s var(--ease);
-  transform:translateY(10px);pointer-events:none;
-}
-@media (min-width:992px){.o-block,.o-shot{position:absolute;inset:0}}
-.o-block[data-on="1"],.o-shot[data-on="1"]{opacity:1;transform:none;pointer-events:auto}
-.o-block{display:flex;flex-direction:column;gap:var(--sp-06);max-width:320px}
-.o-block .d{font-family:var(--body);font-size:14px;line-height:1.54;color:var(--ink2)}
-.o-block .d a{text-decoration:underline;text-underline-offset:2px;color:inherit}
-.o-shot{
-  background:var(--lgray);border:1px dashed var(--mgray);border-radius:var(--r-md);
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  background-image:
-    linear-gradient(to top right,transparent calc(50% - .6px),#D9DEE7 calc(50% - .6px),#D9DEE7 calc(50% + .6px),transparent calc(50% + .6px)),
-    linear-gradient(to top left, transparent calc(50% - .6px),#D9DEE7 calc(50% - .6px),#D9DEE7 calc(50% + .6px),transparent calc(50% + .6px));
-}
-.o-shot span{
-  background:#fff;border:1px solid var(--mgray);border-radius:var(--r-sm);
-  padding:var(--sp-04) var(--sp-05);font-family:var(--mono);font-weight:600;font-size:12px;
-  letter-spacing:.12em;text-transform:uppercase;color:#69737F;line-height:1.6;
-}
-.o-shot span em{display:block;font-style:normal;font-weight:400;letter-spacing:.08em;color:#8D96A3;font-size:10px;margin-top:2px}
-
-/* progress pips */
-.o-progress{display:flex;gap:var(--sp-02);margin-top:var(--sp-07)}
-.o-progress i{height:3px;flex:1;background:var(--mgray);border-radius:2px;transition:background .3s ease}
-.o-progress i[data-on="1"]{background:var(--teal)}
-
-/* ---- phones: unpin, stack every step in full ---- */
-@media (max-width:991px){
-  .o-story-grid{grid-template-columns:1fr;margin-top:var(--sp-07)}
-  .o-rail{display:none}
-  .o-copy,.o-media{display:contents}
-  .o-block,.o-shot{position:relative;opacity:1;transform:none;pointer-events:auto;inset:auto}
-  .o-shot{aspect-ratio:16/9;margin-bottom:var(--sp-09)}
-  .o-block{max-width:none;margin-bottom:var(--sp-05)}
-  .o-block .t-mob{display:block}
-  .o-progress{display:none}
-}
-.o-block .t-mob{display:none;font-family:var(--mono);font-weight:600;font-size:18px;color:var(--ink)}
-@media (prefers-reduced-motion:reduce){.o-block,.o-shot,.o-step,.o-progress i{transition:none}}
-
-/* ---------- REVIEWS ---------- */
-.o-rev .in{padding-block:0}
-.o-rev-head{display:flex;flex-direction:column;align-items:center;text-align:center}
-.o-rev-head .kick{letter-spacing:3.2px}
-.o-rev-head .h2{margin-top:var(--sp-05);max-width:807px}
-.o-rev-head .lede{margin-top:var(--sp-05);max-width:896px}
-.o-rev-grid{display:grid;gap:34px;margin-top:73px}
-@media (min-width:900px){.o-rev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.o-analyst{
-  background:#fff;border:1px solid var(--ink);border-bottom-width:4px;
-  padding:var(--sp-06);display:flex;flex-direction:column;gap:var(--sp-06);min-height:287px;
-}
-.o-analyst .t{max-width:40ch}
-.o-analyst .gartner{
-  margin-top:auto;width:100%;height:128px;background:var(--lgray);
-  border:1px dashed var(--mgray);display:flex;align-items:center;justify-content:center;
-  text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:#69737F;
-}
-
-/* ===== METRICS — the shared .mcard component (same as Security) ===== */
-.o-metrics-head{display:flex;flex-direction:column;align-items:center;text-align:center}
-.o-metrics-head .kick{letter-spacing:3.2px}
-.o-metrics-head .h2{margin-top:var(--sp-05);max-width:699px}
-.o-metrics-head .lede{margin-top:var(--sp-05);max-width:815px}
-.o-metric-grid{display:grid;gap:var(--gutter-tight);margin-top:64px;align-items:stretch}
-@media (min-width:900px){.o-metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-
-/* ---------- SPLIT SECTIONS (restored) ---------- */
-/* One module, two orientations. No card chrome — identical internal
-   spacing on both, only the column order flips. */
-.o-split{display:grid;gap:0;align-items:center;border:0;background:none;box-shadow:none}
-.o-split+.o-split{margin-top:64px}
-@media (min-width:900px){.o-split{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-.o-split-copy{padding:0 40px}
-.o-split-copy .t{font-family:var(--mono);font-weight:600;font-size:clamp(20px,2vw,26px);letter-spacing:-.02em;line-height:1.35;color:var(--ink)}
-.o-split-copy .d{font-family:var(--body);font-size:16px;line-height:1.6;color:var(--ink2);margin-top:var(--sp-06);max-width:52ch}
-.o-checks{display:flex;flex-direction:column;gap:var(--sp-04);margin-top:var(--sp-07)}
-.o-check{display:flex;align-items:center;gap:var(--sp-04);font-family:var(--body);font-size:15px;line-height:1.6;color:var(--ink2)}
-.o-check svg{flex:none}
-.o-split-media{display:flex;align-items:center;justify-content:center;margin:0 40px}
-.o-split--rev .o-split-media{order:-1}
-@media (max-width:899px){.o-split--rev .o-split-media{order:0}}
-
-/* =====================================================================
-   SPLIT-SECTION VISUALS — rebuilt in CSS from the Figma comps
-   (the source assets are localhost-only, so these are constructed)
-   ===================================================================== */
-.o-split-media{padding:0;background:none;display:block}
-
-/* ---- A. Live system model graph ---- */
-.sysmap{
-  position:relative;width:100%;aspect-ratio:561/390;border-radius:12px;
-  background:#08090B;overflow:hidden;font-family:var(--body);
-  box-shadow:0 18px 44px -22px rgba(0,0,0,.55);
-}
-.sysmap-hd{
-  position:absolute;left:5.4%;top:6.5%;right:5.4%;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.sysmap-hd b{
-  font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:#F4F6F9;
-}
-.sysmap-live{
-  display:inline-flex;align-items:center;gap:6px;
-  border:1px solid #1F7A6B;border-radius:999px;padding:3px 9px;
-  font-size:10.5px;color:#8FE3D3;
-}
-.sysmap-live i{width:5px;height:5px;border-radius:50%;background:#3ECFB2}
-.node{
-  position:absolute;border-radius:10px;padding:10px 12px;text-align:center;
-  display:flex;flex-direction:column;gap:3px;
-}
-.node b{font-size:12.5px;font-weight:700;line-height:1.2}
-.node span{font-size:10px;line-height:1.3;opacity:.85}
-.node i.dot{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%}
-.node--host{left:23.5%;top:20%;width:44%;background:#12306B;border:1px solid #2E5FB0;color:#E8F0FF}
-.node--host i.dot{background:#4C8DF6}
-.node--svc {left:20.5%;top:47%;width:50%;background:#5A4410;border:1px solid #B98A16;color:#FBEFD2}
-.node--svc i.dot{background:#F2B417}
-.node--cache{left:3.5%;top:75%;width:39%;background:#0E3A33;border:1px solid #1F7A6B;color:#CFF3EA}
-.node--cache i.dot{background:#3ECFB2}
-.node--db  {right:3.5%;top:75%;width:39%;background:#F6DC8A;border:1px solid #D8B84C;color:#3B2F08}
-.node--db i.dot{background:#E0A400}
-.node-bar{height:5px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden;margin-top:4px}
-.node-bar i{display:block;height:100%;width:72%;background:#F2B417;border-radius:3px}
-.sysmap svg.wires{position:absolute;inset:0;width:100%;height:100%}
-.sysmap svg.wires path{stroke:#5C646F;stroke-width:1;stroke-dasharray:4 3;fill:none}
-
-/* ---- B. Agentic investigation window ---- */
-.agentwin{
-  position:relative;width:100%;aspect-ratio:523/403;border-radius:10px;
-  background:#141414;overflow:hidden;font-family:var(--body);
-  box-shadow:0 18px 44px -22px rgba(0,0,0,.55);
-}
-.agentwin-bar{
-  height:12%;min-height:34px;background:#2B2B2B;display:flex;align-items:center;
-  padding-inline:14px;gap:7px;position:relative;
-}
-.agentwin-bar i{width:10px;height:10px;border-radius:50%}
-.agentwin-bar i:nth-child(1){background:#FF5F57}
-.agentwin-bar i:nth-child(2){background:#FEBC2E}
-.agentwin-bar i:nth-child(3){background:#28C840}
-.agentwin-bar b{
-  position:absolute;left:0;right:0;text-align:center;
-  font-size:12px;font-weight:500;color:#C9CDD3;pointer-events:none;
-}
-.agentwin-body{padding:16px 14px;display:flex;justify-content:flex-end}
-.agentwin-msg{
-  background:#2A2A2A;border-radius:8px;padding:11px 13px;max-width:78%;
-  font-size:11.5px;line-height:1.6;color:#D8DBE0;text-align:left;
-}
-
-
-/* customer tab arrows: mobile only, 36px target (matches the other pages) */
-.ctabs-wrap{position:relative;display:flex;align-items:center;gap:var(--sp-03)}
-.ctabs{flex:1 1 auto;min-width:0}
-.ctabs-nav{display:none}
-@media (max-width:767px){
-  .ctabs-nav{
-    display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;
-    background:#fff;border:1px solid var(--mgray);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.06);
-  }
-  .ctabs-nav:disabled{opacity:.3}
-}
-
-
-/* =====================================================================
-   VERTICAL RHYTHM
-   Every section here sets padding-block:0, but nothing was supplying the
-   gaps between them — so the whole page collapsed together. Same
-   gap-based pattern as the other pages: one --sec-gap per boundary,
-   overridable per section by the calibrator.
-   --mt-obs-rhythm marks this block as present.
-   ===================================================================== */
+/* ---- Vertical rhythm: the gaps the comp draws, not absolute y ---- */
 @media (min-width:1280px){
-  .o-keys    {margin-top:var(--mt-keys,var(--sec-gap))}
-  .o-cap     {margin-top:var(--mt-cap,var(--sec-gap))}
-  .o-caps    {margin-top:var(--mt-caps,var(--sec-gap))}
-  .deploy    {margin-top:var(--mt-deploy,var(--sec-gap))}
-  .o-splits  {margin-top:var(--mt-splits,var(--sec-gap))}
-  .o-story   {margin-top:var(--mt-story,var(--sec-gap))}
-  .o-rev     {margin-top:var(--mt-rev,var(--sec-gap))}
-  .customers {margin-top:var(--mt-cust,var(--sec-gap))}
-  .o-comm    {margin-top:var(--mt-comm,var(--sec-gap))}
-  .faq-sec   {margin-top:var(--mt-faq,var(--sec-gap))}
-  .s-cta     {margin-top:var(--mt-cta,var(--sec-gap))}
-  .deploy .in,.customers .in,.o-comm .in,.faq-sec .in,.o-rev .in{padding-block:0}
+  .s-hero .in{padding-block:var(--mt-hero,var(--sec-gap)) 0}
+  .o-keys .in,.s-features .in,.o-metrics .in,.s-steps-sec .in,.s-open .in,
+  .s-tax-sec .in,.s-analyst-sec .in,.customers .in,.o-comm .in{padding-block:0}
+  .deploy .in{padding-block:0}
+  .faq-sec .in{padding-block:0 0}
+  .o-keys       {margin-top:var(--mt-keys,var(--sec-gap))}
+  .s-features   {margin-top:var(--mt-feat,var(--sec-gap))}
+  .o-metrics    {margin-top:var(--mt-metrics,var(--sec-gap))}
+  .deploy       {margin-top:var(--mt-deploy,var(--sec-gap))}
+  .s-steps-sec  {margin-top:var(--mt-steps,var(--sec-gap))}
+  .s-open       {margin-top:var(--mt-open,var(--sec-gap))}
+  .s-tax-sec    {margin-top:var(--mt-tax,var(--sec-gap))}
+  .s-analyst-sec{margin-top:var(--mt-analyst,var(--sec-gap))}
+  .customers    {margin-top:var(--mt-cust,var(--sec-gap))}
+  .o-comm       {margin-top:var(--mt-comm,var(--sec-gap))}
+  .faq-sec      {margin-top:var(--mt-faq,var(--sec-gap))}
+  .s-cta        {margin-top:var(--mt-cta,var(--sec-gap))}
 }
 @media (max-width:1279px){
-  .o-keys,.o-cap,.o-caps,.deploy,.o-splits,.o-story,
-  .o-rev,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-y,clamp(56px,8vw,96px))}
+  .s-hero .in{padding-block:var(--sec-y-lg) 0}
+  .o-keys .in,.s-features .in,.o-metrics .in,.s-steps-sec .in,.s-open .in,
+  .s-tax-sec .in,.s-analyst-sec .in,.customers .in,.o-comm .in{padding-block:var(--sec-y) 0}
+  .faq-sec .in{padding-block:var(--sec-y)}
+  .deploy{margin-top:var(--sec-y)}
+  .s-cta{margin-top:var(--sec-y)}
+}
+/* section header -> content gaps from the comp */
+@media (min-width:1280px){
+  .s-features .s-feat-grid{margin-top:57px}
+  .s-steps-sec .s-steps-wrap{margin-top:98px}
+  .s-open .s-open-grid{margin-top:64px}
+  .s-analyst-sec .s-analyst-grid{margin-top:50px}
 }
 
-.imgph-label{
-  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  color:#8FA0BF;text-align:center;
+
+/* ---- Security metrics: three cards using the DS .mcard component ---- */
+.s-metric-grid{display:grid;gap:var(--gutter-tight);margin-top:64px;align-items:stretch}
+@media (min-width:900px){.s-metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ---- Light grey bands, as the comp fills them ---- */
+.s-features{background:#F7F7F7}
+.s-open{background:#F7F7F7}
+.s-features .in,.s-open .in{padding-block:0}
+@media (min-width:1280px){
+  .s-features{padding-block:var(--sec-gap)}
+  .s-open{padding-block:var(--sec-gap)}
 }
-
-/* =====================================================================
-   Z. SYSTEM NORMALISATION  (appended last, so it settles the cascade)
-   One type scale, three paragraph roles, one eyebrow, one spacing ramp.
-   Existing class names are aliased onto the canonical roles rather than
-   rewritten in markup, so nothing downstream has to change.
-   ===================================================================== */
-:root{
-  /* vertical rhythm */
-  --sec-pad:clamp(56px,7.6vw,110px);  /* every section, top and bottom   */
-  --gap-eyebrow:16px;                 /* eyebrow  -> heading             */
-  --gap-head:16px;                    /* heading  -> paragraph           */
-  --gap-cta:32px;                     /* paragraph -> buttons            */
-  --gap-sec-head:48px;                /* section head -> section body    */
-}
-
-/* ---------- HEADINGS: four levels, nothing else ---------- */
-.h1{font-family:var(--mono);font-weight:500;font-size:54px;line-height:1.16;letter-spacing:-.02em;color:var(--ink)}
-.h2,.o-banner-h{font-family:var(--mono);font-weight:500;font-size:32px;line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
-.h3{font-family:var(--mono);font-weight:600;font-size:24px;line-height:1.25;letter-spacing:-.02em;color:var(--ink)}
-.h4,.t,.t-mob{font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.3;letter-spacing:-.02em;color:var(--ink)}
-
-/* ---------- PARAGRAPHS: exactly three ---------- */
-.p1,.lede,.o-keys-note,.dep-sub{font-family:var(--body);font-weight:400;font-size:20px;line-height:1.5;color:var(--ink2)}
-.p2,.b16,.d{font-family:var(--body);font-weight:400;font-size:16px;line-height:1.6;color:var(--ink2)}
-.p3,.b15,.long,.cp{font-family:var(--body);font-weight:400;font-size:14px;line-height:1.55;color:var(--ink2)}
-
-/* ---------- EYEBROW: one ---------- */
-.kick,.eyebrow,.o-caps-label,.lab{font-family:var(--mono);font-weight:700;font-size:16px;line-height:1.2;
-  letter-spacing:3.2px;text-transform:uppercase;color:var(--blue)}
-.o-caps-label,.lab{color:#fff}
-
-/* ---------- SECTION RHYTHM ----------
-   Padding moves onto the section itself so every band is identical; the
-   inner container's own padding-block is zeroed to stop it doubling up.
-   The hero is deliberately exempt: it's a fixed 624 board. */
-.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{
-  padding-block:var(--sec-pad)}
-.o-keys>.in,.o-cap>.in,.deploy>.in,.o-splits>.in,.o-story>.in,.o-rev>.in,
-.customers>.in,.o-comm>.in,.faq-sec>.in,.s-cta>.in{padding-block:0}
-
-/* ---------- SECTION HEAD: eyebrow / heading / paragraph / buttons ---------- */
-/* Section heads on this page are CENTRED — six of the seven were, and only
-   the hero is left-aligned. Do not blanket align-items:flex-start here. */
-.sec-head{display:flex;flex-direction:column;align-items:center;text-align:center;
-  gap:var(--gap-head);margin-bottom:var(--gap-sec-head)}
-.sec-head .kick,.sec-head .eyebrow{margin-bottom:calc(var(--gap-eyebrow) - var(--gap-head))}
-.sec-head .btn-row{margin-top:calc(var(--gap-cta) - var(--gap-head))}
-
-/* =====================================================================
-   PRODUCT UI DECK — window cards  ·  Figma 3684:9690
-   Same scroll mechanic as before: each card in its own slot with a
-   staggered bottom, so all five release on the same frame instead of the
-   last one climbing over the rest. Only the card shell changed — the
-   folder tab became a full-width title bar.
-   ===================================================================== */
-.o-story{
-  --os-bar-h:30px;
-  --os-card-h:492px;
-  --os-hold:var(--layout-06);          /* 80 */
-  --os-gap:var(--layout-06);           /* 80 between cards, laid out */
-  --os-top:24px;
-  --r1:42px; --r2:42px; --r3:42px; --r4:42px;   /* bar 30 + 12 reveal */
-  --os-fs:calc(var(--os-card-h) + var(--os-gap));
-
-  /* Straight stack is the default: no horizontal step, cards full 1248.
-     --os-panel-l keeps the panel exactly 682 wide in either variant
-     (1248 - 561 - 5 = 682, and 1120 - 433 - 5 = 682). */
-  --os-x:0px;
-  --os-panel-l:561px;
-}
-
-/* ---------------------------------------------------------------------
-   DIAGONAL CASCADE — kept, not deleted. Add `is-cascade` to .os-stack:
-       <div class="os-stack is-cascade">
-   Each card steps 32 right (layout-03) and 42 down. Five cards = four
-   steps, so the deck is 4*32 = 128 wider than one card; the card drops to
-   1248 - 128 = 1120 to keep the whole thing inside the container. Full
-   1248 cards AND a horizontal cascade don't both fit in 1248.
-   42 down rather than the reference's ~16, so no title bar clips its own
-   label. Steps down responsively or it forces sideways scroll on mobile.
-   --------------------------------------------------------------------- */
-.os-stack.is-cascade{--os-x:32px;--os-panel-l:433px}
-@media (max-width:1279px){ .os-stack.is-cascade{--os-x:16px} }
-@media (max-width:991px){  .os-stack.is-cascade{--os-x:0px}  }
-
-.os-stack{display:block}
-.os-slot{position:relative}
-.os-slot:nth-child(1){--h:calc(var(--os-card-h) + var(--os-hold) + 4*var(--os-fs) - (var(--r1) + var(--r2) + var(--r3) + var(--r4)));z-index:1}
-.os-slot:nth-child(2){--h:calc(var(--os-card-h) + var(--os-hold) + 3*var(--os-fs) - (var(--r2) + var(--r3) + var(--r4)));z-index:2}
-.os-slot:nth-child(3){--h:calc(var(--os-card-h) + var(--os-hold) + 2*var(--os-fs) - (var(--r3) + var(--r4)));z-index:3}
-.os-slot:nth-child(4){--h:calc(var(--os-card-h) + var(--os-hold) + 1*var(--os-fs) - var(--r4));z-index:4}
-.os-slot:nth-child(5){--h:calc(var(--os-card-h) + var(--os-hold));z-index:5}
-.os-slot{height:var(--h);margin-bottom:calc(var(--os-fs) - var(--h))}
-.os-slot:nth-child(5){margin-bottom:0}
-
-/* the card is now the window itself — opaque, so a parked card cleanly
-   hides the one beneath without needing a separate backing */
-.os-card{position:sticky;box-sizing:border-box;
-  width:calc(100% - 4 * var(--os-x));      /* 1120 at a 1248 container */
-  height:var(--os-card-h);background:#FFFFFF;
-  border:1px solid var(--ink);
-  box-shadow:3px 4px 0 0 var(--ink);}
-.os-slot:nth-child(1) .os-card{margin-left:calc(0 * var(--os-x));top:var(--os-top)}
-.os-slot:nth-child(2) .os-card{margin-left:calc(1 * var(--os-x));top:calc(var(--os-top) + var(--r1))}
-.os-slot:nth-child(3) .os-card{margin-left:calc(2 * var(--os-x));top:calc(var(--os-top) + var(--r1) + var(--r2))}
-.os-slot:nth-child(4) .os-card{margin-left:calc(3 * var(--os-x));top:calc(var(--os-top) + var(--r1) + var(--r2) + var(--r3))}
-.os-slot:nth-child(5) .os-card{margin-left:calc(4 * var(--os-x));top:calc(var(--os-top) + var(--r1) + var(--r2) + var(--r3) + var(--r4))}
-
-/* title bar — spans the FULL container. Absolute children lay out against
-   the padding box, so -1px offsets push it back over the 1px border. */
-.os-bar{position:absolute;top:-1px;left:-1px;right:-1px;height:var(--os-bar-h);
-  background:var(--ink);display:flex;align-items:center;padding-inline:12px}
-.os-label{font-family:var(--mono);font-weight:500;font-size:12px;line-height:14px;
-  letter-spacing:.28px;text-transform:uppercase;color:#FFFFFF;white-space:nowrap}
-.os-dots{position:absolute;top:11px;right:22px;display:flex;gap:12px}
-.os-dots i{width:8px;height:8px;border-radius:50%;display:block}
-.os-dots i:nth-child(1){background:#F04E98}
-.os-dots i:nth-child(2){background:#FEC514}
-.os-dots i:nth-child(3){background:#02BCB7}
-
-/* copy — 360 wide, anchored from the TOP at the board's 216, so the title
-   sits on the same line in every card. Bottom-anchoring made each card's
-   title start at a different height depending on how much copy it had.
-   Verified: the tallest card is 194 tall, so 216+194=410 clears the 492. */
-.os-copy{position:absolute;left:19px;width:360px;top:215px;
-  display:flex;flex-direction:column;gap:var(--sp-04)}
-.os-copy h3,.os-copy .os-h{font-family:var(--mono);font-weight:500;font-size:32px;line-height:1.2;
-  letter-spacing:-.02em;color:var(--ink);margin:0}
-.os-copy p{font-family:var(--body);font-weight:400;font-size:14px;line-height:1.5;
-  color:var(--ink2);margin:0;max-width:none}
-.os-copy p a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
-
-/* product panel */
-/* TOP-anchored at 82, never centred or bottom-anchored. aspect-ratio
-   rather than a fixed height so it holds 1.804 as the card narrows
-   instead of going portrait. */
-.os-panel{position:absolute;left:var(--os-panel-l);right:5px;top:82px;height:auto;aspect-ratio:682/378;
-  background:var(--lgray);border-radius:2px;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--body);font-size:15px;color:#5F6875;text-align:center}
-
-/* The cascade costs 4 * --os-x of card width. On a 1088 container that's
-   fine; on a 350 one it left a 222px card and pushed the page sideways.
-   Step down below XL, off entirely once the deck stops stacking.
-   The panel also has to keep its ratio as the card narrows, or a fixed
-   378 height turns it portrait. */
-@media (max-width:991px){
-  .os-slot{height:auto!important;margin-bottom:var(--layout-03)!important;z-index:auto!important}
-  /* relative, NOT static — the title bar is absolutely positioned and needs
-     the card to stay its containing block, or it escapes and stops spanning. */
-  .os-card{position:relative;height:auto;padding-bottom:var(--spacing-06)}
-  .os-copy{position:static;width:auto;padding:calc(var(--os-bar-h) + 24px) 19px 0}
-  .os-panel{position:static;margin:var(--spacing-06) 19px 0;width:auto;height:auto;aspect-ratio:682/378}
-}
-
-/* =====================================================================
-   ZZ. SYSTEM — layout scale, spacing scale, type scale
-   Off-scale values snap to the nearest step, always DOWN.
-   Layout  = space BETWEEN components.
-   Spacing = space INSIDE one component.
-   ===================================================================== */
-:root{
-  --layout-00:0px;  --layout-01:16px; --layout-02:24px; --layout-03:32px;
-  --layout-04:48px; --layout-05:64px; --layout-06:80px; --layout-07:120px;
-
-  --spacing-00:0px; --spacing-01:2px; --spacing-02:4px;  --spacing-03:8px;
-  --spacing-04:12px;--spacing-05:16px;--spacing-06:24px; --spacing-07:32px;
-  --spacing-08:40px;--spacing-09:48px;
-
-  /* measure caps — both boards agree: lede 606, hero paragraph 516 */
-  --measure-body:608px;
-  --measure-hero:516px;
-}
-
-/* ---------- LINE-HEIGHT IS A FUNCTION OF TYPEFACE, NOT COMPONENT ----------
-   This is what collapses the 34 size/line-height pairs down to four. */
-.h1,.h2,.h3,.h4,.t,.t-mob,.kick,.eyebrow,.o-banner-h,.stat,.fig{line-height:1.2}
-.p1,.p2,.b16,.d,.lede,.o-keys-note,.dep-sub{line-height:1.54}
-.p3,.b15,.long,.cp{line-height:1.5}
-.btn{line-height:1.3}
-
-/* ---------- TRACKING IS A FUNCTION OF ROLE ---------- */
-.h1,.h2,.h3,.h4,.t,.t-mob,.o-banner-h,.stat,.fig{letter-spacing:-.02em}
-.kick,.eyebrow{letter-spacing:.2em}
-.badge,.chip-label{letter-spacing:.08em}
-.p1,.p2,.p3,.b16,.b15,.d,.lede{letter-spacing:0}
-
-/* ---------- TYPE SCALE ---------- */
-.h1{font-family:var(--mono);font-weight:500;font-size:54px;color:var(--ink)}
-.h2,.o-banner-h{font-family:var(--mono);font-weight:500;font-size:32px;color:var(--ink)}
-.h3{font-family:var(--mono);font-weight:600;font-size:24px;color:var(--ink)}
-.h4,.t,.t-mob{font-family:var(--mono);font-weight:600;font-size:18px;color:var(--ink)}
-.kick,.eyebrow{font-family:var(--mono);font-weight:700;font-size:16px;text-transform:uppercase;color:var(--blue)}
-
-/* PARAGRAPHS — two sizes. 16 for page-level narrative, 14 inside a bounded
-   card or column. The 20px lede is gone: neither board has one. */
-.p1,.p2,.b16,.d,.lede,.o-keys-note,.dep-sub{
-  font-family:var(--body);font-weight:400;font-size:16px;color:var(--ink2)}
-.p3,.b15,.long,.cp{
-  font-family:var(--body);font-weight:400;font-size:14px;color:var(--ink2)}
-
-/* card-scoped copy is the 14 tier */
-.mcard .d,.cap-card .d,.o-card .d,.o-wide .d,.o-block .d,.o-comm-card .d,
-.o-key .d,.m-trio .cell p,.v-grid p{font-size:14px;line-height:1.5}
-/* titles all sit on Dark Ink; body on Ink */
-.mcard .t,.cap-card .t,.o-key .t,.o-card .t,.o-wide .t,.o-block .t-mob,
-.o-analyst .t{font-size:18px;line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
-.o-split-copy .t{font-size:24px;line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
-.o-split-copy .d,.o-key .d{font-size:16px;line-height:1.54}
-
-/* ---------- MEASURE — the 134-character line ----------
-   Body copy never spans the 1248 content width. */
-.p1,.p2,.b16,.d,.lede,.o-keys-note{max-width:var(--measure-body)}
-.o-hero-head .b16{max-width:var(--measure-hero)}
-/* centred heads keep their paragraph centred once capped */
-.o-keys-head .lede,.o-cap-head .lede,.o-rev-head .lede,.cust-head .lede,
-.o-comm-head .lede,.faq-head .lede,.sec-head .lede,
-.o-keys-head .b16,.o-cap-head .b16,.o-rev-head .b16,.sec-head .p2{margin-inline:auto}
-/* inside a bounded column the column is already the measure */
-/* Only genuinely bounded columns opt out of the cap. .o-block was in this
-   list by mistake — it is 1198 wide, which produced the 134-character line. */
-.m-trio .cell p,.v-grid p,.os-copy p,.o-card .d,.o-wide .d{max-width:none}
-
-/* ---------- SPACING LADDER (inside components) ---------- */
-:root{
-  --gap-eyebrow:var(--spacing-06);   /* 24 eyebrow -> heading   */
-  --gap-head:var(--spacing-05);      /* 16 heading -> paragraph */
-  --gap-cta:var(--spacing-08);       /* 40 text -> CTA row      */
-  --gap-sec-head:var(--layout-04);   /* 48 head -> section body */
-}
-.o-keys-head,.o-cap-head,.o-rev-head,.cust-head,.o-comm-head,.faq-head,.sec-head,.o-hero-head{
-  gap:var(--gap-head)}
-.o-keys-head>.kick,.o-cap-head>.kick,.o-rev-head>.kick,.cust-head>.kick,
-.o-comm-head>.kick,.faq-head>.kick,.sec-head>.kick,
-.o-keys-head>.eyebrow,.o-cap-head>.eyebrow,.o-rev-head>.eyebrow,.cust-head>.eyebrow,
-.o-comm-head>.eyebrow,.faq-head>.eyebrow,.sec-head>.eyebrow{
-  margin:0 0 calc(var(--gap-eyebrow) - var(--gap-head)) 0}
-
-/* ---------- SECTION RHYTHM ----------
-   74 is off-scale; nearest step downward is layout-05 (64).
-   Sibling margins give exactly 64 — two paddings would double it.
-   Bands keep interior padding because a filled band needs breathing room. */
-.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{
-  padding-block:0}
-/* The page ALREADY has a per-section rhythm system:
-       .o-keys{margin-top:var(--mt-keys, var(--sec-gap))}
-   with a --mt-<name> escape hatch per section. Set the shared token rather
-   than adding a competing `section + section` rule that fights it. */
-.o-cap,.deploy,.s-cta{padding-block:var(--layout-05)}   /* filled bands */
-/* zero the leading/trailing slack so section edges ARE content edges */
-.o-keys>.in>:first-child,.o-cap>.in>:first-child,.o-splits>.in>:first-child,
-.o-story>.in>:first-child,.o-rev>.in>:first-child,.customers>.in>:first-child,
-.o-comm>.in>:first-child,.faq-sec>.in>:first-child{margin-top:0}
-.o-keys>.in>:last-child,.o-cap>.in>:last-child,.o-splits>.in>:last-child,
-.o-rev>.in>:last-child,.customers>.in>:last-child,.o-comm>.in>:last-child,
-.faq-sec>.in>:last-child{margin-bottom:0}
-/* the deck's tail is the sticky hold, not spacing — don't stack padding on it */
-.o-story{padding-bottom:0}
-
-/* Deck tokens now live with the deck itself (window-card block above).
-   The old snap block set .os-copy{gap:16} which overrode the board's 12. */
-
-/* ---------- RADIUS: 2 / 4 / 8 / 16 ---------- */
-.sysmap{border-radius:var(--r-md)}      /* 12 -> 8 */
-.node,.agentwin{border-radius:var(--r-md)}  /* 10 -> 8 */
-.node-bar,.node-bar i{border-radius:2px}    /* 3 -> 2 */
-
-/* ---------- FONT: Lilex and Inter only ---------- */
-.dep-sub{font-family:var(--body)}
-
-/* ---------- BADGE: one token ---------- */
-.badge,.chip-label{font-family:var(--mono);font-weight:700;font-size:14px;
-  line-height:1.2;text-transform:uppercase;border-radius:2px;
-  padding:var(--spacing-01) var(--spacing-02)}
-
-
-/* ---------- MEASURE, enforced ----------
-   Component rules were setting their own caps (812, 896, 815, 68ch) and
-   beating the global one. Same specificity, declared later, so the system
-   value wins. 608px = ~65 characters at 16/1.54. */
-.o-cap-head .lede,.o-rev-head .lede,.o-metrics-head .lede{max-width:var(--measure-body)}
-.hp .d,.o-block .d,.o-split-copy .d{max-width:var(--measure-body)}
-.lede{max-width:var(--measure-body)}
-
-
-/* ---------- SECTION RHYTHM, through the existing mechanism ----------
-   74 is off-scale; nearest step downward is layout-05 (64). --sec-gap is the
-   page's own shared fallback, so setting it moves every section at once and
-   leaves the --mt-<name> per-section overrides working. */
-:root{--sec-gap:var(--layout-05)}
-/* two later rules were overriding that fallback */
-.o-rev,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-gap)}
-.customers{margin-top:var(--sec-gap)}            /* was a hardcoded 110 */
-
-/* head -> section body is one relationship, so one value: layout-04 (48).
-   Was 45 / 58 / 73 / 32 / clamp(32,4vw,56) across five sections. */
-.o-keys-grid,.o-cap-grid,.o-rev-grid,.o-story-grid,.o-caps-grid{
-  margin-top:var(--gap-sec-head)}
-
-
-/* The whole --sec-gap system is scoped to @media (min-width:1280px); below
-   that the sections fall back to --sec-y (61.6 at 1100, 44 at mobile), which
-   split the rhythm into two values. Extend the token down. */
 @media (max-width:1279px){
-  .o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{
-    margin-top:var(--sec-gap)}
+  .s-features,.s-open{padding-block:var(--sec-y)}
+  .s-features .in,.s-open .in{padding-block:0}
 }
 
-
-/* ---------- kill the dead pinned-story height ----------
-   .o-story{height:calc(5 * 78vh)} is left over from the original pinned
-   scroll-story markup, which no longer exists. At a 900px viewport that
-   forced the section to 3510 while its content is 2990 — 520px of dead
-   space between the deck and Reviews. The deck sizes itself from its slots. */
-.o-story{height:auto}
-
-
-/* FAQ answers fill their row. The 608 measure cap made them stop halfway
-   across the 1034 card, which read as truncated rather than as a measure.
-   A Q&A list is scanned, not read continuously, so the longer line is the
-   right trade here — the cap still applies to page-level narrative copy. */
-.faq-a{max-width:none}
-
+.imgph-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8FA0BF;text-align:center}
 
 /* =====================================================================
    FOUNDATION — identical on every page. Generated, not hand-written.
@@ -1831,30 +1384,34 @@ a.sr-only:focus-visible{
 /* paragraphs — two sizes only */
 .p1,.p2,.b16,.d,.lede,.o-keys-note,.dep-sub{font-family:var(--body);font-weight:400;font-size:16px;color:var(--ink2)}
 .p3,.b15,.long,.cp{font-family:var(--body);font-weight:400;font-size:14px;color:var(--ink2)}
-.mcard .d,.o-card .d,.o-wide .d,.o-block .d,.o-comm-card .d,.b15{font-size:14px;line-height:1.5}
-.o-split-copy .d,.o-key .d{font-size:16px;line-height:1.54}
+.s-features .d,.o-metrics .d,.s-open .d,.o-comm .b15,.s-analyst-sec .d{font-size:14px;line-height:1.5}
+.o-keys .d,.s-tax-sec .d{font-size:16px;line-height:1.54}
 
 /* measure — body copy never spans the full 1248 */
 .p1,.p2,.b16,.d,.lede,.o-keys-note{max-width:var(--measure-body)}
 .o-hero-head .b16{max-width:var(--measure-hero)}
-.o-keys-head .lede,.o-keys-head .b16,.o-cap-head .lede,.o-cap-head .b16,.o-rev-head .lede,.o-rev-head .b16,.cust-head .lede,.cust-head .b16,.o-comm-head .lede,.o-comm-head .b16,.faq-head .lede,.faq-head .b16,.sec-head .lede,.sec-head .b16,.o-hero-head .lede,.o-hero-head .b16{max-width:var(--measure-body);margin-inline:auto}
+.o-keys-head .lede,.o-keys-head .b16,.s-head .lede,.s-head .b16,.s-steps-head .lede,.s-steps-head .b16,.cust-head .lede,.cust-head .b16,.o-comm-head .lede,.o-comm-head .b16,.faq-head .lede,.faq-head .b16,.o-hero-head .lede,.o-hero-head .b16{max-width:var(--measure-body);margin-inline:auto}
 .faq-a{max-width:none}          /* fills its row; a Q&A list is scanned */
 
 /* section rhythm — through the page's own --sec-gap mechanism */
-.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{padding-block:0}
-.o-keys>.in,.o-cap>.in,.deploy>.in,.o-splits>.in,.o-story>.in,.o-rev>.in,.customers>.in,.o-comm>.in,.faq-sec>.in,.s-cta>.in{padding-block:0}
-.o-cap,.deploy,.s-cta{padding-block:var(--layout-05)}
-@media (max-width:1279px){ .o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-gap)} }
+.o-keys,.s-features,.o-metrics,.deploy,.s-steps-sec,.s-open,.s-tax-sec,.s-analyst-sec,.customers,.o-comm,.faq-sec,.s-cta{padding-block:0}
+.o-keys>.in,.s-features>.in,.o-metrics>.in,.deploy>.in,.s-steps-sec>.in,.s-open>.in,.s-tax-sec>.in,.s-analyst-sec>.in,.customers>.in,.o-comm>.in,.faq-sec>.in,.s-cta>.in{padding-block:0}
+.s-features,.deploy,.s-open,.s-cta{padding-block:var(--layout-05)}
+@media (max-width:1279px){ .o-keys,.s-features,.o-metrics,.deploy,.s-steps-sec,.s-open,.s-tax-sec,.s-analyst-sec,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-gap)} }
 
 /* section heads: eyebrow 24 / heading 16 / buttons 40 */
-.o-keys-head,.o-cap-head,.o-rev-head,.cust-head,.o-comm-head,.faq-head,.sec-head,.o-hero-head{display:flex;flex-direction:column;gap:var(--gap-head);margin-bottom:var(--gap-sec-head)}
+.o-keys-head,.s-head,.s-steps-head,.cust-head,.o-comm-head,.faq-head,.o-hero-head{display:flex;flex-direction:column;gap:var(--gap-head);margin-bottom:var(--gap-sec-head)}
 .o-hero-head{align-items:flex-start;text-align:left;margin-bottom:0}
-.o-keys-head>.kick,.o-keys-head>.eyebrow,.o-keys-head>.h1,.o-keys-head>.h2,.o-keys-head>.h3,.o-keys-head>.h4,.o-keys-head>.t,.o-keys-head>.lede,.o-keys-head>.b16,.o-keys-head>.p1,.o-keys-head>.p2,.o-keys-head>.o-keys-note,.o-cap-head>.kick,.o-cap-head>.eyebrow,.o-cap-head>.h1,.o-cap-head>.h2,.o-cap-head>.h3,.o-cap-head>.h4,.o-cap-head>.t,.o-cap-head>.lede,.o-cap-head>.b16,.o-cap-head>.p1,.o-cap-head>.p2,.o-cap-head>.o-keys-note,.o-rev-head>.kick,.o-rev-head>.eyebrow,.o-rev-head>.h1,.o-rev-head>.h2,.o-rev-head>.h3,.o-rev-head>.h4,.o-rev-head>.t,.o-rev-head>.lede,.o-rev-head>.b16,.o-rev-head>.p1,.o-rev-head>.p2,.o-rev-head>.o-keys-note,.cust-head>.kick,.cust-head>.eyebrow,.cust-head>.h1,.cust-head>.h2,.cust-head>.h3,.cust-head>.h4,.cust-head>.t,.cust-head>.lede,.cust-head>.b16,.cust-head>.p1,.cust-head>.p2,.cust-head>.o-keys-note,.o-comm-head>.kick,.o-comm-head>.eyebrow,.o-comm-head>.h1,.o-comm-head>.h2,.o-comm-head>.h3,.o-comm-head>.h4,.o-comm-head>.t,.o-comm-head>.lede,.o-comm-head>.b16,.o-comm-head>.p1,.o-comm-head>.p2,.o-comm-head>.o-keys-note,.faq-head>.kick,.faq-head>.eyebrow,.faq-head>.h1,.faq-head>.h2,.faq-head>.h3,.faq-head>.h4,.faq-head>.t,.faq-head>.lede,.faq-head>.b16,.faq-head>.p1,.faq-head>.p2,.faq-head>.o-keys-note,.sec-head>.kick,.sec-head>.eyebrow,.sec-head>.h1,.sec-head>.h2,.sec-head>.h3,.sec-head>.h4,.sec-head>.t,.sec-head>.lede,.sec-head>.b16,.sec-head>.p1,.sec-head>.p2,.sec-head>.o-keys-note,.o-hero-head>.kick,.o-hero-head>.eyebrow,.o-hero-head>.h1,.o-hero-head>.h2,.o-hero-head>.h3,.o-hero-head>.h4,.o-hero-head>.t,.o-hero-head>.lede,.o-hero-head>.b16,.o-hero-head>.p1,.o-hero-head>.p2,.o-hero-head>.o-keys-note{margin-block:0}
-.o-keys-head>.kick,.o-keys-head>.eyebrow,.o-cap-head>.kick,.o-cap-head>.eyebrow,.o-rev-head>.kick,.o-rev-head>.eyebrow,.cust-head>.kick,.cust-head>.eyebrow,.o-comm-head>.kick,.o-comm-head>.eyebrow,.faq-head>.kick,.faq-head>.eyebrow,.sec-head>.kick,.sec-head>.eyebrow,.o-hero-head>.kick,.o-hero-head>.eyebrow{margin:0 0 calc(var(--gap-eyebrow) - var(--gap-head)) 0}
-.o-keys-head>.btn-row,.o-cap-head>.btn-row,.o-rev-head>.btn-row,.cust-head>.btn-row,.o-comm-head>.btn-row,.faq-head>.btn-row,.sec-head>.btn-row,.o-hero-head>.btn-row{margin-top:calc(var(--gap-cta) - var(--gap-head))}
-.o-keys-grid,.o-cap-grid,.o-rev-grid,.o-story-grid{margin-top:var(--gap-sec-head)}
-.o-story{padding-bottom:0}   /* the deck tail is the sticky hold */
-.o-story{height:auto}        /* kill the dead pinned-story height */
+.o-keys-head>.kick,.o-keys-head>.eyebrow,.o-keys-head>.h1,.o-keys-head>.h2,.o-keys-head>.h3,.o-keys-head>.h4,.o-keys-head>.t,.o-keys-head>.lede,.o-keys-head>.b16,.o-keys-head>.p1,.o-keys-head>.p2,.o-keys-head>.o-keys-note,.s-head>.kick,.s-head>.eyebrow,.s-head>.h1,.s-head>.h2,.s-head>.h3,.s-head>.h4,.s-head>.t,.s-head>.lede,.s-head>.b16,.s-head>.p1,.s-head>.p2,.s-head>.o-keys-note,.s-steps-head>.kick,.s-steps-head>.eyebrow,.s-steps-head>.h1,.s-steps-head>.h2,.s-steps-head>.h3,.s-steps-head>.h4,.s-steps-head>.t,.s-steps-head>.lede,.s-steps-head>.b16,.s-steps-head>.p1,.s-steps-head>.p2,.s-steps-head>.o-keys-note,.cust-head>.kick,.cust-head>.eyebrow,.cust-head>.h1,.cust-head>.h2,.cust-head>.h3,.cust-head>.h4,.cust-head>.t,.cust-head>.lede,.cust-head>.b16,.cust-head>.p1,.cust-head>.p2,.cust-head>.o-keys-note,.o-comm-head>.kick,.o-comm-head>.eyebrow,.o-comm-head>.h1,.o-comm-head>.h2,.o-comm-head>.h3,.o-comm-head>.h4,.o-comm-head>.t,.o-comm-head>.lede,.o-comm-head>.b16,.o-comm-head>.p1,.o-comm-head>.p2,.o-comm-head>.o-keys-note,.faq-head>.kick,.faq-head>.eyebrow,.faq-head>.h1,.faq-head>.h2,.faq-head>.h3,.faq-head>.h4,.faq-head>.t,.faq-head>.lede,.faq-head>.b16,.faq-head>.p1,.faq-head>.p2,.faq-head>.o-keys-note,.o-hero-head>.kick,.o-hero-head>.eyebrow,.o-hero-head>.h1,.o-hero-head>.h2,.o-hero-head>.h3,.o-hero-head>.h4,.o-hero-head>.t,.o-hero-head>.lede,.o-hero-head>.b16,.o-hero-head>.p1,.o-hero-head>.p2,.o-hero-head>.o-keys-note{margin-block:0}
+.o-keys-head>.kick,.o-keys-head>.eyebrow,.s-head>.kick,.s-head>.eyebrow,.s-steps-head>.kick,.s-steps-head>.eyebrow,.cust-head>.kick,.cust-head>.eyebrow,.o-comm-head>.kick,.o-comm-head>.eyebrow,.faq-head>.kick,.faq-head>.eyebrow,.o-hero-head>.kick,.o-hero-head>.eyebrow{margin:0 0 calc(var(--gap-eyebrow) - var(--gap-head)) 0}
+.o-keys-head>.btn-row,.s-head>.btn-row,.s-steps-head>.btn-row,.cust-head>.btn-row,.o-comm-head>.btn-row,.faq-head>.btn-row,.o-hero-head>.btn-row{margin-top:calc(var(--gap-cta) - var(--gap-head))}
+.o-keys-grid,.s-feat-grid,.s-metric-grid,.s-open-grid,.s-analyst-grid,.o-comm-grid{margin-top:var(--gap-sec-head)}
+/* .s-tax-sec .t was 26/1.38 — off the scale; snaps to h3 (24/1.2). */
+.s-tax-sec .t{font-size:24px;line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
+/* .s-features and .s-open carried padding-block:var(--sec-y) on top of the
+   64 margin, doubling their spacing against every other section. */
+.s-features,.s-open{padding-block:var(--layout-05)}
+.s-features>.in,.s-open>.in{padding-block:0}
 
 
 /* =====================================================================
@@ -1882,25 +1439,177 @@ a.sr-only:focus-visible{
 .cust-card,.faq-card{box-shadow:var(--card-raise)}
 .os-card{box-shadow:var(--card-raise-deck)}
 
-/* --- observability module internals --- */
-.o-cap-grid{column-gap:var(--layout-03)}         /* 34 -> 32 */
-.o-rev-grid{row-gap:var(--layout-03)}            /* 34 -> 32 */
-/* .sysmap*, .node*, .agentwin* are miniature UI ILLUSTRATIONS, not layout.
-   Their 3/6/7/9/11/13/14px internals are artwork at reduced scale and are
-   deliberately exempt, same as the ASCII art in .deploy. */
+/* --- security: head -> body is 48 everywhere ---
+   Derived from each head's ACTUAL next sibling this time, not guessed from
+   class names. That guess is why these five kept their original spacing:
+   57 / 98 / 64 / 50 / 32 against observability's uniform 48. */
+.s-features .s-feat-grid,
+.s-steps-sec .s-steps-wrap,
+.s-open .s-open-grid,
+.s-analyst-sec .s-analyst-grid{margin-top:var(--gap-sec-head)}
+.s-steps-sec .s-head + .lede{margin-top:var(--gap-head)}   /* 64 -> 16, it's heading->paragraph */
+.o-hero-head + .btn-row{margin-top:var(--gap-cta)}          /* 32 -> 40 */
+
+/* every other head on both pages is centred; this one was left */
+.s-steps-head{align-items:center;text-align:center}
+
+/* --- security module internals --- */
+.s-feat-grid{column-gap:var(--layout-03)}        /* 33 -> 32 */
+.s-open-grid{column-gap:var(--layout-03)}        /* 34 -> 32 */
+.s-analyst-grid{row-gap:var(--layout-03)}        /* 34 -> 32 */
+.mcard-stat{row-gap:var(--spacing-03)}           /*  9 -> 8  */
+.s-tax-item{row-gap:var(--spacing-03)}           /* 10 -> 8  */
+/* 24, not the 16 the snap rule gave. Every other content card on both pages
+   is padding 24 / border 1 top 4 bottom — o-card, o-analyst, o-comm-card,
+   mcard. 23 was a broken 24, so component conformance wins over the snap. */
+.s-open-card{padding:var(--spacing-06)}
+/* the grid was 610/606, not even columns; o-rev-grid is 608/608.
+   Scoped to >=992: unscoped it overrode the mobile single-column rule and
+   forced two columns onto a 390 viewport. */
+@media (min-width:992px){
+  .s-open-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 
 
 /* --- corrections: these were column-gap, not row-gap. Use the shorthand. --- */
 .o-key{gap:var(--spacing-03)}                    /* 10 -> 8  both axes */
 
-.o-rev-grid{gap:var(--layout-03)}                /* 34 -> 32 both axes */
+.mcard-stat{gap:var(--spacing-03)}               /*  9 -> 8  both axes */
+.s-tax-item{gap:var(--spacing-03)}               /* 10 -> 8  both axes */
+.s-analyst-grid{gap:var(--layout-03)}            /* 34 -> 32 both axes */
 
+/* .s-head sits INSIDE .s-steps-head, which is already a 16px flex column,
+   so the head's own 48 bottom margin stacked on top of the lede's 16 and the
+   parent gap: 48+16+16 = 80. The lede belongs to the head block, not the
+   body — the parent gap alone should space it. */
+.s-steps-sec .s-head{margin-bottom:0}
+.s-steps-sec .s-head + .lede{margin-top:0}
+
+/* hero: .o-hero-copy is a flex column whose gap already separates the copy
+   from the CTA row. My margin-top added to it (32 + 40 = 72). Put the 40 on
+   the gap, as observability does, and zero the margin. */
+.o-hero-copy{gap:var(--gap-cta)}
+.o-hero-head + .btn-row{margin-top:0}
+
+
+
+
+/* ===== ported from observability: hero board + analyst module =====
+   Comments stripped before extraction: an obs comment contained a
+   brace pair, so the extractor captured it as a selector and lost the
+   closing marker, commenting out every rule that followed. ===== */
+.o-hero{overflow-x:clip;
+  background:linear-gradient(180deg,var(--lgray) 0%,#FFFFFF 100%)}
+.o-hero .in{position:relative;height:624px;padding-block:0}
+.o-hero-grid{display:block;height:100%}
+.o-hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;
+  gap:40px;width:608px;max-width:100%;padding-top:123px}
+.o-hero-head{display:flex;flex-direction:column;gap:var(--sp-05)}
+.o-hero-head .h1{max-width:608px}
+.o-hero-head .b16{max-width:516px;color:var(--ink2)}
+.o-hero-media{position:absolute;top:73px;left:736px;width:840px;
+  aspect-ratio:16/9;
+  background:var(--lgray);
+  border:7px solid #FFFFFF;border-radius:8px;
+  box-shadow:0 4px 20px rgba(0,0,0,.13);
+  display:flex;align-items:center;justify-content:center;overflow:hidden}
+.o-hero-media span{font-family:var(--body);font-weight:500;font-size:18px;color:#5F6875;text-align:center}
+@media (max-width:1279px){.o-hero .in{height:auto} .o-hero-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--sp-08)} .o-hero-copy{width:100%;padding-top:clamp(48px,7vw,88px);gap:var(--sp-07)} .o-hero-media{position:static;width:100%;min-width:0;max-width:100%;
+    aspect-ratio:16/9;margin-bottom:clamp(48px,7vw,88px)}}
+.o-hero-head .b16{max-width:var(--measure-hero)}
+.o-keys-head,.o-cap-head,.o-rev-head,.cust-head,.o-comm-head,.faq-head,.sec-head,.o-hero-head{gap:var(--gap-head)}
+.o-hero-head .b16{max-width:var(--measure-hero)}
+.o-keys-head .lede,.o-keys-head .b16,.o-cap-head .lede,.o-cap-head .b16,.o-rev-head .lede,.o-rev-head .b16,.cust-head .lede,.cust-head .b16,.o-comm-head .lede,.o-comm-head .b16,.faq-head .lede,.faq-head .b16,.sec-head .lede,.sec-head .b16,.o-hero-head .lede,.o-hero-head .b16{max-width:var(--measure-body);margin-inline:auto}
+.o-keys-head,.o-cap-head,.o-rev-head,.cust-head,.o-comm-head,.faq-head,.sec-head,.o-hero-head{display:flex;flex-direction:column;gap:var(--gap-head);margin-bottom:var(--gap-sec-head)}
+.o-hero-head{align-items:flex-start;text-align:left;margin-bottom:0}
+.o-keys-head>.kick,.o-keys-head>.eyebrow,.o-keys-head>.h1,.o-keys-head>.h2,.o-keys-head>.h3,.o-keys-head>.h4,.o-keys-head>.t,.o-keys-head>.lede,.o-keys-head>.b16,.o-keys-head>.p1,.o-keys-head>.p2,.o-keys-head>.o-keys-note,.o-cap-head>.kick,.o-cap-head>.eyebrow,.o-cap-head>.h1,.o-cap-head>.h2,.o-cap-head>.h3,.o-cap-head>.h4,.o-cap-head>.t,.o-cap-head>.lede,.o-cap-head>.b16,.o-cap-head>.p1,.o-cap-head>.p2,.o-cap-head>.o-keys-note,.o-rev-head>.kick,.o-rev-head>.eyebrow,.o-rev-head>.h1,.o-rev-head>.h2,.o-rev-head>.h3,.o-rev-head>.h4,.o-rev-head>.t,.o-rev-head>.lede,.o-rev-head>.b16,.o-rev-head>.p1,.o-rev-head>.p2,.o-rev-head>.o-keys-note,.cust-head>.kick,.cust-head>.eyebrow,.cust-head>.h1,.cust-head>.h2,.cust-head>.h3,.cust-head>.h4,.cust-head>.t,.cust-head>.lede,.cust-head>.b16,.cust-head>.p1,.cust-head>.p2,.cust-head>.o-keys-note,.o-comm-head>.kick,.o-comm-head>.eyebrow,.o-comm-head>.h1,.o-comm-head>.h2,.o-comm-head>.h3,.o-comm-head>.h4,.o-comm-head>.t,.o-comm-head>.lede,.o-comm-head>.b16,.o-comm-head>.p1,.o-comm-head>.p2,.o-comm-head>.o-keys-note,.faq-head>.kick,.faq-head>.eyebrow,.faq-head>.h1,.faq-head>.h2,.faq-head>.h3,.faq-head>.h4,.faq-head>.t,.faq-head>.lede,.faq-head>.b16,.faq-head>.p1,.faq-head>.p2,.faq-head>.o-keys-note,.sec-head>.kick,.sec-head>.eyebrow,.sec-head>.h1,.sec-head>.h2,.sec-head>.h3,.sec-head>.h4,.sec-head>.t,.sec-head>.lede,.sec-head>.b16,.sec-head>.p1,.sec-head>.p2,.sec-head>.o-keys-note,.o-hero-head>.kick,.o-hero-head>.eyebrow,.o-hero-head>.h1,.o-hero-head>.h2,.o-hero-head>.h3,.o-hero-head>.h4,.o-hero-head>.t,.o-hero-head>.lede,.o-hero-head>.b16,.o-hero-head>.p1,.o-hero-head>.p2,.o-hero-head>.o-keys-note{margin-block:0}
+.o-keys-head>.kick,.o-keys-head>.eyebrow,.o-cap-head>.kick,.o-cap-head>.eyebrow,.o-rev-head>.kick,.o-rev-head>.eyebrow,.cust-head>.kick,.cust-head>.eyebrow,.o-comm-head>.kick,.o-comm-head>.eyebrow,.faq-head>.kick,.faq-head>.eyebrow,.sec-head>.kick,.sec-head>.eyebrow,.o-hero-head>.kick,.o-hero-head>.eyebrow{margin:0 0 calc(var(--gap-eyebrow) - var(--gap-head)) 0}
+.o-keys-head>.btn-row,.o-cap-head>.btn-row,.o-rev-head>.btn-row,.cust-head>.btn-row,.o-comm-head>.btn-row,.faq-head>.btn-row,.sec-head>.btn-row,.o-hero-head>.btn-row{margin-top:calc(var(--gap-cta) - var(--gap-head))}
+.badge{display:inline-flex;align-items:center;align-self:flex-start;padding:var(--sp-01) var(--sp-03);
+  border-radius:2px;font-family:var(--mono);font-weight:700;font-size:clamp(12px,1.05vw,14px);
+  letter-spacing:.08em;line-height:1.14;text-transform:uppercase;}
+.badge-news{background:rgba(254,197,20,.28);color:#7E5200}
+.badge-blog{background:rgba(240,78,152,.2);color:#B20058}
+.o-rev .in{padding-block:0}
+.o-rev-head{display:flex;flex-direction:column;align-items:center;text-align:center}
+.o-rev-head .kick{letter-spacing:3.2px}
+.o-rev-head .h2{margin-top:var(--sp-05);max-width:807px}
+.o-rev-head .lede{margin-top:var(--sp-05);max-width:896px}
+.o-rev-grid{display:grid;gap:34px;margin-top:73px}
+@media (min-width:900px){.o-rev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.o-analyst{background:#fff;border:1px solid var(--ink);border-bottom-width:4px;
+  padding:var(--sp-06);display:flex;flex-direction:column;gap:var(--sp-06);min-height:287px;}
+.o-analyst .t{max-width:40ch}
+.o-analyst .gartner{margin-top:auto;width:100%;height:128px;background:var(--lgray);
+  border:1px dashed var(--mgray);display:flex;align-items:center;justify-content:center;
+  text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:#69737F;}
+@media (min-width:1280px){.o-rev{margin-top:var(--mt-rev,var(--sec-gap))} .deploy .in,.customers .in,.o-comm .in,.faq-sec .in,.o-rev .in{padding-block:0}}
+@media (max-width:1279px){.o-keys,.o-cap,.o-caps,.deploy,.o-splits,.o-story,
+  .o-rev,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-y,clamp(56px,8vw,96px))}}
+.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{padding-block:var(--sec-pad)}
+.o-keys>.in,.o-cap>.in,.deploy>.in,.o-splits>.in,.o-story>.in,.o-rev>.in,
+.customers>.in,.o-comm>.in,.faq-sec>.in,.s-cta>.in{padding-block:0}
+.badge,.chip-label{letter-spacing:.08em}
+.mcard .t,.cap-card .t,.o-key .t,.o-card .t,.o-wide .t,.o-block .t-mob,
+.o-analyst .t{font-size:18px;line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
+.o-keys-head .lede,.o-cap-head .lede,.o-rev-head .lede,.cust-head .lede,
+.o-comm-head .lede,.faq-head .lede,.sec-head .lede,
+.o-keys-head .b16,.o-cap-head .b16,.o-rev-head .b16,.sec-head .p2{margin-inline:auto}
+.o-keys-head,.o-cap-head,.o-rev-head,.cust-head,.o-comm-head,.faq-head,.sec-head,.o-hero-head{gap:var(--gap-head)}
+.o-keys-head>.kick,.o-cap-head>.kick,.o-rev-head>.kick,.cust-head>.kick,
+.o-comm-head>.kick,.faq-head>.kick,.sec-head>.kick,
+.o-keys-head>.eyebrow,.o-cap-head>.eyebrow,.o-rev-head>.eyebrow,.cust-head>.eyebrow,
+.o-comm-head>.eyebrow,.faq-head>.eyebrow,.sec-head>.eyebrow{margin:0 0 calc(var(--gap-eyebrow) - var(--gap-head)) 0}
+.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{padding-block:0}
+.o-keys>.in>:first-child,.o-cap>.in>:first-child,.o-splits>.in>:first-child,
+.o-story>.in>:first-child,.o-rev>.in>:first-child,.customers>.in>:first-child,
+.o-comm>.in>:first-child,.faq-sec>.in>:first-child{margin-top:0}
+.o-keys>.in>:last-child,.o-cap>.in>:last-child,.o-splits>.in>:last-child,
+.o-rev>.in>:last-child,.customers>.in>:last-child,.o-comm>.in>:last-child,
+.faq-sec>.in>:last-child{margin-bottom:0}
+.badge,.chip-label{font-family:var(--mono);font-weight:700;font-size:14px;
+  line-height:1.2;text-transform:uppercase;border-radius:2px;
+  padding:var(--spacing-01) var(--spacing-02)}
+.o-cap-head .lede,.o-rev-head .lede,.o-metrics-head .lede{max-width:var(--measure-body)}
+.o-rev,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-gap)}
+.o-keys-grid,.o-cap-grid,.o-rev-grid,.o-story-grid,.o-caps-grid{margin-top:var(--gap-sec-head)}
+@media (max-width:1279px){.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-gap)}}
+.badge,.chip-label{letter-spacing:.08em}
+.o-keys-head .lede,.o-keys-head .b16,.o-cap-head .lede,.o-cap-head .b16,.o-rev-head .lede,.o-rev-head .b16,.cust-head .lede,.cust-head .b16,.o-comm-head .lede,.o-comm-head .b16,.faq-head .lede,.faq-head .b16,.sec-head .lede,.sec-head .b16,.o-hero-head .lede,.o-hero-head .b16{max-width:var(--measure-body);margin-inline:auto}
+.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{padding-block:0}
+.o-keys>.in,.o-cap>.in,.deploy>.in,.o-splits>.in,.o-story>.in,.o-rev>.in,.customers>.in,.o-comm>.in,.faq-sec>.in,.s-cta>.in{padding-block:0}
+@media (max-width:1279px){.o-keys,.o-cap,.deploy,.o-splits,.o-story,.o-rev,.customers,.o-comm,.faq-sec,.s-cta{margin-top:var(--sec-gap)}}
+.o-keys-head,.o-cap-head,.o-rev-head,.cust-head,.o-comm-head,.faq-head,.sec-head,.o-hero-head{display:flex;flex-direction:column;gap:var(--gap-head);margin-bottom:var(--gap-sec-head)}
+.o-keys-head>.kick,.o-keys-head>.eyebrow,.o-keys-head>.h1,.o-keys-head>.h2,.o-keys-head>.h3,.o-keys-head>.h4,.o-keys-head>.t,.o-keys-head>.lede,.o-keys-head>.b16,.o-keys-head>.p1,.o-keys-head>.p2,.o-keys-head>.o-keys-note,.o-cap-head>.kick,.o-cap-head>.eyebrow,.o-cap-head>.h1,.o-cap-head>.h2,.o-cap-head>.h3,.o-cap-head>.h4,.o-cap-head>.t,.o-cap-head>.lede,.o-cap-head>.b16,.o-cap-head>.p1,.o-cap-head>.p2,.o-cap-head>.o-keys-note,.o-rev-head>.kick,.o-rev-head>.eyebrow,.o-rev-head>.h1,.o-rev-head>.h2,.o-rev-head>.h3,.o-rev-head>.h4,.o-rev-head>.t,.o-rev-head>.lede,.o-rev-head>.b16,.o-rev-head>.p1,.o-rev-head>.p2,.o-rev-head>.o-keys-note,.cust-head>.kick,.cust-head>.eyebrow,.cust-head>.h1,.cust-head>.h2,.cust-head>.h3,.cust-head>.h4,.cust-head>.t,.cust-head>.lede,.cust-head>.b16,.cust-head>.p1,.cust-head>.p2,.cust-head>.o-keys-note,.o-comm-head>.kick,.o-comm-head>.eyebrow,.o-comm-head>.h1,.o-comm-head>.h2,.o-comm-head>.h3,.o-comm-head>.h4,.o-comm-head>.t,.o-comm-head>.lede,.o-comm-head>.b16,.o-comm-head>.p1,.o-comm-head>.p2,.o-comm-head>.o-keys-note,.faq-head>.kick,.faq-head>.eyebrow,.faq-head>.h1,.faq-head>.h2,.faq-head>.h3,.faq-head>.h4,.faq-head>.t,.faq-head>.lede,.faq-head>.b16,.faq-head>.p1,.faq-head>.p2,.faq-head>.o-keys-note,.sec-head>.kick,.sec-head>.eyebrow,.sec-head>.h1,.sec-head>.h2,.sec-head>.h3,.sec-head>.h4,.sec-head>.t,.sec-head>.lede,.sec-head>.b16,.sec-head>.p1,.sec-head>.p2,.sec-head>.o-keys-note,.o-hero-head>.kick,.o-hero-head>.eyebrow,.o-hero-head>.h1,.o-hero-head>.h2,.o-hero-head>.h3,.o-hero-head>.h4,.o-hero-head>.t,.o-hero-head>.lede,.o-hero-head>.b16,.o-hero-head>.p1,.o-hero-head>.p2,.o-hero-head>.o-keys-note{margin-block:0}
+.o-keys-head>.kick,.o-keys-head>.eyebrow,.o-cap-head>.kick,.o-cap-head>.eyebrow,.o-rev-head>.kick,.o-rev-head>.eyebrow,.cust-head>.kick,.cust-head>.eyebrow,.o-comm-head>.kick,.o-comm-head>.eyebrow,.faq-head>.kick,.faq-head>.eyebrow,.sec-head>.kick,.sec-head>.eyebrow,.o-hero-head>.kick,.o-hero-head>.eyebrow{margin:0 0 calc(var(--gap-eyebrow) - var(--gap-head)) 0}
+.o-keys-head>.btn-row,.o-cap-head>.btn-row,.o-rev-head>.btn-row,.cust-head>.btn-row,.o-comm-head>.btn-row,.faq-head>.btn-row,.sec-head>.btn-row,.o-hero-head>.btn-row{margin-top:calc(var(--gap-cta) - var(--gap-head))}
+.o-keys-grid,.o-cap-grid,.o-rev-grid,.o-story-grid{margin-top:var(--gap-sec-head)}
+.o-rev-grid{row-gap:var(--layout-03)}
+.o-rev-grid{gap:var(--layout-03)}
+
+/* Security sets .o-hero-grid{position:relative}, which makes IT the media's
+   containing block instead of .in — putting left:736 inside the 96px padding
+   and pushing the panel to 832. Observability's grid is static. Match it.
+   Its .o-hero-media also carried margin-top:14, which adds to the absolute
+   top and put the panel at 87 instead of 73. */
+.o-hero-grid{position:static}
+.o-hero-media{margin-top:0}
+/* the ported .o-hero-head rule re-declared the head after the generator had
+   zeroed its bottom margin, so the 48 head->body margin came back and stacked
+   on the copy column's 40 gap: 88 to the CTA row instead of 40. */
+.o-hero-head{margin-bottom:0}
 
 /* every grid gutter is the 32 grid token; o-keys was 80, s-metric was 16 */
 .o-keys-grid,.o-cap-grid,.deploy-grid,.o-rev-grid,.o-comm-grid,
 .s-feat-grid,.s-metric-grid,.s-open-grid,.s-analyst-grid{column-gap:var(--layout-03)}
 
-/* heads stay centred on this page */
+/* ONLY s-steps-sec is left-aligned — head and its paragraph. Every other
+   section head on both pages stays centred. */
+.s-steps-head{align-items:flex-start;text-align:left}
+.s-steps-head>*{margin-inline:0}
+.s-steps-sec .s-head{align-items:flex-start;text-align:left}
+.s-steps-sec .s-head>*,.s-steps-sec .lede{margin-inline:0;text-align:left}
 
 /* o-keys was fixed 349 columns (1111 of a 1248 grid); every other 3-up is
    1fr, which is 395 at a 32 gutter. */
@@ -1980,51 +1689,6 @@ a.sr-only:focus-visible{
   border:1px dashed var(--ink2);background:#fff;color:var(--ink);border-radius:0}
 .badge,.badge-news,.badge-blog{display:inline-flex;align-items:center;
   padding:var(--spacing-01) var(--spacing-02);border-radius:2px}
-
-/* Copy sat at a fixed 216 from the board, where the title was one line.
-   With two-line titles that reads bottom-heavy (216 above / 82 below).
-   Centre both slots in the area BELOW the title bar instead. */
-.os-copy,.os-panel{top:calc(50% + var(--os-bar-h)/2);transform:translateY(-50%)}
-
-/* =====================================================================
-   CAPABILITIES / METRICS  ·  Figma 3690:13341
-   Uses the shared .card — the only difference between the two rows is
-   that "for metrics" cards fill the .card-stat slot and "for logs" cards
-   omit it. Same component, one slot hidden. Nothing is rebuilt.
-   ===================================================================== */
-.o-caps2{background:var(--lgray);position:relative;overflow:hidden}
-.cap-group + .cap-group{margin-top:var(--layout-06)}          /* 80 */
-.cap-rule{display:flex;align-items:flex-end;gap:0;border-bottom:1px solid var(--mgray);
-  margin-bottom:var(--layout-03)}                              /* 32 to the grid */
-.cap-label{display:inline-flex;align-items:center;
-  padding:var(--spacing-03) var(--spacing-03);
-  background:var(--ink);color:#fff;letter-spacing:.2em}
-.cap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--layout-03)}
-
-/* bars — 4px track, winner in Dark Pink, rest in Dark Gray */
-.card-bars{display:flex;flex-direction:column;width:100%}
-.bar{background:var(--lgray);border-top:1px solid var(--dgray,#ABB4C4);
-  padding:var(--spacing-03) var(--spacing-03) var(--spacing-04);
-  display:flex;flex-direction:column;gap:var(--spacing-02)}
-.bar-row{display:flex;justify-content:space-between;align-items:center;
-  font-family:var(--body);font-size:14px;line-height:1.2;color:var(--ink2);white-space:nowrap}
-.bar-row b{font-weight:700}
-.bar-track{width:100%;height:4px;background:var(--lgray)}
-.bar-fill{height:4px;background:#ABB4C4}
-.bar.is-best .bar-row{font-weight:700}
-.bar.is-best .bar-fill{background:#DD0A73}
-
-/* stat block — the slot the "for logs" cards leave out */
-.card-stat{display:flex;align-items:baseline;justify-content:center;gap:var(--spacing-03);
-  background:var(--ink);border-radius:var(--r-sm);padding:var(--spacing-05);width:100%;
-  white-space:nowrap}
-.card-stat .lo{font-family:var(--body);font-size:16px;line-height:1.2;color:#fff}
-.card-stat .big{font-family:var(--mono);font-weight:500;font-size:48px;line-height:1.2;
-  letter-spacing:-.02em;color:#F990C6}
-.card-tags{display:flex;flex-wrap:wrap;gap:var(--spacing-03);margin-top:0}
-
-@media (max-width:991px){ .cap-grid{grid-template-columns:minmax(0,1fr)} }
-
 /* --------------------------------------------------------------------
    TAG, properly built.
    - 8/12 padding: at 4/8 the dashed border sat on the glyphs.
@@ -2044,9 +1708,6 @@ a.sr-only:focus-visible{
 .tag:hover,.chip:hover,.card-tag:hover{border-color:var(--ink2);background:#fff}
 .tag:hover .tag-label,.chip:hover .chip-label,.card-tag:hover .tag-label{color:var(--blue)}
 
-/* the capabilities band is filled, so it needs interior padding like every
-   other band — it was sitting at 0 and the eyebrow touched the top edge */
-.o-caps2{padding-block:var(--layout-05)}
 
 /* --------------------------------------------------------------------
    CTA BELONGS TO THE TEXT, NOT THE IMAGE.
@@ -2114,6 +1775,34 @@ a.sr-only:focus-visible{
   margin-top:auto;padding-top:var(--spacing-06);
   display:flex;flex-wrap:wrap;gap:var(--spacing-03);align-items:center}
 
+/* ===== metrics cards ported from observability capabilities ===== */
+/* bars — 4px track, winner in Dark Pink, rest in Dark Gray */
+.card-bars{display:flex;flex-direction:column;width:100%}
+.bar{background:var(--lgray);border-top:1px solid var(--dgray,#ABB4C4);
+  padding:var(--spacing-03) var(--spacing-03) var(--spacing-04);
+  display:flex;flex-direction:column;gap:var(--spacing-02)}
+.bar-row{display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--body);font-size:14px;line-height:1.2;color:var(--ink2);white-space:nowrap}
+.bar-row b{font-weight:700}
+.bar-track{width:100%;height:4px;background:var(--lgray)}
+.bar-fill{height:4px;background:#ABB4C4}
+.bar.is-best .bar-row{font-weight:700}
+.bar.is-best .bar-fill{background:#DD0A73}
+
+/* stat block — the slot the "for logs" cards leave out */
+.card-stat{display:flex;align-items:baseline;justify-content:center;gap:var(--spacing-03);
+  background:var(--ink);border-radius:var(--r-sm);padding:var(--spacing-05);width:100%;
+  white-space:nowrap}
+.card-stat .lo{font-family:var(--body);font-size:16px;line-height:1.2;color:#fff}
+.card-stat .big{font-family:var(--mono);font-weight:500;font-size:48px;line-height:1.2;
+  letter-spacing:-.02em;color:#F990C6}
+.card-tags{display:flex;flex-wrap:wrap;gap:var(--spacing-03);margin-top:0}
+
+.cap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--layout-03)}
+@media (max-width:991px){ .cap-grid{grid-template-columns:minmax(0,1fr)} }
+.o-caps2{background:var(--lgray);padding-block:var(--layout-05)}
+.card-eyebrow{margin-bottom:var(--spacing-06)}
+
 /* --------------------------------------------------------------------
    METRICS CARD internal rhythm, matching the board.
    .card carries an 8px gap, so each slot margin is the DIFFERENCE:
@@ -2129,13 +1818,11 @@ a.sr-only:focus-visible{
 .card-bars{margin-top:var(--spacing-05)}
 .card-stat{margin-top:var(--spacing-05)}
 
-/* group rule is Dark Ink, not the thin grey mgray default (matches security) */
 .cap-rule{border-bottom:1px solid var(--ink)}
+.cap-group + .cap-group{margin-top:var(--layout-06)}
+.o-metrics .sec-head{align-items:center;text-align:center}
+.o-metrics .sec-head .lede{margin-inline:auto}
 
-/* the new capabilities band never had the native --mt rhythm hook */
-.o-caps2{margin-top:var(--sec-gap)}
-/* the CTA headline used vw type at mid viewports (25.792 at 992); heading
-   sizes are tokens at every width like the rest of the site */
 .s-cta h2,.s-cta .h2{font-size:32px!important;line-height:1.2}
 </style>
 </head>
@@ -2256,13 +1943,13 @@ a.sr-only:focus-visible{
 <main id="main">
 
 <!-- ======================= HERO ======================= -->
-<section class="o-hero">
+<section class="o-hero s-hero">
   <div class="container in">
     <div class="o-hero-grid">
       <div class="o-hero-copy">
         <div class="o-hero-head">
-          <h1 class="h1">Full-scale agentic observability at half the cost</h1>
-          <p class="b16">Elastic Observability doesn&rsquo;t just collect data &mdash; it understands your systems, discovers what is important, and takes action. Faster and cheaper than the alternatives.</p>
+          <h1 class="h1">Elastic Security: the agentic SOC</h1>
+          <p class="b16">Elastic Security doesn&rsquo;t just collect signals &mdash; it understands your estate, surfaces what matters, and takes action. Faster and cheaper than the alternatives.</p>
         </div>
         <div class="btn-row">
           <a class="btn btn-p" href="#">Start free trial</a>
@@ -2273,6 +1960,7 @@ a.sr-only:focus-visible{
     </div>
   </div>
 </section>
+
 
 <!-- ======================= KEY MESSAGES ======================= -->
 <section class="o-keys">
@@ -2302,123 +1990,108 @@ a.sr-only:focus-visible{
   </div>
 </section>
 
-<!-- ======================= CAPABILITIES ======================= -->
-<section class="o-cap">
+
+
+<!-- ======================= FEATURE GRID ======================= -->
+<section class="s-features">
   <div class="container in">
-    <div class="o-cap-head">
-      <p class="kick">Heading 2 &rarr; Observability that knows your system</p>
-      <h2 class="h2">Observability that knows your system</h2>
-      <p class="lede">Elastic turns your logs, metrics, and traces into a live system model that AI can reason on in real time. Available on demand from any AI interface of your choice.</p>
+    <div class="s-head">
+      <p class="kick">What can you do?</p>
+      <h2 class="h2">Not a chatbot. Elastic security provides a complete connected system</h2>
+      <p class="lede">Every artificial barrier a security vendor creates &mdash; financial, technical, or operational &mdash; is a gap an attacker can use. We&rsquo;ve built Elastic Security to remove them.</p>
     </div>
-
-    <div class="o-cap-grid">
-      <article class="o-card">
-        <div class="inner">
-          <p class="kick">Eyebrow</p>
-          <div class="main">
-            <div class="hp">
-              <h3 class="t">Best in class efficiency for logs, metrics and traces</h3>
-              <p class="d">AI agents lead investigations, surface root cause, and automate remediation <a href="#">workflows</a> with full transparency, so SREs stay in control.</p>
+    <div class="s-feat-grid">
+      <article class="s-feat">
+        <div class="s-feat-content">
+          <p class="kick">Tag here</p>
+          <div class="s-feat-main">
+            <div class="s-feat-hp">
+              <h3 class="t">Open Agnostic XDR</h3>
+              <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <p class="cta">Discover the thing   --&gt;</p>
           </div>
         </div>
-        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a></div>
+        <div class="s-shot">image</div>
+        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">More things</span></a></div>
       </article>
-
-      <article class="o-card">
-        <div class="inner">
-          <p class="kick">Eyebrow</p>
-          <div class="main">
-            <div class="hp">
-              <h3 class="t">Your logs have the answer. Elastic finds it.</h3>
-              <p class="d">Ingest any data from any source. Open by design, schema-agnostic, and built on OpenTelemetry (OTel) from the ground up.</p>
+      <article class="s-feat">
+        <div class="s-feat-content">
+          <p class="kick">Tag here</p>
+          <div class="s-feat-main">
+            <div class="s-feat-hp">
+              <h3 class="t">CLoud Security</h3>
+              <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <p class="cta">Discover the thing   --&gt;</p>
           </div>
         </div>
-        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Documentation</span></a></div>
+        <div class="s-shot">image</div>
+        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">More things</span></a></div>
       </article>
-
-      <article class="o-card">
-        <div class="inner">
-          <p class="kick">Eyebrow</p>
-          <div class="main">
-            <div class="hp">
-              <h3 class="t">AI-driven investigations with full context</h3>
-              <p class="d">Gain complete visibility with high-cardinality metrics and logs, optimized with compression and columnar storage &mdash; keeping costs low and performance high.</p>
+      <article class="s-feat">
+        <div class="s-feat-content">
+          <p class="kick">Tag here</p>
+          <div class="s-feat-main">
+            <div class="s-feat-hp">
+              <h3 class="t">Native EDR</h3>
+              <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <p class="cta">Discover the thing   --&gt;</p>
           </div>
         </div>
-        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Metrics</span></a></div>
+        <div class="s-shot">image</div>
+        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">More things</span></a></div>
       </article>
-
-      <article class="o-card">
-        <div class="inner">
-          <p class="kick">Eyebrow</p>
-          <div class="main">
-            <div class="hp">
-              <h3 class="t">Future-proof with open standards</h3>
-              <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur</p>
+      <article class="s-feat">
+        <div class="s-feat-content">
+          <p class="kick">Tag here</p>
+          <div class="s-feat-main">
+            <div class="s-feat-hp">
+              <h3 class="t">Entity analytical and machine learning</h3>
+              <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <p class="cta">Discover the thing   --&gt;</p>
           </div>
         </div>
-        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a></div>
+        <div class="s-shot">image</div>
+        <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">More things</span></a></div>
       </article>
-    </div>
-
-    <div class="o-wide">
-      <div class="inner">
-        <p class="kick">Eyebrow</p>
-        <div class="main">
-          <div class="hp">
-            <h3 class="t">Best in class efficiency for logs, metrics and traces</h3>
-            <p class="d">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          </div>
-          <p class="cta">Discover the thing   --&gt;</p>
-        </div>
-      </div>
-      <div class="o-tags">
-        <a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a>
-        <a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Link tag</span></a>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= CAPABILITIES (Figma 3593:11066) ======================= -->
-<section class="o-caps2">
+<!-- ======================= METRICS ======================= -->
+<section class="o-metrics o-caps2">
   <div class="container in">
     <div class="sec-head">
-      <p class="kick">Capabilities</p>
-      <h2 class="h2">Capabilities section headline</h2>
-      <p class="lede">Elastic turns your logs, metrics, and traces into a live system model that AI can reason on in real time. Available on demand from any AI interface of your choice.</p>
+      <p class="kick">Metrics</p>
+      <h2 class="h2">Your adversary doesn&rsquo;t wait for permission</h2>
+      <p class="lede">AI is only as good as the data platform powering it. From storage architecture to query performance, each piece of Elasticsearch was built with purpose.</p>
     </div>
       <div class="cap-group">
         <div class="cap-rule"><span class="cap-label">For metrics</span></div>
         <div class="cap-grid">
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
+          <p class="kick card-eyebrow">Metrics</p>
+          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana<sup>1</sup></h3>
           <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
           <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Fastest</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
           <div class="card-stat"><span class="lo">Up to</span><span class="big">30x</span><span class="lo">faster</span></div>
-          <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
+          <p class="kick card-eyebrow">Metrics</p>
+          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana<sup>1</sup></h3>
           <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Fastest</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
-          <div class="card-stat"><span class="lo">Up to</span><span class="big">30x</span><span class="lo">faster</span></div>
-          <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
+          <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Most efficient</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
+          <div class="card-stat"><span class="lo">Up to</span><span class="big">10x</span><span class="lo">more efficient</span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
+          <p class="kick card-eyebrow">Metrics</p>
+          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana<sup>1</sup></h3>
           <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
           <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Fastest</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
-          <div class="card-stat"><span class="lo">Up to</span><span class="big">30x</span><span class="lo">faster</span></div>
-          <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
+          <div class="card-stat"><span class="lo">Up to</span><span class="big">25x</span><span class="lo">faster</span></div>
         </article>
         </div>
       </div>
@@ -2426,30 +2099,32 @@ a.sr-only:focus-visible{
         <div class="cap-rule"><span class="cap-label">For logs</span></div>
         <div class="cap-grid">
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
+          <p class="kick card-eyebrow">Metrics</p>
+          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana<sup>1</sup></h3>
           <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
           <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Fastest</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
           
-          <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
+          <p class="kick card-eyebrow">Metrics</p>
+          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana<sup>1</sup></h3>
           <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
           <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Fastest</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
           
-          <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
+          <p class="kick card-eyebrow">Metrics</p>
+          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana<sup>1</sup></h3>
           <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Fastest</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
+          <div class="card-bars"><div class="bar is-best"><div class="bar-row"><span>Elasticsearch 9.5</span><b>Most efficient</b></div><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div></div><div class="bar"><div class="bar-row"><span>ClickHouse</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div></div><div class="bar"><div class="bar-row"><span>Prometheus</span><b>10x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:44%"></div></div></div><div class="bar"><div class="bar-row"><span>Grafana</span><b>30x slower</b></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div></div>
           
-          <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
         </article>
         </div>
       </div>
     </div>
 </section>
+
+
 
 
 
@@ -2506,126 +2181,121 @@ a.sr-only:focus-visible{
   </div>
 </section>
 
-<!-- ======================= SPLIT SECTIONS ======================= -->
-<section class="o-splits">
-  <div class="container" style="padding-bottom:0">
-    <div class="o-split card-edge">
-      <div class="o-split-copy">
-        <h3 class="t">Header &rarr; Heading 1 &rarr; Grow payment volume 2x faster on average</h3>
-        <p class="d">Elastic automatically extracts Knowledge Indicators (KIs) from your telemetry &mdash; entities, dependencies, live state, and context &mdash; building a continuously updated model of your entire system. No configuration or tagging required.</p>
-        <div class="o-checks">
-          <span class="o-check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.2" stroke="#0B64DD" stroke-width="1.4"/><path d="M4.8 8.2 7 10.4l4.2-4.6" stroke="#0B64DD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Entities auto discovered</span>
-          <span class="o-check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.2" stroke="#0B64DD" stroke-width="1.4"/><path d="M4.8 8.2 7 10.4l4.2-4.6" stroke="#0B64DD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Dependencies mapped</span>
-          <span class="o-check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.2" stroke="#0B64DD" stroke-width="1.4"/><path d="M4.8 8.2 7 10.4l4.2-4.6" stroke="#0B64DD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Live state, always current</span>
-        </div>
-      </div>
-      <div class="o-split-media"><div class="sysmap" role="img" aria-label="Live system model: node-01 host connected to checkout-service, which depends on redis and postgres.">
-        <div class="sysmap-hd"><b>Live system model</b><span class="sysmap-live"><i></i>Live</span></div>
-        <svg class="wires" viewBox="0 0 561 390" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M280 148 L280 183"/>
-          <path d="M245 285 L150 300"/>
-          <path d="M330 285 L420 300"/>
-        </svg>
-        <div class="node node--host"><i class="dot"></i><b>node-01</b><span>host &middot; us-east &middot; production</span></div>
-        <div class="node node--svc"><i class="dot"></i><b>checkout-service</b><span>cpu 85% &middot; p99 840ms &middot; degraded</span><span class="node-bar"><i></i></span></div>
-        <div class="node node--cache"><i class="dot"></i><b>redis</b><span>mem 78% &middot; healthy</span></div>
-        <div class="node node--db"><i class="dot"></i><b>postgres</b><span>conn 94/100 &middot; pool warm</span></div>
-      </div></div>
-    </div>
 
-    <div class="o-split o-split--rev card-edge">
-      <div class="o-split-copy">
-        <h3 class="t">Header &rarr; Heading 1 &rarr; Grow payment volume 2x faster on average</h3>
-        <p class="d">The same intelligence &mdash; KIs, Significant Events, and remediations &mdash; rendered on any surface. Kibana for your SRE team. Claude for your on-call engineer. CLI for your automation pipeline.</p>
-        <div class="o-checks">
-          <span class="o-check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.2" stroke="#0B64DD" stroke-width="1.4"/><path d="M4.8 8.2 7 10.4l4.2-4.6" stroke="#0B64DD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Native MCP server</span>
-          <span class="o-check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.2" stroke="#0B64DD" stroke-width="1.4"/><path d="M4.8 8.2 7 10.4l4.2-4.6" stroke="#0B64DD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Skills loaded automatically</span>
-          <span class="o-check"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.2" stroke="#0B64DD" stroke-width="1.4"/><path d="M4.8 8.2 7 10.4l4.2-4.6" stroke="#0B64DD" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Surface-aware rendering</span>
-        </div>
-      </div>
-      <div class="o-split-media"><div class="agentwin" role="img" aria-label="Agentic investigation window in Claude, calling forge_ml_anomalies for the frontend entity.">
-        <div class="agentwin-bar"><i></i><i></i><i></i><b>K8s-Agentic-Investigation &mdash; Claude</b></div>
-        <div class="agentwin-body">
-          <p class="agentwin-msg">Call forge_ml_anomalies with entity "frontend" and lookback "1h". Ignore the chaos* anomalies. Show results using the anomaly-explainer app.</p>
-        </div>
-      </div></div>
-    </div>
-  </div>
-</section>
 
-<!-- ======================= PRODUCT UI · pinned sequence ======================= -->
-<section class="o-story">
+<!-- ======================= 3 EASY STEPS ======================= -->
+<section class="s-steps-sec">
   <div class="container in">
-    <div class="sec-head">
-      <p class="kick">Product UI</p>
-      <h2 class="h2">From data to answers. No digging required.</h2>
+    <div class="s-steps-head">
+      <div class="s-head s-head--left">
+        <p class="kick">Get started</p>
+        <h2 class="h2">3 easy steps. Set up Elastic security</h2>
+      </div>
+      <p class="lede">A SIEM spots threats. Security finds the root cause. Vector search pulls relevant info. Agents scan your data for answers&mdash;all in one optimized database.</p>
     </div>
-    <div class="os-stack">
-        <div class="os-slot"><article class="os-card">
-          <div class="os-bar">
-            <span class="os-label">Fig 1.0</span>
-            <span class="os-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div class="s-steps-wrap">
+      <div class="s-steps-nav">
+        <button id="stepPrev" aria-label="Previous step" aria-controls="stepStrip">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="stepNext" aria-label="Next step" aria-controls="stepStrip">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="s-steps" id="stepStrip" tabindex="0" role="group" aria-label="Set-up steps, scrollable">
+        <article class="s-step s-feat">
+          <div class="s-feat-content">
+            <p class="kick">Eyebrow</p>
+            <div class="s-feat-main">
+              <div class="s-feat-hp"><h3 class="t">Open Agnostic XDR</h3></div>
+              <p class="cta">Discover the thing   --&gt;</p>
+            </div>
           </div>
-          <div class="os-copy">
-            <h3 class="os-h">AI driven log processing</h3>
-            <p>Skip building pipelines and managing instrumentation. Automatically ingest and organize data into logical <a href="#">streams</a>, applying parsing, partitioning, field extraction, and lifecycle policies with minimal manual setup.</p>
+          <div class="s-shot">image</div>
+          <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">More things</span></a></div>
+        </article>
+        <article class="s-step s-feat">
+          <div class="s-feat-content">
+            <p class="kick">Eyebrow</p>
+            <div class="s-feat-main">
+              <div class="s-feat-hp"><h3 class="t">Deploy the agent</h3></div>
+              <p class="cta">Discover the thing   --&gt;</p>
+            </div>
           </div>
-          <div class="os-panel" role="img" aria-label="AI driven log processing interface placeholder">panel &middot; 682&times;378</div>
-        </article></div>
-        <div class="os-slot"><article class="os-card">
-          <div class="os-bar">
-            <span class="os-label">Fig 2.0</span>
-            <span class="os-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <div class="s-shot">image</div>
+          <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">More things</span></a></div>
+        </article>
+        <article class="s-step s-feat">
+          <div class="s-feat-content">
+            <p class="kick">Eyebrow</p>
+            <div class="s-feat-main">
+              <div class="s-feat-hp"><h3 class="t">Tune and go live</h3></div>
+              <p class="cta">Discover the thing   --&gt;</p>
+            </div>
           </div>
-          <div class="os-copy">
-            <h3 class="os-h">Schema agnostic, OpenTelemetry first</h3>
-            <p>Send us your data in whatever format it arrives &mdash; whether it is <a href="#">Prometheus</a>, OTel, or anything else. Elasticsearch stores and queries it natively, while <a href="#">EDOT</a> adds a production-ready OTel-native ecosystem.</p>
-          </div>
-          <div class="os-panel" role="img" aria-label="Schema agnostic, OpenTelemetry first interface placeholder">panel &middot; 682&times;378</div>
-        </article></div>
-        <div class="os-slot"><article class="os-card">
-          <div class="os-bar">
-            <span class="os-label">Fig 3.0</span>
-            <span class="os-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="os-copy">
-            <h3 class="os-h">High cardinality exploration</h3>
-            <p>Explore millions of unique series without pre-aggregating or dropping dimensions. Keep the labels that matter and query them at full fidelity with <a href="#">ES|QL</a>, so investigations never dead-end on data you chose not to keep.</p>
-          </div>
-          <div class="os-panel" role="img" aria-label="High cardinality exploration interface placeholder">panel &middot; 682&times;378</div>
-        </article></div>
-        <div class="os-slot"><article class="os-card">
-          <div class="os-bar">
-            <span class="os-label">Fig 4.0</span>
-            <span class="os-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="os-copy">
-            <h3 class="os-h">Agentic investigations</h3>
-            <p>Agents reason over the live system model &mdash; entities, dependencies, and current state &mdash; to surface probable root cause and draft the remediation, with every step shown so SREs stay in control.</p>
-          </div>
-          <div class="os-panel" role="img" aria-label="Agentic investigations interface placeholder">panel &middot; 682&times;378</div>
-        </article></div>
-        <div class="os-slot"><article class="os-card">
-          <div class="os-bar">
-            <span class="os-label">Fig 5.0</span>
-            <span class="os-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="os-copy">
-            <h3 class="os-h">100+ machine learning jobs</h3>
-            <p>Anomaly detection, forecasting, and log rate analysis ship as ready-made jobs. Point them at your data and get baselines without building a modelling pipeline first.</p>
-          </div>
-          <div class="os-panel" role="img" aria-label="100+ machine learning jobs interface placeholder">panel &middot; 682&times;378</div>
-        </article></div>
+          <div class="s-shot">image</div>
+          <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Another tag</span></a><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">More things</span></a></div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= STACK / FAN-OUT ======================= -->
-<!-- .o-fold removed: duplicate capabilities content -->
+<!-- ======================= OPEN AGENTIC WORKFLOWS ======================= -->
+<section class="s-open">
+  <div class="container in">
+    <div class="s-head s-head--wide">
+      <p class="kick">Open platform</p>
+      <h2 class="h2">Whether you use our UI, our agents, or your own, Elastic provides the strong foundation for modern security operations</h2>
+      <p class="lede">Elastic turns your logs, metrics, and traces into a live system model that AI can reason on in real time. Available on demand from any AI interface of your choice.</p>
+    </div>
+    <div class="s-open-grid">
+      <div class="s-open-col">
+        <article class="s-open-card">
+          <h3 class="t">Traditional SOC Workflows</h3>
+          <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+          <p class="cta">Lorem ipsum   --&gt;</p>
+        </article>
+        <article class="s-open-card">
+          <h3 class="t">Native Agentic SOC Workflows</h3>
+          <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+          <p class="cta">Lorem ipsum   --&gt;</p>
+        </article>
+      </div>
+      <article class="s-open-card s-open-card--tall">
+        <h3 class="t">Open Agentic Workflows</h3>
+        <p class="d">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+        <p class="cta">Lorem ipsum   --&gt;</p>
+        <div class="s-open-media">Product image</div>
+        <div class="s-provs">
+          <a class="chip" href="#"><svg class="chip-ico" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.6 13.2 4.6v6.8L8 14.4 2.8 11.4V4.6z" stroke="#343741" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 5.1 10.9 6.8v3.4L8 11.9 5.1 10.2V6.8z" stroke="#343741" stroke-width="1"/></svg><span class="chip-label">OpenAI</span></a>
+          <a class="chip" href="#"><svg class="chip-ico" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.4 13 8 3l2.6 10" stroke="#343741" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.3 10h3.4" stroke="#343741" stroke-width="1.4" stroke-linecap="round"/></svg><span class="chip-label">Anthropic</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
+<!-- ======================= THE FOUR TAXES ======================= -->
+<section class="s-tax-sec">
+  <div class="container in">
+    <div class="s-tax">
+      <div class="s-tax-media">Product image &middot; 537 &times; 373</div>
+      <div class="s-tax-copy">
+        <h2 class="t">Eliminate the artifical barrier that inhibits analyst from finding and stopping threats</h2>
+        <p class="d">The four taxes we are repealing&hellip;</p>
+        <div class="s-tax-list">
+          <p class="s-tax-item"><svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true"><path d="M4.5 5 13.5 14M13.5 5 4.5 14" stroke="#BD271E" stroke-width="1.6" stroke-linecap="round"/></svg>Zero endpoint tax &mdash; stop paying twice, once per device for protection then again for the telemetry</p>
+          <p class="s-tax-item"><svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true"><path d="M4.5 5 13.5 14M13.5 5 4.5 14" stroke="#BD271E" stroke-width="1.6" stroke-linecap="round"/></svg>Zero automation tax &mdash; forced to buy and integrate a separate SOAR just to make your SIEM useful</p>
+          <p class="s-tax-item"><svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true"><path d="M4.5 5 13.5 14M13.5 5 4.5 14" stroke="#BD271E" stroke-width="1.6" stroke-linecap="round"/></svg>Zero AI blackbox tax &mdash; locked into a vendor-mandated LLM you can&rsquo;t control or verify</p>
+          <p class="s-tax-item"><svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true"><path d="M4.5 5 13.5 14M13.5 5 4.5 14" stroke="#BD271E" stroke-width="1.6" stroke-linecap="round"/></svg>Zero data tax &mdash; stop paying rehydration penalties to access your own historical data</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-<!-- ======================= REVIEWS ======================= -->
+<!-- ======================= ANALYST RECOGNITION ======================= -->
 <section class="o-rev">
   <div class="container in">
     <div class="o-rev-head">
@@ -2636,7 +2306,7 @@ a.sr-only:focus-visible{
     <div class="o-rev-grid">
       <article class="o-analyst">
         <span class="badge badge-news">Analyst report</span>
-        <h3 class="h4 t">Leader in the 2026 Gartner&reg; Magic Quadrant&trade; for Observability Platforms</h3>
+        <h3 class="h4 t">Leader in the 2026 Gartner&reg; Magic Quadrant&trade; for Security Information and Event Management</h3>
         <span class="gartner">Gartner MQ graphic placeholder</span>
       </article>
       <article class="o-analyst">
@@ -2647,6 +2317,7 @@ a.sr-only:focus-visible{
     </div>
   </div>
 </section>
+
 
 <!-- ======================= CUSTOMERS ======================= -->
 <section class="customers">
@@ -2664,58 +2335,46 @@ a.sr-only:focus-visible{
       </button>
       <div class="ctabs" id="ctabs" role="tablist" aria-label="Customer stories">  <button class="ctab" role="tab" id="tab-github" aria-selected="false" tabindex="-1"
           aria-controls="cust-panel" title="GitHub customer story">
-    <span class="ctab-inner">
-      <span class="ctab-mark"><svg width="121" height="27.632" viewBox="0 0 121 28" fill="none">
+    <span class="ctab-inner"><span class="ctab-mark"><svg width="121" height="27.632" viewBox="0 0 121 28" fill="none">
   <g fill="#1C1E23"><circle cx="13.6" cy="14" r="13.2"/><path d="M13.6 3.4a10.7 10.7 0 0 0-3.4 20.8c.5.1.7-.2.7-.5v-1.9c-2.9.6-3.6-1.4-3.6-1.4-.5-1.2-1.2-1.6-1.2-1.6-1-.7 0-.7 0-.7 1.1.1 1.6 1.1 1.6 1.1.9 1.6 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.4-2.4-.3-4.8-1.2-4.8-5.3 0-1.2.4-2.1.9-2.9-.1-.3-.4-1.4.1-2.9 0 0 .9-.3 3 1.1a10.2 10.2 0 0 1 5.4 0c2-1.4 3-1.1 3-1.1.5 1.5.2 2.6.1 2.9.6.8 1 1.7 1 2.9 0 4.1-2.5 5-4.9 5.3.4.3.8.9.8 2v3.1c0 .3.2.6.7.5A10.7 10.7 0 0 0 13.6 3.4Z" fill="#fff"/></g>
   <text x="32" y="21.6" font-family="Inter,sans-serif" font-size="20.6" font-weight="700" fill="#1C1E23" letter-spacing="-.7">GitHub</text></svg></span>
-      <span class="ctab-rule" aria-hidden="true"><i></i></span>
-    </span>
+      <span class="ctab-rule" aria-hidden="true"><i></i></span></span>
   </button>
   <button class="ctab" role="tab" id="tab-docusign" aria-selected="false" tabindex="-1"
           aria-controls="cust-panel" title="Docusign customer story">
-    <span class="ctab-inner">
-      <span class="ctab-mark"><svg width="129.16" height="25.983" viewBox="0 0 130 26" fill="none">
+    <span class="ctab-inner"><span class="ctab-mark"><svg width="129.16" height="25.983" viewBox="0 0 130 26" fill="none">
   <path d="M0 3.4A3 3 0 0 1 3 .4h9.4l8 8v9.4a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3.4Z" fill="#1C1E23"/>
   <path d="M6.2 10.9l3.1 3.3 5.1-6" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="26" y="19.4" font-family="Inter,sans-serif" font-size="19.4" font-weight="500" fill="#1C1E23" letter-spacing="-.7">docusign</text>
   <circle cx="124.4" cy="18.2" r="2.4" fill="#1C1E23"/></svg></span>
-      <span class="ctab-rule" aria-hidden="true"><i></i></span>
-    </span>
+      <span class="ctab-rule" aria-hidden="true"><i></i></span></span>
   </button>
   <button class="ctab" role="tab" id="tab-wells" aria-selected="true" tabindex="0"
           aria-controls="cust-panel" title="Wells Fargo customer story">
-    <span class="ctab-inner">
-      <span class="ctab-mark"><svg width="88.11" height="37.427" viewBox="0 0 89 38" fill="none">
+    <span class="ctab-inner"><span class="ctab-mark"><svg width="88.11" height="37.427" viewBox="0 0 89 38" fill="none">
   <text x="44.5" y="16.6" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="16.4" font-weight="700" fill="#D71E28" letter-spacing=".4">WELLS</text>
   <text x="44.5" y="33.6" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="16.4" font-weight="700" fill="#D71E28" letter-spacing=".4">FARGO</text></svg></span>
-      <span class="ctab-rule" aria-hidden="true"><i></i></span>
-    </span>
+      <span class="ctab-rule" aria-hidden="true"><i></i></span></span>
   </button>
   <button class="ctab" role="tab" id="tab-dish" aria-selected="false" tabindex="-1"
           aria-controls="cust-panel" title="DISH customer story">
-    <span class="ctab-inner">
-      <span class="ctab-mark"><svg width="92.0625" height="33.261" viewBox="0 0 92 33" fill="none">
+    <span class="ctab-inner"><span class="ctab-mark"><svg width="92.0625" height="33.261" viewBox="0 0 92 33" fill="none">
   <text x="0" y="27.6" font-family="Inter,sans-serif" font-size="32" font-weight="700" fill="#1C1E23" letter-spacing="-1.2">d</text>
   <circle cx="30" cy="15.4" r="5.2" fill="#1C1E23"/>
   <text x="39" y="27.6" font-family="Inter,sans-serif" font-size="32" font-weight="700" fill="#1C1E23" letter-spacing="-1.2">sh</text></svg></span>
-      <span class="ctab-rule" aria-hidden="true"><i></i></span>
-    </span>
+      <span class="ctab-rule" aria-hidden="true"><i></i></span></span>
   </button>
   <button class="ctab" role="tab" id="tab-siemens" aria-selected="false" tabindex="-1"
           aria-controls="cust-panel" title="Siemens customer story">
-    <span class="ctab-inner">
-      <span class="ctab-mark"><svg width="128.999" height="20.525" viewBox="0 0 129 21" fill="none">
+    <span class="ctab-inner"><span class="ctab-mark"><svg width="128.999" height="20.525" viewBox="0 0 129 21" fill="none">
   <text x="0" y="17.4" font-family="Inter,sans-serif" font-size="19" font-weight="700" fill="#1C1E23" letter-spacing="1.1">SIEMENS</text></svg></span>
-      <span class="ctab-rule" aria-hidden="true"><i></i></span>
-    </span>
+      <span class="ctab-rule" aria-hidden="true"><i></i></span></span>
   </button>
   <button class="ctab" role="tab" id="tab-visa" aria-selected="false" tabindex="-1"
           aria-controls="cust-panel" title="Visa customer story">
-    <span class="ctab-inner">
-      <span class="ctab-mark"><svg width="90" height="29.055" viewBox="0 0 90 29" fill="none">
+    <span class="ctab-inner"><span class="ctab-mark"><svg width="90" height="29.055" viewBox="0 0 90 29" fill="none">
   <text x="0" y="24" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="27" font-weight="700" fill="#1C1E23" letter-spacing="-.6">VISA</text></svg></span>
-      <span class="ctab-rule" aria-hidden="true"><i></i></span>
-    </span>
+      <span class="ctab-rule" aria-hidden="true"><i></i></span></span>
   </button></div>
       <button class="ctabs-nav" id="ctabsNext" aria-label="Next customer story">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2765,7 +2424,7 @@ a.sr-only:focus-visible{
       </article>
       <article class="o-comm-card card-edge">
         <span class="badge badge-blog" style="color:#7E5200">loris</span>
-        <div><h3 class="h4 t">Slack</h3><p class="b15 d">Talk shop. Swap notes. Shape the future of Elastic Observability.</p></div>
+        <div><h3 class="h4 t">Slack</h3><p class="b15 d">Talk shop. Swap notes. Shape the future of Elastic Security.</p></div>
       </article>
       <article class="o-comm-card card-edge">
         <span class="badge badge-news">loris</span>
@@ -2785,63 +2444,67 @@ a.sr-only:focus-visible{
     <div class="faq-card">
       <div class="faq-head">
         <p class="kick">FAQ</p>
-        <h2 class="h2">Elastic Observability, explained</h2>
+        <h2 class="h2">Elastic Security, explained</h2>
       </div>
       <div class="faq-list" id="faq-acc">  <div class="faq-item">
     <button class="faq-btn" id="faq-b0" aria-expanded="false" aria-controls="faq-p0">
-      <span class="faq-l"><span class="faq-n">01</span><span class="faq-q">What is full-stack observability?</span></span>
+      <span class="faq-l"><span class="faq-n">01</span><span class="faq-q">What is an agentic SOC?</span></span>
       <span class="faq-d">&darr;</span>
     </button>
-    <div class="faq-panel" id="faq-p0" role="region" aria-labelledby="faq-b0"><div><p class="faq-a">Full-stack observability means collecting logs, metrics, and traces from every layer of your environment — infrastructure, applications, and user experience — and correlating them in one place so you can answer any question about system behaviour without switching tools.</p></div></div>
+    <div class="faq-panel" id="faq-p0" role="region" aria-labelledby="faq-b0"><div><p class="faq-a">An agentic SOC puts AI agents in the investigation loop rather than presenting dashboards for a human to interpret. Agents reason over your telemetry, surface probable root cause, and can execute containment with every step shown.</p></div></div>
   </div>
   <div class="faq-item">
     <button class="faq-btn" id="faq-b1" aria-expanded="false" aria-controls="faq-p1">
-      <span class="faq-l"><span class="faq-n">02</span><span class="faq-q">What is agentic observability?</span></span>
+      <span class="faq-l"><span class="faq-n">02</span><span class="faq-q">What is open, agnostic XDR?</span></span>
       <span class="faq-d">&darr;</span>
     </button>
-    <div class="faq-panel" id="faq-p1" role="region" aria-labelledby="faq-b1"><div><p class="faq-a">Agentic observability puts AI agents in the investigation loop. Rather than presenting dashboards for a human to interpret, agents reason over your telemetry, surface probable root cause, and can execute remediation workflows with full transparency.</p></div></div>
+    <div class="faq-panel" id="faq-p1" role="region" aria-labelledby="faq-b1"><div><p class="faq-a">Detection and response that isn't tied to one vendor's agents, one storage format, or one model. You bring your own endpoints, your own LLM, and your own data retention, and the platform works across all of them.</p></div></div>
   </div>
   <div class="faq-item">
     <button class="faq-btn" id="faq-b2" aria-expanded="false" aria-controls="faq-p2">
-      <span class="faq-l"><span class="faq-n">03</span><span class="faq-q">What are the benefits of AI-driven observability?</span></span>
+      <span class="faq-l"><span class="faq-n">03</span><span class="faq-q">Can I use my own LLM with Elastic Security?</span></span>
       <span class="faq-d">&darr;</span>
     </button>
-    <div class="faq-panel" id="faq-p2" role="region" aria-labelledby="faq-b2"><div><p class="faq-a">Faster mean time to resolution, less alert fatigue, and lower cost. AI narrows millions of signals down to the handful that matter, drafts the investigation narrative, and proposes the fix — so engineers spend their time deciding rather than digging.</p></div></div>
+    <div class="faq-panel" id="faq-p2" role="region" aria-labelledby="faq-b2"><div><p class="faq-a">Yes. Elastic connects to OpenAI, Anthropic, Google Gemini, Amazon Bedrock, Azure OpenAI, Mistral, xAI, Groq and self-hosted vLLM, so the model stays your choice and your data never trains someone else's.</p></div></div>
   </div>
   <div class="faq-item">
     <button class="faq-btn" id="faq-b3" aria-expanded="false" aria-controls="faq-p3">
-      <span class="faq-l"><span class="faq-n">04</span><span class="faq-q">Why are businesses switching from Splunk to Elastic Observability?</span></span>
+      <span class="faq-l"><span class="faq-n">04</span><span class="faq-q">Why are businesses switching from Splunk to Elastic Security?</span></span>
       <span class="faq-d">&darr;</span>
     </button>
-    <div class="faq-panel" id="faq-p3" role="region" aria-labelledby="faq-b3"><div><p class="faq-a">Cost and openness. Elastic's storage architecture — LogsDB index mode, synthetic _source, and compression — delivers substantially lower storage bills, and the platform is OpenTelemetry-native rather than tied to proprietary agents.</p></div></div>
+    <div class="faq-panel" id="faq-p3" role="region" aria-labelledby="faq-b3"><div><p class="faq-a">Cost and openness. Elastic's storage architecture delivers substantially lower bills, and there is no rehydration penalty for reaching your own historical data.</p></div></div>
   </div>
   <div class="faq-item">
     <button class="faq-btn" id="faq-b4" aria-expanded="false" aria-controls="faq-p4">
-      <span class="faq-l"><span class="faq-n">05</span><span class="faq-q">Why are businesses switching from Datadog to Elastic Observability?</span></span>
+      <span class="faq-l"><span class="faq-n">05</span><span class="faq-q">Do I need a separate SOAR product?</span></span>
       <span class="faq-d">&darr;</span>
     </button>
-    <div class="faq-panel" id="faq-p4" role="region" aria-labelledby="faq-b4"><div><p class="faq-a">Predictable pricing at scale and a single platform for search, observability, and security. Teams keep full-fidelity data instead of sampling it away to control spend, and can run anywhere — any cloud, on-premises, or air-gapped.</p></div></div>
+    <div class="faq-panel" id="faq-p4" role="region" aria-labelledby="faq-b4"><div><p class="faq-a">No. Workflow automation is built in, so you aren't buying and integrating a second product to make your SIEM useful.</p></div></div>
   </div>
   <div class="faq-item">
     <button class="faq-btn" id="faq-b5" aria-expanded="false" aria-controls="faq-p5">
-      <span class="faq-l"><span class="faq-n">06</span><span class="faq-q">What is the difference between observability and monitoring?</span></span>
+      <span class="faq-l"><span class="faq-n">06</span><span class="faq-q">What is the difference between SIEM and XDR?</span></span>
       <span class="faq-d">&darr;</span>
     </button>
-    <div class="faq-panel" id="faq-p5" role="region" aria-labelledby="faq-b5"><div><p class="faq-a">Monitoring tells you whether a known condition is true; observability lets you ask new questions of your data after the fact. Monitoring answers “is it up?” — observability answers “why is it behaving like this?”</p></div></div>
+    <div class="faq-panel" id="faq-p5" role="region" aria-labelledby="faq-b5"><div><p class="faq-a">A SIEM centralises and correlates logs; XDR adds native detection and response across endpoint, cloud and network. Elastic Security is both, on one data platform.</p></div></div>
   </div></div>
     </div>
   </div>
 </section>
 
+</main>
 
+
+<!-- ======================= CLOSING CTA ======================= -->
 <section class="s-cta">
   <div class="container in">
     <div class="s-cta-grid">
-      <h2>Ready to see agentic observability at half the cost?</h2>
+      <h2>Ready to put your data to work?</h2>
       <a class="btn btn-w" href="#">Start free trial</a>
     </div>
   </div>
 </section>
+
 </main>
 <!-- ======================= FOOTER ======================= -->
 <footer class="foot">
@@ -2916,7 +2579,7 @@ a.sr-only:focus-visible{
 (function () {
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------- shared page chrome ---------------- */
+  /* ---- shared chrome: drawer, FAQ, footer groups ---- */
   var burger=document.getElementById('burger'),drawer=document.getElementById('drawer'),scrim=document.getElementById('scrim');
   if(burger){var last=null;
     function openD(){last=document.activeElement;drawer.dataset.on='1';scrim.hidden=false;
@@ -2943,69 +2606,27 @@ a.sr-only:focus-visible{
       else{g.open=false;s.tabIndex=0;s.removeAttribute('aria-hidden');}});}
     mq.addEventListener('change',applyF);applyF();}
 
-  /* =====================================================================
-     PRODUCT UI — pinned scroll sequence
-     One scene per step; whichever scene is crossing the viewport centre
-     sets the active step, and copy + product view swap together.
-     No scroll listeners; the page scrolls at its own rate throughout.
-     ===================================================================== */
+  /* ---- 3 easy steps: horizontal scroller ----
+     A plain overflow strip, so keyboard and trackpad scrolling work natively;
+     the arrows page by one card and disable at each end. ---- */
   (function () {
-    var scenes = [].slice.call(document.querySelectorAll('.o-scene'));
-    var steps  = [].slice.call(document.querySelectorAll('.o-step'));
-    var blocks = [].slice.call(document.querySelectorAll('.o-block'));
-    var shots  = [].slice.call(document.querySelectorAll('.o-shot'));
-    var pips   = [].slice.call(document.querySelectorAll('.o-progress i'));
-    if (!steps.length) return;
-    var current = -1;
-
-    function select(i) {
-      if (i === current) return;
-      current = i;
-      steps.forEach(function (s, n) { s.setAttribute('aria-current', n === i ? 'true' : 'false'); });
-      blocks.forEach(function (b, n) { b.dataset.on = n === i ? '1' : '0'; });
-      shots.forEach(function (s, n) { s.dataset.on = n === i ? '1' : '0'; });
-      pips.forEach(function (p, n) { p.dataset.on = n === i ? '1' : '0'; });
+    var strip = document.getElementById('stepStrip');
+    var prev = document.getElementById('stepPrev'), next = document.getElementById('stepNext');
+    if (!strip || !prev || !next) return;
+    function step() {
+      var c = strip.querySelector('.s-step');
+      return c ? c.getBoundingClientRect().width + 32 : 533;
     }
-
-    /* Step selection is derived from the section's own scroll progress.
-       Geometry-matching (nearest scene to the viewport mid-line) proved able
-       to skip a step on fast scrolls; progress is monotonic and exact, so
-       every step gets its slice and none can be missed. Reads are throttled
-       to one per animation frame, so this costs nothing per scroll event. */
-    var ticking = false;
-    function measure() {
-      ticking = false;
-      var sec = document.getElementById('story');
-      if (!sec) return;
-      var r = sec.getBoundingClientRect();
-      var travel = r.height - innerHeight;          /* scrollable distance while pinned */
-      if (travel <= 0) { select(0); return; }
-      var p = (-r.top) / travel;                    /* 0 at section top, 1 at release */
-      var i = Math.floor(p * steps.length);
-      select(Math.max(0, Math.min(steps.length - 1, i)));
+    function sync() {
+      var max = strip.scrollWidth - strip.clientWidth;
+      prev.disabled = strip.scrollLeft <= 1;
+      next.disabled = strip.scrollLeft >= max - 1;
     }
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(measure);
-    }
-    addEventListener('scroll', onScroll, { passive: true });
-    addEventListener('resize', onScroll, { passive: true });
-    measure();
-
-    /* clicking a step scrolls to its scene */
-    steps.forEach(function (s, n) {
-      s.addEventListener('click', function () {
-        var sec = document.getElementById('story');
-        if (!sec) { select(n); return; }
-        var r = sec.getBoundingClientRect();
-        var travel = r.height - innerHeight;
-        if (travel <= 0) { select(n); return; }
-        var y = r.top + scrollY + travel * ((n + 0.5) / steps.length);
-        scrollTo({ top: Math.round(y), behavior: reduce ? 'auto' : 'smooth' });
-      });
-    });
-    select(0);
+    prev.addEventListener('click', function () { strip.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    next.addEventListener('click', function () { strip.scrollBy({ left:  step(), behavior: reduce ? 'auto' : 'smooth' }); });
+    strip.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+    sync();
   })();
 
   /* ================= CUSTOMER STORY TABS ================= */
@@ -3162,29 +2783,6 @@ a.sr-only:focus-visible{
     mq.addEventListener('change', apply); apply();
   })();
 
-
-  /* ---- stack / fan-out: spreads once, on scroll, and stays spread ---- */
-  (function () {
-    var sec = document.getElementById('fold');
-    if (!sec) return;
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches ||
-        !matchMedia('(min-width:992px)').matches) { sec.dataset.spread = '1'; return; }
-    var done = false;
-    function check() {
-      if (done) return;
-      var r = sec.getBoundingClientRect();
-      /* spread once the block is meaningfully in view — one-way, never reverts */
-      if (r.top < innerHeight * 0.72 && r.bottom > 0) {
-        done = true; sec.dataset.spread = '1';
-        removeEventListener('scroll', onScroll);
-      }
-    }
-    var t = false;
-    function onScroll() { if (!t) { t = true; requestAnimationFrame(function () { t = false; check(); }); } }
-    addEventListener('scroll', onScroll, { passive: true });
-    addEventListener('resize', onScroll);
-    check();
-  })();
 
 })();
 </script>
