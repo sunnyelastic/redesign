@@ -2743,6 +2743,376 @@ section .cta,section .card-link,.card .cta,.o-card .cta,.o-cap .cta,
   font-family:var(--body)!important;font-weight:500!important;font-size:14px!important;
   line-height:1.5!important;color:var(--blue)!important;text-decoration:none}
 section .cta:hover,section .card-link:hover{text-decoration:underline}
+
+/* =====================================================================
+   SECTION RHYTHM  —  padding, not margin.
+   The 64 between sections was `margin-top:64`, i.e. an empty gap that
+   reads as white space, and on sections that also had 64 padding it
+   stacked (margin + own padding + neighbour padding) into a large void.
+   Rhythm is now 32 padding top + 32 padding bottom INSIDE each section,
+   so adjacent sections contribute 32+32 = 64 of contained space with no
+   dead margin between them. The hero and band keep their own block
+   padding; the CTA band stays full-bleed.
+   ===================================================================== */
+section{margin-top:0!important;margin-bottom:0!important}
+.o-keys,.o-cap,.o-caps2,.o-caps,.o-splits,.s-uimod,.s-kimod,.o-rev,
+.customers,.o-comm,.faq-sec,.plat-diff,.plat-econ,.plat-metrics,.why,
+.es-sec,.es-diff,.es-context,.o-metrics,.deploy,.built,.plat-ctx-sec,
+.s-features,.s-band,.o-full,.s-analyst-sec,.context-do,.o-block{
+  padding-top:var(--layout-03);padding-bottom:var(--layout-03);
+  margin-top:0;margin-bottom:0}
+/* hero owns its larger block padding; don't halve it */
+.o-hero,.plat-hero{padding-top:var(--layout-06);padding-bottom:var(--layout-05)}
+
+/* hero pays its own bottom padding; the section after it should not add a
+   full 32 on top or the seam reads as 96. Give the first content section
+   a smaller top so hero-bottom(64) + next-top(0) = 64, consistent. */
+.o-hero + section,.plat-hero + section{padding-top:0}
+/* the dark CTA/migration band keeps generous interior padding, not 32 */
+.s-band{padding-top:var(--layout-05);padding-bottom:var(--layout-05)}
+
+/* the CTA band closes the page; give the section before it a full 64 seam
+   (faq pays 32 bottom, cta pays 32 top instead of 0). */
+.faq-sec,.faq-sec.v8-faq{padding-bottom:var(--layout-03)}
+.s-cta,.cta.v8-cta{padding-top:var(--layout-03)}
+
+/* the comparison chart image slot is removed from the metrics card; the
+   figure block is now the only visual, so it takes the body->figure step
+   directly (24) rather than following a chart. */
+.card-figure{margin-top:var(--spacing-06)}
+
+/* =====================================================================
+   TAB / ACCORDION PANEL IMAGE  —  1080 wide at 16:9.
+   It was running the full 1248 container width (and 851 in the accordion
+   at 1.72), which made the visual dominate the section. 1080 centred at
+   a true 16:9 gives 1080x608.
+   ===================================================================== */
+.pd-placeholder,.placeholder-image,.retrieval-placeholder,.ui-panel{
+  width:100%;max-width:1080px;margin-inline:auto;
+  aspect-ratio:16/9;height:auto;min-height:0}
+
+/* =====================================================================
+   METRICS -> BAND SEAM
+   The band pays 64 of its own top padding, so the seam after metrics read
+   96 while every other seam is 64. Zero the metrics section's bottom
+   padding where a band follows, so band(64) + 0 = 64 like the rest.
+   ===================================================================== */
+.o-caps2 + .s-band,.o-metrics + .s-band,.plat-metrics + .s-band{padding-top:var(--layout-05)}
+.o-caps2:has(+ .s-band),.o-metrics:has(+ .s-band),.plat-metrics:has(+ .s-band){padding-bottom:0}
+
+/* the section AFTER the band was paying 32 on top against the band's 64,
+   giving a 96 seam. Zero it so band(64) + 0 = 64, matching every other
+   seam. The band's own generous interior padding is what shows. */
+.s-band + section{padding-top:0}
+
+/* =====================================================================
+   BAND SEAM  —  corrected.
+   I had zeroed the neighbours' padding against the band, reasoning that
+   the band's own 64 covered the seam. It does not: the band's 64 is
+   INTERIOR padding that holds the band's own text off its edges. The
+   result was neighbouring content sitting flush on the band edge — 0px
+   measured content-to-edge on all four pages.
+   The band is a full-bleed block, so it needs 64 OUTSIDE it as well:
+   previous content -> band edge = 64, band edge -> next content = 64.
+   ===================================================================== */
+.s-band{padding-top:var(--layout-05);padding-bottom:var(--layout-05)}
+:is(.o-caps2,.o-metrics,.plat-metrics,.faq-sec,section):has(+ .s-band){
+  padding-bottom:var(--layout-05)!important}
+.s-band + section{padding-top:var(--layout-05)!important}
+
+/* =====================================================================
+   SECTION RHYTHM  —  64 top and 64 bottom on EVERY section.
+   Adjacent sections therefore contribute 64 + 64 = 128 of contained
+   space, and no section can collapse against its neighbour.
+   Earlier passes left 32/32 on most sections and pt:0 on the first
+   content section (from a hero-seam rule), so sections sat closer than
+   intended and inconsistently.
+   Declared last with !important because several modules carry their own
+   padding from their source pages.
+   ===================================================================== */
+section{
+  padding-top:var(--layout-05)!important;
+  padding-bottom:var(--layout-05)!important;
+  margin-top:0!important;margin-bottom:0!important}
+
+/* hero keeps a deeper top so the H1 clears the nav */
+.o-hero,.plat-hero{padding-top:var(--layout-06)!important}
+
+/* full-bleed bands keep 64 inside as well; the 64 above and below comes
+   from their neighbours, which is what stops content touching the edge */
+.s-band{padding-top:var(--layout-05)!important;padding-bottom:var(--layout-05)!important}
+
+/* mobile: 48 instead of 64 so the pages do not become one long scroll */
+@media (max-width:767px){
+  section{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+  .o-hero,.plat-hero{padding-top:var(--layout-05)!important}
+}
+
+/* =====================================================================
+   MOBILE TYPE SCALE
+   Desktop runs 64 / 32 / 24 / 18 with 20 for the hero lede. On a 358px
+   column a 64px headline gives ~10 characters a line, so the scale steps
+   down as a whole rather than clamping individual elements.
+
+     role            desktop   <=767   <=390
+     h1 / display       64        36      32
+     h2                 32        24      24
+     h3                 24        20      18
+     h4 / card title    18        18      18
+     hero lede          20        18      18
+     body               16        16      16
+     component body     14        14      14
+     eyebrow / tag      14        14      12
+     figure value       48        32      28
+     stat               64        40      32
+
+   Ratios stay 1.2 for display/heading and 1.5-1.54 for prose, so the
+   vertical rhythm is unchanged; only the sizes move. h4 and body hold
+   at 18 / 16 / 14 because they are already at the readable floor.
+   ===================================================================== */
+@media (max-width:767px){
+  .o-hero .h1,.o-hero h1,.plat-hero .h1,.h1,h1{
+    font-size:36px!important;line-height:1.2!important;letter-spacing:-.02em!important}
+  .h2,h2,.context-type,.s-band-h{font-size:24px!important;line-height:1.2!important}
+  .h3,h3{font-size:20px!important;line-height:1.2!important}
+  .o-hero .b16,.o-hero-head p,.plat-hero-text p{font-size:18px!important;line-height:1.5}
+  .stat{font-size:40px!important}
+  .card-figure .fig-val{font-size:32px!important}
+}
+@media (max-width:390px){
+  .o-hero .h1,.o-hero h1,.plat-hero .h1,.h1,h1{font-size:32px!important}
+  .h3,h3{font-size:18px!important}
+  .kick,.eyebrow,.card-eyebrow,.badge{font-size:12px!important}
+  .stat{font-size:32px!important}
+  .card-figure .fig-val{font-size:28px!important}
+}
+
+/* =====================================================================
+   FAQ ANSWER  —  my mobile clamp-release set every paragraph to
+   `display:block; overflow:visible`, which also hit .faq-a and undid the
+   accordion's collapsed clipping. At 320 an answer overflowed its card by
+   120px and the section by 72, landing on top of the CTA band.
+   The answer's visibility belongs to the accordion state, not the type
+   layer, so exclude it from the clamp release and let the card clip.
+   ===================================================================== */
+.faq-card{overflow:hidden}
+/* (removed: see FAQ fix below) */
+
+/* the band and hero override the mobile 48 with their own 64, giving
+   mixed 48/64 seams on phones. Pin them to 48 as well so mobile is one
+   value throughout, the same way desktop is one 64. */
+@media (max-width:767px){
+  .s-band{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+  .o-hero,.plat-hero{padding-bottom:var(--layout-04)!important}
+}
+
+/* three sections kept 64 against the band from the desktop band-seam rule;
+   on mobile the rhythm is 48, so scope that rule to desktop only. */
+@media (max-width:767px){
+  :is(.o-caps2,.o-metrics,.plat-metrics,.faq-sec,section):has(+ .s-band){
+    padding-bottom:var(--layout-04)!important}
+  .s-band + section{padding-top:var(--layout-04)!important}
+}
+
+/* =====================================================================
+   FAQ  —  two defects, both from my earlier rules targeting a DOM that
+   does not exist. The real structure is:
+       .faq-item > button.faq-btn ( .faq-l > .faq-n + .faq-q , .faq-d )
+                 > .faq-panel > div > p.faq-a
+   I had written `.faq-btn + .faq-a` and `.faq-item:not(.is-open)`, so
+   (a) the collapse rule matched every item permanently, leaving
+       max-height:0 even after aria-expanded flipped to true, and
+   (b) the answer's indent was a flat 48 from the section edge instead of
+       being aligned to the question column.
+   ===================================================================== */
+
+/* 1. collapse keys off the BUTTON's aria-expanded, which is what the JS
+      actually toggles. The panel is the animating box. */
+.faq-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .22s ease}
+.faq-btn[aria-expanded="true"] + .faq-panel{grid-template-rows:1fr}
+.faq-panel > *{overflow:hidden;min-height:0}
+.faq-item .faq-a{max-height:none;overflow:visible}
+
+/* 2. align the answer to the QUESTION, not the section edge.
+      .faq-n is 22 wide with a 24 gap to .faq-q, so the answer indents by
+      that same amount and its left edge matches the question's. */
+.faq-btn{display:flex;align-items:flex-start;gap:var(--spacing-06);width:100%}
+.faq-l{display:flex;align-items:flex-start;gap:var(--spacing-06);flex:1;text-align:left}
+.faq-n{flex:0 0 22px}
+.faq-a{padding-left:calc(22px + var(--spacing-06));padding-right:0;
+  padding-top:var(--spacing-03);padding-bottom:var(--spacing-06);margin:0}
+
+/* the previous collapse rule keyed off `.faq-item:not(.is-open)`, which
+   the JS never sets — and at (0,3,0) it out-specified every override, so
+   .faq-a stayed max-height:0 forever. Removed; the panel does the
+   collapsing via grid-template-rows, which is what the JS's
+   aria-expanded actually drives. */
+.faq-a{max-height:none!important;overflow:visible!important}
+
+/* answer aligns to the QUESTION column: the button pays 16 of its own
+   padding, then the number is 22 wide with a 24 gap. 16+22+24 = 62. */
+.faq-a{padding-left:62px!important;padding-right:var(--spacing-06);
+  padding-top:var(--spacing-03);padding-bottom:var(--spacing-06);margin:0}
+
+/* =====================================================================
+   CARD LADDER  —  tag row is 24 above, media/figure/stat stays 32.
+       body   -> media / figure / stat   32   (a block change)
+       media  -> tags                    24   (tags are chips, closer)
+   The tag row had 32 like the media blocks; 24 sits it nearer the
+   content it labels without touching the 32 block rhythm above it.
+   ===================================================================== */
+.card-media,.card-figure,.card-stat,.card-chart{margin-top:var(--layout-03)!important}
+.card-tags,.o-tags{padding-top:var(--spacing-06)!important;margin-top:auto}
+.card.is-1up .card-tags,.card--span .card-tags{margin-top:var(--spacing-06)!important;padding-top:0!important}
+
+/* 16:9 placeholder media for the metrics / for-logs cards */
+.card-media--169{width:100%;aspect-ratio:16/9;background:var(--mgray);
+  border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;
+  font-family:var(--body);font-size:14px;color:var(--ink2)}
+
+/* =====================================================================
+   MOBILE TYPE SCALE  —  one step smaller, all values on the scale
+   (12 / 14 / 16 / 18 / 24 / 32 / 48 / 64):
+       h1 64 -> 32 · h2 32 -> 24 · h3 24 -> 18 · h4 18 -> 18
+       hero lede 20 -> 16 · body 16 · component body 14
+       eyebrow / badge 14 -> 12 · stat 64 -> 32 · figure 48 -> 24
+   No new sizes are introduced and ratios are unchanged (1.2 display,
+   1.5 prose), so the vertical rhythm carries over.
+   ===================================================================== */
+@media (max-width:767px){
+  .o-hero .h1,.o-hero h1,.plat-hero .h1,.h1,h1{
+    font-size:32px!important;line-height:1.2!important;letter-spacing:-.02em!important}
+  .h2,h2,.context-type,.s-band-h{font-size:24px!important;line-height:1.2!important}
+  .h3,h3{font-size:18px!important;line-height:1.2!important}
+  .o-hero .b16,.o-hero-head p,.plat-hero-text p{font-size:16px!important;line-height:1.54}
+  .kick,.eyebrow,.card-eyebrow,.badge{font-size:12px!important}
+  .stat{font-size:32px!important}
+  .card-figure .fig-val{font-size:24px!important}
+
+  /* =============================================================
+     MOBILE SECTION RHYTHM  —  32 top / 32 bottom = 64 between.
+     Desktop is 64/64 = 128. On a phone that reads as dead scroll;
+     32 per side is the common mobile step and keeps sections clearly
+     separated without stretching the page. Cards tighten to 16 so the
+     内容 does not feel boxed in on a 358px column.
+     ============================================================= */
+  section{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  .o-hero,.plat-hero{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-03)!important}
+  .s-band{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  :is(section):has(+ .s-band){padding-bottom:var(--layout-03)!important}
+  .s-band + section{padding-top:var(--layout-03)!important}
+  .card-media,.card-figure,.card-stat{margin-top:var(--layout-01)!important}
+  .card-tags{padding-top:var(--layout-01)!important}
+}
+
+/* the card carries gap:8, so slot margins are the DIFFERENCE:
+       body -> media/figure/stat  32  =>  margin-top 24
+       media -> tags              24  =>  padding-top 16
+   (measured 40 and 32 before this, i.e. 8 too much on each) */
+.card-media,.card-figure,.card-stat,.card-chart{margin-top:var(--spacing-06)!important}
+.card-tags,.o-tags{padding-top:var(--spacing-05)!important}
+.card.is-1up .card-tags,.card--span .card-tags{
+  margin-top:var(--spacing-06)!important;padding-top:0!important}
+@media (max-width:767px){
+  .card-media,.card-figure,.card-stat{margin-top:var(--spacing-03)!important}
+  .card-tags{padding-top:var(--spacing-03)!important}
+}
+
+@media (max-width:767px){
+  /* hero and band were still 48 against the 32 mobile rhythm — one value */
+  .o-hero,.plat-hero{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  .s-band{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  .s-band + section,section:has(+ .s-band){
+    padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+}
+
+@media (max-width:767px){
+  /* o-caps2 kept 48 bottom from the desktop band-seam rule */
+  .o-caps2,.o-metrics,.plat-metrics{padding-bottom:var(--layout-03)!important}
+}
+
+@media (max-width:767px){
+  /* the band-seam rule uses :has(), which out-specifies a plain class
+     selector, so the 48 survived. Match the pattern to win. */
+  section:has(+ .s-band),.s-band + section,
+  .o-caps2:has(+ .s-band),.o-metrics:has(+ .s-band){
+    padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+}
+
+/* =====================================================================
+   TAG / LINK CHIP  ->  12px.
+   Padding stays 6 top-bottom / 12 left-right; only the label size moves.
+   This also re-separates the three label roles by size rather than by
+   weight alone:  tag 12/500 (dashed) · eyebrow 14/700 (no fill) ·
+   badge 14/700 (filled).
+   ===================================================================== */
+.tag,.chip,.card-tag,
+.card .tag,.o-card .chip,.s-feat2 .tag,.card-tags .tag,.o-tags .chip{
+  font-family:var(--mono);font-weight:500;font-size:12px!important;line-height:1.5;
+  letter-spacing:0;text-transform:none;padding:6px 12px!important}
+.chip-label,.tag-label{font-size:12px!important;line-height:1.5;padding:0!important}
+@media (max-width:767px){
+  .tag,.chip,.chip-label,.tag-label{font-size:12px!important}
+}
+
+/* =====================================================================
+   SUBGRID CARDS  —  the row gap comes from the GRID, not from slot
+   margins. The media carried margin-top:24 on top of the grid's 32
+   row-gap, so CTA -> image measured 56 instead of 32 on every feature
+   card. Slot margins are released here; the grid owns the rhythm:
+       CTA   -> image  32   (the grid row-gap)
+       image -> tags   24   (row-gap 32 pulled back 8)
+   ===================================================================== */
+.s-feat2 > .card-media,.s-feat2 > .card-figure{margin-top:0!important}
+.s-feat2 > .card-tags{margin-top:-8px!important;padding-top:0!important}
+
+@media (max-width:991px){
+  /* single column: the grid gap drops to 8, so the slots pay their own */
+  .s-feat2 > .card-media{margin-top:var(--spacing-06)!important}
+  .s-feat2 > .card-tags{margin-top:var(--spacing-05)!important;padding-top:0!important}
+}
+
+/* =====================================================================
+   TAG ROW SPACING
+   Desktop: 24 above the tags, 8 between them.
+   Mobile:  16 above, 8 between — on a 358px column the tags wrap onto
+   two or three lines, so a 24 lead-in plus 8 row-gaps reads as a large
+   loose block under the card. 16 keeps the chips attached to the content
+   they label while still separating them from the image above.
+   Measured before this: 24 / 16 mixed above, and 16 between tags on
+   platform against 8 everywhere else.
+   ===================================================================== */
+.card-tags,.o-tags{gap:var(--spacing-03)!important}          /* 8 between tags */
+
+@media (max-width:767px){
+  /* one value above the tag row regardless of what slot precedes it */
+  .card .card-tags,.o-card .o-tags,.s-feat2 > .card-tags,
+  .card-tags,.o-tags{
+    padding-top:var(--spacing-05)!important;margin-top:0!important;
+    row-gap:var(--spacing-03)!important;column-gap:var(--spacing-03)!important}
+  /* the 1x1 full-width card keeps its own lead-in */
+  .card.is-1up .card-tags,.card--span .card-tags{
+    padding-top:var(--spacing-05)!important;margin-top:0!important}
+}
+
+@media (max-width:767px){
+  /* the card/grid already contributes an 8 gap above the tag row, so the
+     row's own padding is 8, not 16 — 8 + 8 = the 16 target. Measured 24
+     before this (8 gap + 16 padding). */
+  .card .card-tags,.o-card .o-tags,.s-feat2 > .card-tags,
+  .card.is-1up .card-tags,.card--span .card-tags,.card-tags,.o-tags{
+    padding-top:var(--spacing-03)!important;margin-top:0!important}
+  .o-card .o-tags{margin-top:auto!important}   /* keep bottom-align in 2-up rows */
+}
+
+@media (max-width:767px){
+  /* cards whose own row-gap is `normal` (the 1x1 span card, .es-val)
+     contribute nothing above the tag row, so they pay the full 16
+     themselves. Cards with the 8 flex gap pay 8. Both land on 16. */
+  .card.is-1up > .card-tags,.card--span > .card-tags,
+  .es-val .card-tags,.es-val .o-tags,
+  .s-feat2 > .card-tags{padding-top:var(--spacing-05)!important;margin-top:0!important}
+}
 </style>
 </head>
 <body>
@@ -3015,25 +3385,22 @@ section .cta:hover,section .card-link:hover{text-decoration:underline}
         <div class="cap-rule"><span class="cap-label">For metrics</span></div>
         <div class="cap-grid">
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
-          <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-chart"><span>Comparison chart &middot; image &middot; 345 &times; 183</span></div>
+          <h3 class="card-title h4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed</h3>
+          <p class="card-body p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
           
           <code class="card-figure"><span class="fig-pre">Up to</span> <span class="fig-val">30x</span> <span class="fig-suf">faster</span></code>
           <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
-          <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-chart"><span>Comparison chart &middot; image &middot; 345 &times; 183</span></div>
+          <h3 class="card-title h4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed</h3>
+          <p class="card-body p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
           
           <code class="card-figure"><span class="fig-pre">Up to</span> <span class="fig-val">30x</span> <span class="fig-suf">faster</span></code>
           <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
-          <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-chart"><span>Comparison chart &middot; image &middot; 345 &times; 183</span></div>
+          <h3 class="card-title h4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed</h3>
+          <p class="card-body p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
           
           <code class="card-figure"><span class="fig-pre">Up to</span> <span class="fig-val">30x</span> <span class="fig-suf">faster</span></code>
           <div class="card-tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Another tag</span></span></div>
@@ -3044,22 +3411,22 @@ section .cta:hover,section .card-link:hover{text-decoration:underline}
         <div class="cap-rule"><span class="cap-label">For logs</span></div>
         <div class="cap-grid">
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
-          <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-chart"><span>Comparison chart &middot; image &middot; 345 &times; 183</span></div>
+          <h3 class="card-title h4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed</h3>
+          <p class="card-body p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
           
+          <div class="card-media card-media--169"><span>Placeholder image &middot; 16:9</span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
-          <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-chart"><span>Comparison chart &middot; image &middot; 345 &times; 183</span></div>
+          <h3 class="card-title h4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed</h3>
+          <p class="card-body p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
           
+          <div class="card-media card-media--169"><span>Placeholder image &middot; 16:9</span></div>
         </article>
         <article class="card">
-          <h3 class="card-title h4">Up to 30x faster queries than Prometheus and Grafana</h3>
-          <p class="card-body p3">ES|QL delivers sub-second responses on millions of time series metrics &mdash; the speed AI investigations demand.</p>
-          <div class="card-chart"><span>Comparison chart &middot; image &middot; 345 &times; 183</span></div>
+          <h3 class="card-title h4">Lorem ipsum dolor sit amet consectetur adipiscing elit sed</h3>
+          <p class="card-body p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
           
+          <div class="card-media card-media--169"><span>Placeholder image &middot; 16:9</span></div>
         </article>
         </div>
       </div>
