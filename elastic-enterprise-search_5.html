@@ -3040,13 +3040,457 @@ section{
   .o-card .o-tags{margin-top:auto!important}   /* keep bottom-align in 2-up rows */
 }
 
+
+/* =====================================================================
+   TAG ROW LEAD-IN, mobile  —  one target: 16 above the first tag.
+   The card's own gap already contributes part of it, so the row's
+   padding is the DIFFERENCE. Two cases only:
+       cards with the 8 flex/grid gap  -> padding 8   (8 + 8 = 16)
+       cards with row-gap:normal (1x1 span, .es-val) -> padding 16
+   Desktop stays 24, which is the card ladder value.
+   ===================================================================== */
 @media (max-width:767px){
-  /* cards whose own row-gap is `normal` (the 1x1 span card, .es-val)
-     contribute nothing above the tag row, so they pay the full 16
-     themselves. Cards with the 8 flex gap pay 8. Both land on 16. */
+  .card-tags,.o-tags,
+  .card > .card-tags,.o-card > .o-tags,.s-feat2 > .card-tags{
+    padding-top:var(--spacing-03)!important;margin-top:0!important}
   .card.is-1up > .card-tags,.card--span > .card-tags,
-  .es-val .card-tags,.es-val .o-tags,
-  .s-feat2 > .card-tags{padding-top:var(--spacing-05)!important;margin-top:0!important}
+  .es-val .card-tags,.es-val .o-tags{
+    padding-top:var(--spacing-05)!important;margin-top:0!important}
+  .o-card > .o-tags{margin-top:auto!important}
+}
+
+/* =====================================================================
+   HERO TOP  —  the 80 came from the generic section rhythm rule and
+   stacked on top of the copy's own 123 board inset, putting the H1 300px
+   below the nav. The board's inset is the spec; the hero itself pays 0.
+   ===================================================================== */
+.o-hero,.o-hero.s-hero{padding-top:0!important}
+.plat-hero{padding-top:var(--layout-05)!important}   /* centred hero has no 123 inset */
+@media (max-width:767px){
+  .o-hero,.o-hero.s-hero{padding-top:0!important}
+  .plat-hero{padding-top:var(--layout-03)!important}
+}
+
+/* =====================================================================
+   CUSTOMER STORY CARD  —  type scale and shadow.
+   The quote was rendering at 24/500, a HEADING size used for a running
+   paragraph, and the stat at 64 — the same size as the page H1. Inside a
+   card, body copy is 16 and a supporting figure should not out-rank the
+   section headline above it.
+       quote  24 -> 16   (it is a paragraph, not a heading)
+       stat   64 -> 32   (a figure inside a card, not a display headline)
+       attrib 14         (unchanged, correct)
+   Shadow removed: the card system is border 1 / bottom 4, no drop shadow.
+   ===================================================================== */
+.cust-card,.cust-card .card,.customers .cust-card{box-shadow:none!important}
+
+.cust-card .quote,.customers .quote{
+  font-family:var(--mono);font-weight:500;font-size:16px!important;line-height:1.54!important;
+  letter-spacing:0;color:var(--ink2)}
+.cust-card .stat,.customers .stat{
+  font-family:var(--mono);font-weight:500;font-size:32px!important;line-height:1.2!important;
+  letter-spacing:-.02em}
+.cust-card .attrib,.customers .attrib{font-size:14px;line-height:1.5;color:var(--ink2)}
+.cust-card .b14,.customers .b14{font-size:14px;line-height:1.5}
+
+@media (max-width:767px){
+  .cust-card .quote,.customers .quote{font-size:16px!important}
+  .cust-card .stat,.customers .stat{font-size:24px!important}
+}
+
+/* =====================================================================
+   CLOSING CTA BAND  —  make it the mid-page banner.
+   It was a different component: navy #101C3F ground, headline at weight
+   600, and a hardcoded min-height:253px on its container which is what
+   made the section 381 tall against the mid band's 243. Same geometry,
+   same colour, same type as .s-band now — one banner, used twice.
+   ===================================================================== */
+.s-cta,.cta.v8-cta{
+  background:var(--ink)!important;
+  padding-top:var(--layout-05)!important;padding-bottom:var(--layout-05)!important;
+  position:relative;overflow:hidden}
+.s-cta > .container,.cta.v8-cta > .container{
+  min-height:0!important;height:auto!important;position:relative;z-index:1}
+.s-cta h2,.s-cta .h2,.cta.v8-cta h2{
+  font-family:var(--mono);font-weight:500!important;font-size:32px!important;
+  line-height:1.2!important;letter-spacing:-.02em;color:#fff!important;max-width:828px}
+/* same glow treatment as the mid-page band, per page palette */
+.s-cta::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(120% 200% at 88% 118%, var(--glow-b,#F990C6) 0%,
+                    color-mix(in srgb, var(--glow-a,#F04E98) 72%, transparent) 26%,
+                    color-mix(in srgb, var(--glow-a,#F04E98) 28%, transparent) 46%,
+                    transparent 64%),
+    radial-gradient(80% 160% at 66% 130%,
+                    color-mix(in srgb, var(--glow-a,#F04E98) 40%, transparent) 0%,
+                    transparent 58%)}
+@media (max-width:767px){
+  .s-cta,.cta.v8-cta{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  .s-cta h2,.s-cta .h2{font-size:24px!important}
+}
+
+/* =====================================================================
+   HERO  —  copy to image gap 32 -> 48.
+   The copy column ended at 704 and the media panel starts at 736.
+   ===================================================================== */
+.o-hero .o-hero-head,.o-hero .o-hero-copy{padding-right:var(--layout-04)}
+
+.s-cta{--glow-a:#02BCB7;--glow-b:#48EFCF}
+
+/* =====================================================================
+   HERO COPY -> IMAGE GAP  —  guaranteed 48.
+   Content starts at 96 and the media panel is pinned at 736, so 640 is
+   available. The h1 was capped at 608, meaning a full-width line could
+   come within 32 of the image. Capping the copy at 592 leaves 48 no
+   matter how long the headline runs.
+   ===================================================================== */
+.o-hero .h1,.o-hero h1{max-width:592px!important}
+.o-hero .b16,.o-hero-head p{max-width:592px}
+.o-hero .o-hero-head,.o-hero .o-hero-copy{padding-right:0}
+@media (max-width:991px){
+  .o-hero .h1,.o-hero h1,.o-hero .b16,.o-hero-head p{max-width:none!important}
+}
+
+/* =====================================================================
+   1. ACCORDION  —  one image per row, swapped on click.
+   There was a single static panel, so opening a row changed the copy but
+   never the visual. Each row now has its own panel; the JS shows the one
+   matching the open row.
+   ===================================================================== */
+.ui-panels{position:relative;width:100%}
+.ui-panel{display:none;width:100%;max-width:1080px;aspect-ratio:16/9;
+  background:#D9D9D9;border-radius:var(--r-md,8px);
+  align-items:center;justify-content:center;
+  font-family:var(--body);font-size:14px;color:var(--ink2)}
+.ui-panel.is-active{display:flex}
+
+/* =====================================================================
+   2. KI SECTION  —  the copy was a flat 16 gap between headline, lede and
+   checklist, so the three read as one block. Give it hierarchy, and on
+   mobile put real space before the diagram that stacks underneath.
+   ===================================================================== */
+.ki-copy{row-gap:0!important}
+.ki-copy .h2{margin:0}
+.ki-copy .lede{margin:var(--spacing-05) 0 0}        /* 16 head -> lede */
+.ki-list{margin:var(--layout-03) 0 0!important;row-gap:var(--spacing-04)!important}  /* 32 above, 12 between */
+@media (max-width:991px){
+  .s-kimod-grid{row-gap:var(--layout-03)}           /* 32 copy -> diagram */
+  .ki-media{margin-top:var(--layout-03)}
+}
+
+/* =====================================================================
+   3. HERO  —  paragraph to buttons 40 -> 24. The buttons continue the
+   sentence above them rather than starting a new block, so the tighter
+   step reads as one unit.
+   ===================================================================== */
+.o-hero-copy{gap:var(--spacing-06)!important}
+.o-hero-head + .btn-row,.o-hero .btn-row{margin-top:0!important}
+.plat-hero-copy{gap:var(--spacing-06)!important}
+
+/* =====================================================================
+   4. CHIP  —  keeps the 44 tap target (WCAG 2.5.8 AA needs only 24, so
+   this is comfortably compliant) but drops the vertical padding so the
+   label sits optically centred instead of being pushed apart.
+   ===================================================================== */
+@media (max-width:767px){
+  .tag,.chip,.card-tag{padding-top:0!important;padding-bottom:0!important;
+    padding-left:12px!important;padding-right:12px!important;
+    min-height:44px;display:inline-flex;align-items:center}
+}
+
+/* =====================================================================
+   5. MOBILE CARDS  —  every internal step reduced by 12.
+   The card interior and the gaps between its slots were carrying desktop
+   values on a 358px column, so the elements sat too far apart.
+   ===================================================================== */
+@media (max-width:767px){
+  .card,.o-card,.o-analyst,.mcard,.s-feat,.s-feat2,.o-comm-card,.es-val{
+    padding:var(--spacing-04)!important}          /* 24 -> 12 */
+  .card .card-eyebrow,.o-card .kick{margin-bottom:var(--spacing-04)!important}  /* 24 -> 12 */
+  .card-media,.card-figure,.card-stat{margin-top:var(--spacing-04)!important}   /* 16 -> 12 wait */
+  .s-feat2-grid,.o-cap-grid,.cap-grid,.es-val-grid{row-gap:var(--spacing-04)!important}
+}
+
+/* --- ES hero: .o-hero-head carried a 48 bottom margin on top of the
+   copy's 24 gap, giving 72. The gap is the only source. --- */
+.o-hero .o-hero-head,.o-hero-head{margin-bottom:0!important}
+
+/* --- chip vertical padding: an earlier `padding:6px 12px !important`
+   shorthand was declared after the mobile rule and won. Same specificity,
+   declared last, so this takes it. --- */
+@media (max-width:767px){
+  .tag,.chip,.card-tag,
+  .card .tag,.o-card .chip,.s-feat2 .tag,.card-tags .tag,.o-tags .chip{
+    padding:0 12px!important;min-height:44px;
+    display:inline-flex;align-items:center}
+}
+
+/* =====================================================================
+   ACCORDION  —  the image lives INSIDE each row, under that row's
+   paragraph. Previously there was a single panel beside/below the list,
+   so opening a row revealed copy while the visual never moved. Removed
+   that column; each body now reveals its own paragraph AND its own
+   image, so the whole answer is in one place.
+   ===================================================================== */
+.s-uimod-grid{grid-template-columns:minmax(0,1fr)!important;max-width:1080px}
+.ui-panels{display:none}
+.ui-shot{width:100%;aspect-ratio:16/9;background:#D9D9D9;
+  border-radius:var(--r-md,8px);margin-top:var(--spacing-05);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--body);font-size:14px;color:var(--ink2)}
+.ui-body-inner p{-webkit-line-clamp:unset!important;display:block!important;
+  overflow:visible!important;margin-bottom:0}
+.ui-body-inner{padding-bottom:var(--spacing-06)}
+@media (max-width:767px){
+  .ui-shot{margin-top:var(--spacing-04)}
+  .ui-body-inner{padding-bottom:var(--spacing-05)}
+}
+
+/* =====================================================================
+   CHIP  —  back to its natural height. WCAG 2.5.8 AA requires 24x24 and
+   the chip is 32 tall on its own, so the 44 min-height was buying AAA
+   (2.5.5) at the cost of looking oversized on a phone. Removed; the tap
+   target still clears AA by 8px.
+   ===================================================================== */
+.tag,.chip,.card-tag{min-height:0!important}
+@media (max-width:767px){
+  .tag,.chip,.card-tag,
+  .card .tag,.o-card .chip,.s-feat2 .tag,.card-tags .tag,.o-tags .chip{
+    min-height:0!important;padding:6px 12px!important;
+    display:inline-flex;align-items:center}
+}
+
+/* the closed rows were 24 tall: padding-bottom on .ui-body-inner sat
+   outside the clipped area. Clip the body itself and hang the padding on
+   the shot instead, so a collapsed row is truly zero. */
+.ui-body{overflow:hidden}
+.ui-body-inner{padding-bottom:0!important;overflow:hidden;min-height:0}
+.ui-shot{margin-bottom:var(--spacing-06)}
+@media (max-width:767px){ .ui-shot{margin-bottom:var(--spacing-05)} }
+
+/* =====================================================================
+   HERO  —  copy vertically centred against the image, not top-inset.
+   The copy used a fixed padding-top:123 taken from the board, so its
+   centre drifted with copy length: 9px off on observability, 47 on
+   security. The media panel sits at top 73 with height 473 inside a
+   619 band, so centring the copy in that band puts the two midpoints
+   on the same line whatever the headline length.
+   ===================================================================== */
+.o-hero > .container{display:flex;align-items:center;min-height:619px}
+.o-hero .o-hero-grid{width:100%}
+.o-hero .o-hero-copy{padding-top:0!important;padding-bottom:0!important}
+@media (max-width:991px){
+  .o-hero > .container{display:block;min-height:0}
+}
+
+/* the media is absolutely positioned, so centring the container did not
+   align them. Centre BOTH on the hero's own vertical axis: the media via
+   top:50% + translateY, the copy via flex centring in the same box. */
+.o-hero > .container{display:flex;align-items:center;min-height:619px;position:relative}
+.o-hero .o-hero-media{top:50%!important;transform:translateY(-50%);bottom:auto!important}
+.o-hero .o-hero-copy{padding-top:0!important;padding-bottom:0!important}
+@media (max-width:991px){
+  .o-hero > .container{display:block;min-height:0}
+  .o-hero .o-hero-media{position:static!important;transform:none!important;top:auto!important}
+}
+
+/* .o-hero-grid is the flex child, so centring the container centred the
+   GRID while the copy still filled it top-down. Centre inside the grid. */
+.o-hero .o-hero-grid{display:flex!important;align-items:center!important;
+  align-self:stretch;height:auto;min-height:100%}
+.o-hero .o-hero-copy{align-self:center}
+@media (max-width:991px){
+  .o-hero .o-hero-grid{display:block!important;min-height:0}
+}
+
+/* the 1x1 card's eyebrow→title was 16 where every other card is 24 —
+   it had its own margin from the earlier is-1up block. One ladder. */
+.card.is-1up .card-eyebrow,.card--span .card-eyebrow{
+  margin:0 0 var(--spacing-05)!important}   /* 16 + 8 card gap = 24 */
+
+/* .card.is-1up has row-gap:normal (no flex gap), so its eyebrow pays the
+   full 24 rather than the 16 difference other cards use. */
+.card.is-1up > .card-text > .card-eyebrow,
+.card--span > .card-text > .card-eyebrow{margin:0 0 var(--spacing-06)!important}
+.card.is-1up .card-eyebrow,.card--span .card-eyebrow{margin-bottom:var(--spacing-06)!important}
+
+/* =====================================================================
+   ACCORDION  —  ORIGINAL two-column layout restored.
+   I had collapsed it to a single column with the image inside each body,
+   which was not asked for: the request was only that the side panel
+   change when a different row is opened. Rows on the left at 349, image
+   panel on the right, and the panel swaps with the open row.
+   ===================================================================== */
+.s-uimod-grid{display:grid!important;
+  grid-template-columns:minmax(0,349px) minmax(0,1fr)!important;
+  gap:var(--layout-04)!important;align-items:start;max-width:none!important}
+.ui-panels{display:block;position:relative;width:100%}
+.ui-panel{display:none;width:100%;aspect-ratio:778/453;background:#D9D9D9;
+  border-radius:var(--r-md,8px);align-items:center;justify-content:center;
+  font-family:var(--body);font-size:14px;color:var(--ink2)}
+.ui-panel.is-active{display:flex}
+
+/* mobile: one column, and the panel drops to a shorter 2:1 so a single
+   image does not eat the whole viewport on a 358px column. 16:9 at that
+   width is 201 tall; 2:1 brings it to 179 and reads as a strip rather
+   than a block. */
+@media (max-width:991px){
+  .s-uimod-grid{grid-template-columns:minmax(0,1fr)!important;
+    gap:var(--layout-03)!important}
+}
+@media (max-width:767px){
+  .ui-panel{aspect-ratio:2/1}
+  .s-uimod-grid{gap:var(--spacing-06)!important}
+}
+
+/* =====================================================================
+   HERO  —  headline and image start on the same line.
+   Centring put the H1 top at 240 against an image top of 205, so the
+   title read as sitting lower than the panel. Aligning the tops puts the
+   first line of the headline level with the top edge of the image.
+   ===================================================================== */
+.o-hero .o-hero-grid{align-items:flex-start!important}
+.o-hero .o-hero-copy{align-self:flex-start!important}
+.o-hero .o-hero-media{top:73px!important;transform:none!important}
+.o-hero > .container{align-items:flex-start;padding-top:73px}
+@media (max-width:991px){
+  .o-hero > .container{padding-top:0;display:block}
+  .o-hero .o-hero-media{position:static!important;top:auto!important}
+}
+
+/* =====================================================================
+   CUSTOMER STORY CARD  —  desktop reverted to the original sizes.
+   I had dropped the quote to 16 and the stat to 32 at every width; the
+   ask was mobile only. Desktop is back to quote 24 / stat 64; mobile
+   keeps the reduction so it does not dominate a 358px column.
+   ===================================================================== */
+.cust-card .quote,.customers .quote{
+  font-family:var(--mono);font-weight:500;font-size:24px!important;line-height:1.2!important;
+  letter-spacing:-.02em;color:var(--ink)}
+.cust-card .stat,.customers .stat{
+  font-family:var(--mono);font-weight:500;font-size:64px!important;line-height:1.2!important;
+  letter-spacing:-.02em}
+@media (max-width:767px){
+  .cust-card .quote,.customers .quote{font-size:18px!important;line-height:1.4!important}
+  .cust-card .stat,.customers .stat{font-size:32px!important}
+}
+
+/* =====================================================================
+   ACCORDION  —  DESKTOP unchanged, MOBILE only changes.
+   Desktop keeps the two-column layout with the side panel that swaps
+   when a row opens. Below 768 that panel would sit at the very bottom of
+   a long stack where nobody sees it, so on mobile the image moves INSIDE
+   each row, under that row's paragraph, and the side panel is hidden.
+   ===================================================================== */
+.ui-shot{display:none}                       /* desktop: side panel does the work */
+@media (max-width:767px){
+  .ui-panels{display:none!important}         /* hide the bottom-of-stack panel */
+  .ui-shot{display:flex;width:100%;aspect-ratio:2/1;background:#D9D9D9;
+    border-radius:var(--r-md,8px);margin:var(--spacing-04) 0 var(--spacing-05);
+    align-items:center;justify-content:center;
+    font-family:var(--body);font-size:14px;color:var(--ink2)}
+}
+
+/* =====================================================================
+   SECTION RHYTHM  —  48 / 48 instead of 64 / 64.
+   64 each side gave 128 between sections, which read as too much once
+   every section was consistent. 48 gives 96 and still separates clearly.
+   ===================================================================== */
+section{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+.o-hero,.o-hero.s-hero{padding-top:0!important}
+.plat-hero{padding-top:var(--layout-04)!important}
+.s-band{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+.s-cta,.cta.v8-cta{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+section:has(+ .s-band),.s-band + section{
+  padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+@media (max-width:767px){
+  section{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  .o-hero,.o-hero.s-hero{padding-top:0!important;padding-bottom:var(--layout-03)!important}
+  .plat-hero,.s-band,.s-cta{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  section:has(+ .s-band),.s-band + section{
+    padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+}
+
+/* the final section still paid 64 bottom from an older rule */
+section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
+  padding-bottom:var(--layout-04)!important}
+@media (max-width:767px){
+  section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
+    padding-bottom:var(--layout-03)!important}
+}
+
+/* o-caps2 / o-metrics precede the band and matched an older :has() rule
+   at 64. Same :has() specificity so this wins. */
+.o-caps2,.o-metrics,.plat-metrics,
+.o-caps2:has(+ .s-band),.o-metrics:has(+ .s-band),.plat-metrics:has(+ .s-band){
+  padding-bottom:var(--layout-04)!important}
+@media (max-width:767px){
+  .o-caps2,.o-metrics,.plat-metrics,
+  .o-caps2:has(+ .s-band),.o-metrics:has(+ .s-band),.plat-metrics:has(+ .s-band){
+    padding-bottom:var(--layout-03)!important}
+}
+
+/* =====================================================================
+   1. ACCORDION PARAGRAPH  —  align to the row label, not the border.
+   The label is inset 16 from the row edge; the paragraph was at 0, so it
+   sat hard against the left border while the label above it did not.
+   ===================================================================== */
+.ui-body-inner{padding-left:var(--spacing-05)!important;padding-right:var(--spacing-05)!important}
+.ui-body-inner p{margin:0}
+@media (max-width:767px){
+  .ui-body-inner{padding-left:var(--spacing-05)!important;padding-right:var(--spacing-05)!important}
+  .ui-shot{margin-left:0;margin-right:0}
+}
+
+/* =====================================================================
+   2. KI / SPLIT SECTIONS  —  space before the graphic when it stacks.
+   On mobile .o-splits put its media 0px under the last bullet, so the
+   checklist ran straight into the diagram. Both split modules now pay a
+   32 step before the graphic.
+   ===================================================================== */
+@media (max-width:991px){
+  .o-split-media,.ki-media,.s-kimod .ki-media{margin-top:var(--layout-03)!important}
+  .o-splits-grid,.s-kimod-grid{row-gap:var(--layout-03)!important}
+  .o-checks,.ki-list{margin-bottom:0!important}
+}
+
+@media (max-width:991px){
+  /* the grid row-gap already provides 32; the media margin was stacking
+     on top of it, giving 64 on security against 32 on observability. */
+  .ki-media,.s-kimod .ki-media{margin-top:0!important}
+  .o-split-media{margin-top:0!important}
+  .o-splits-grid,.s-kimod-grid{row-gap:var(--layout-03)!important}
+}
+
+@media (max-width:991px){
+  /* .o-split-media sits in a block container with no row-gap, so it pays
+     its own 32. .ki-media is a grid child whose gap already provides it. */
+  .o-split-media{margin-top:var(--layout-03)!important}
+  .ki-media,.s-kimod .ki-media{margin-top:0!important}
+  .s-kimod-grid{row-gap:var(--layout-03)!important}
+}
+
+/* tag row gap -> spacing-04 (12) */
+.card-tags,.o-tags{gap:var(--spacing-04)!important}
+
+/* the mobile block still pinned the tag gap to 8; spacing-04 applies at
+   every width so the tag row reads the same on phone and desktop. */
+@media (max-width:767px){
+  .card-tags,.o-tags{gap:var(--spacing-04)!important;
+    row-gap:var(--spacing-04)!important;column-gap:var(--spacing-04)!important}
+}
+
+/* `.card .card-tags` (0,2,0) out-specified the plain `.card-tags` rule on
+   mobile and held the gap at 8. Same specificity, declared last. */
+.card .card-tags,.o-card .o-tags,.s-feat2 .card-tags,.es-val .card-tags,
+.card.is-1up .card-tags,.card--span .card-tags{
+  gap:var(--spacing-04)!important;
+  row-gap:var(--spacing-04)!important;column-gap:var(--spacing-04)!important}
+@media (max-width:767px){
+  .card .card-tags,.o-card .o-tags,.s-feat2 .card-tags,.es-val .card-tags,
+  .card.is-1up .card-tags,.card--span .card-tags{
+    gap:var(--spacing-04)!important;
+    row-gap:var(--spacing-04)!important;column-gap:var(--spacing-04)!important}
 }
 </style>
 </head>
@@ -3377,15 +3821,18 @@ section{
             <span class="ui-row-label">Hybrid retrieval in one API</span><span class="ui-chev" aria-hidden="true"></span>
           </button>
           <div class="ui-body" id="uip-1" role="region">
-            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p></div>
-          </div>
+            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+              <div class="ui-shot"><span>Product image 1</span></div></div>
+          
+      </div>
         </div>
         <div class="ui-item">
           <button class="ui-row" type="button" aria-expanded="false" aria-controls="uip-2">
             <span class="ui-row-label">Schema-agnostic ingestion</span><span class="ui-chev" aria-hidden="true"></span>
           </button>
           <div class="ui-body" id="uip-2" role="region">
-            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p></div>
+            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+              <div class="ui-shot"><span>Product image 2</span></div></div>
           </div>
         </div>
         <div class="ui-item">
@@ -3393,7 +3840,8 @@ section{
             <span class="ui-row-label">Relevance tuning without reindexing</span><span class="ui-chev" aria-hidden="true"></span>
           </button>
           <div class="ui-body" id="uip-3" role="region">
-            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p></div>
+            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+              <div class="ui-shot"><span>Product image 3</span></div></div>
           </div>
         </div>
         <div class="ui-item">
@@ -3401,7 +3849,8 @@ section{
             <span class="ui-row-label">Agentic search</span><span class="ui-chev" aria-hidden="true"></span>
           </button>
           <div class="ui-body" id="uip-4" role="region">
-            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p></div>
+            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+              <div class="ui-shot"><span>Product image 4</span></div></div>
           </div>
         </div>
         <div class="ui-item">
@@ -3409,11 +3858,19 @@ section{
             <span class="ui-row-label">Inference at query time</span><span class="ui-chev" aria-hidden="true"></span>
           </button>
           <div class="ui-body" id="uip-5" role="region">
-            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p></div>
+            <div class="ui-body-inner"><p class="p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+              <div class="ui-shot"><span>Product image 5</span></div></div>
           </div>
         </div>
       </div>
-      <div class="ui-panel"><span>Product image &middot; 778 &times; 453</span></div>
+      <div class="ui-panels">
+        <div class="ui-panel is-active" data-panel="1"><span>Product image 1</span></div>
+        <div class="ui-panel" data-panel="2"><span>Product image 2</span></div>
+        <div class="ui-panel" data-panel="3"><span>Product image 3</span></div>
+        <div class="ui-panel" data-panel="4"><span>Product image 4</span></div>
+        <div class="ui-panel" data-panel="5"><span>Product image 5</span></div>
+      </div>
+      </div>
     </div>
   </div>
 </section>
@@ -3904,7 +4361,11 @@ section{
       var open=it.classList.contains('is-open');
       items.forEach(function(x){x.classList.remove('is-open');
         x.querySelector('.ui-row').setAttribute('aria-expanded','false');});
-      if(!open){it.classList.add('is-open');btn.setAttribute('aria-expanded','true');}
+      if(!open){it.classList.add('is-open');btn.setAttribute('aria-expanded','true');
+        var idx=items.indexOf(it)+1;
+        var root=it.closest('.s-uimod');
+        if(root) [].slice.call(root.querySelectorAll('.ui-panel')).forEach(function(pn){
+          pn.classList.toggle('is-active', pn.dataset.panel===String(idx));});}
     });});
 })();
 </script>
