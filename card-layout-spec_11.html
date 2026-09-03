@@ -168,8 +168,49 @@ code{font-family:var(--mono);font-size:14px;background:var(--soft);
   #lay-1up .media,.card.is-1up .media,.card--span .media{
     height:auto;aspect-ratio:16/9!important;max-height:none}
 }
+
+/* the 1x1 media label said 16:9, which stopped being true once the
+   height was capped. It is a full-width band at a fixed 314. */
+#lay-1up .cap{color:var(--ink2)}
+
+/* the spec sheet was a dead end — no nav, so no way back to the pages.
+   Same demo bar as the five pages, using the repo filenames. */
+.demo-nav{position:sticky;top:0;z-index:100;background:#fff;
+  border-bottom:1px solid var(--line);margin:0 -32px 40px;padding:0 32px}
+.demo-inner{max-width:1248px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;gap:32px;min-height:56px;flex-wrap:wrap}
+.demo-note{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink2);margin:0;white-space:nowrap}
+.demo-links{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.demo-links a{font-family:var(--ui);font-weight:500;font-size:14px;line-height:1.5;
+  color:var(--ink2);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+.demo-links a:hover{color:var(--blue)}
+.demo-links a.is-here,.demo-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+.demo-links a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.demo-sep{width:1px;height:16px;background:var(--line)}
+@media (max-width:820px){
+  .demo-nav{margin:0 -20px 32px;padding:0 20px}
+  .demo-inner{flex-direction:column;align-items:flex-start;gap:12px;
+    padding-top:12px;padding-bottom:12px}
+  .demo-links{gap:16px} .demo-links a{font-size:13px} .demo-sep{display:none}
+}
 </style></head><body>
 <div class="page">
+<header class="demo-nav">
+  <div class="demo-inner">
+    <p class="demo-note">For demo purposes only</p>
+    <nav class="demo-links" aria-label="Prototype pages">
+      <a href="elastic-homepage.html">Home</a>
+      <a href="elastic-observability_41.html">Observability</a>
+      <a href="elastic-security_15.html">Security</a>
+      <a href="elastic-platform_3.html">Platform</a>
+      <a href="elastic-enterprise-search_5.html">Enterprise search</a>
+      <span class="demo-sep"></span>
+      <a href="card-layout-spec_11.html" class="is-here" aria-current="page">Card spec</a>
+    </nav>
+  </div>
+</header>
+
 
 <h1>Feature card</h1>
 <p class="lede">A single card component that scales across four grid layouts and two media
@@ -223,7 +264,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
         <div class="tok"><dt>Tags</dt><dd>9</dd><dd class="d">23 characters each</dd></div>
   </dl>
 
-  <p class="cap">Large media &mdash; 16:9</p>
+  <p class="cap">Media &mdash; full width, 314 max height</p>
   <div class="grid is-1up">
       <article class="card">
         <div class="text">
