@@ -3696,6 +3696,53 @@ section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
     gap:var(--spacing-04)!important;
     row-gap:var(--spacing-04)!important;column-gap:var(--spacing-04)!important}
 }
+
+/* =====================================================================
+   ACCORDION OPEN ROW  —  space before the closing rule.
+   The body's bottom padding was zeroed earlier to stop collapsed rows
+   leaking 24px. The body is now clipped with overflow:hidden, so the
+   padding is safe to restore: it is inside the clipped box and adds
+   nothing when the row is closed.
+   ===================================================================== */
+.ui-body{overflow:hidden}
+.ui-body-inner{padding-bottom:var(--spacing-06)!important}
+@media (max-width:767px){
+  .ui-body-inner{padding-bottom:var(--spacing-05)!important}
+}
+
+/* padding still contributes to the box when the grid row is 0fr, so a
+   blanket bottom padding re-leaked 24px into every closed row. Apply it
+   only while the row is open. */
+.ui-body-inner{padding-bottom:0!important}
+.ui-item.is-open .ui-body-inner{padding-bottom:var(--spacing-06)!important}
+@media (max-width:767px){
+  .ui-item.is-open .ui-body-inner{padding-bottom:var(--spacing-05)!important}
+}
+
+/* demo nav — prototype chrome, replaces the production topbar and logo */
+.demo-nav{position:sticky;top:0;z-index:100;background:#fff;
+  border-bottom:1px solid var(--mgray);padding:0!important}
+.demo-nav > .container{display:flex;align-items:center;
+  justify-content:space-between;gap:var(--layout-03);min-height:56px}
+.demo-note{font-family:var(--mono);font-weight:700;font-size:12px;line-height:1.2;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);margin:0;white-space:nowrap}
+.demo-links{display:flex;align-items:center;gap:var(--spacing-06);flex-wrap:wrap}
+.demo-links a{font-family:var(--body);font-weight:500;font-size:14px;line-height:1.5;
+  color:var(--ink2);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+.demo-links a:hover{color:var(--blue)}
+.demo-links a.is-here{color:var(--ink);border-bottom-color:var(--ink)}
+.demo-sep{width:1px;height:16px;background:var(--mgray)}
+@media (max-width:767px){
+  .demo-nav > .container{flex-direction:column;align-items:flex-start;
+    gap:var(--spacing-04);padding-top:var(--spacing-04);padding-bottom:var(--spacing-04)}
+  .demo-links{gap:var(--spacing-05)} .demo-links a{font-size:13px} .demo-sep{display:none}
+}
+
+/* the demo nav is prototype chrome: relative filenames only, so the set
+   works from any folder as long as the files sit together. No absolute
+   paths, no host, nothing pointing outside the delivered files. */
+.demo-nav .demo-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+.demo-nav .demo-links a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -3750,50 +3797,10 @@ section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
 
 
 <!-- ======================= TOP BAR ======================= -->
-<div class="topbar">
-  <div class="container in">
-    <p class="ann"><b>NEW</b><span>Forrester Wave Leader,<span class="long"> Q2 2025</span></span> <a href="#">Access report</a></p>
-    <nav class="util" aria-label="Secondary">
-      <a href="#">About Us</a><a href="#">Partners</a><a href="#">Support</a>
-      <span class="sep"></span>
-      <button class="lang" aria-label="Language: English">EN<svg class="chev" style="color:#1C1E23"><use href="#chev"/></svg></button>
-      <a href="#">Log in</a>
-    </nav>
-  </div>
-</div>
+
 
 <!-- ======================= NAV ======================= -->
-<header class="nav">
-  <div class="container in">
-    <a class="brandlink" href="#" aria-label="Elastic home"><svg><use href="#elastic-logo"/></svg></a>
-    <nav class="mainnav" aria-label="Primary">
-      <a href="#">Elasticsearch<svg class="chev"><use href="#chev"/></svg></a>
-      <a href="#">Solutions<svg class="chev"><use href="#chev"/></svg></a>
-      <a href="#">Enterprise<svg class="chev"><use href="#chev"/></svg></a>
-      <a href="#">Resources<svg class="chev"><use href="#chev"/></svg></a>
-      <a href="#">Pricing</a>
-      <a href="#">Docs</a>
-    </nav>
-    <div class="nav-right">
-      <button class="srch" aria-label="Search">
-        <span class="glow" aria-hidden="true"></span>
-        <span class="face">
-          <svg width="30" height="28" viewBox="0 0 30 28" fill="none" aria-hidden="true">
-            <circle cx="13.2" cy="12.4" r="5.1" stroke="#1C1E23" stroke-width="1.5"/>
-            <path d="M17.1 16.4l3.6 3.6" stroke="#1C1E23" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M22.2 6.2l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2Z" fill="#0B64DD"/>
-          </svg>
-          <span class="lbl">Search</span>
-        </span>
-      </button>
-      <a class="btn btn-p nav-cta" href="#">Start free trial</a>
-      <a class="btn btn-s nav-cta2" href="#">Contact sales</a>
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
+
 
 <div class="scrim" id="scrim" data-on="0" hidden></div>
 <nav class="drawer" id="drawer" data-on="0" aria-label="Menu" aria-hidden="true">
@@ -3812,6 +3819,20 @@ section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
 </nav>
 
 
+<header class="demo-nav">
+  <div class="container in">
+    <p class="demo-note">For demo purposes only</p>
+    <nav class="demo-links" aria-label="Prototype pages">
+      <a href="elastic-homepage.html">Home</a>
+      <a href="elastic-observability.html">Observability</a>
+      <a href="elastic-security.html">Security</a>
+      <a href="elastic-platform.html" class="is-here" aria-current="page">Platform</a>
+      <a href="elastic-enterprise-search.html">Enterprise search</a>
+      <span class="demo-sep"></span>
+      <a href="card-spec-sheet.html">Card spec</a>
+    </nav>
+  </div>
+</header>
 <main id="main">
 
 <!-- ======================= HERO ======================= -->
