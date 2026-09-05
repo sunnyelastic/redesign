@@ -1608,6 +1608,368 @@ section.customers,section/* --- buttons were 15px, a size used nowhere else in t
    paths, no host, nothing pointing outside the delivered files. */
 .demo-nav .demo-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
 .demo-nav .demo-links a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* =====================================================================
+   PLATFORM  —  centred text module.
+   Nothing new: the shared .s-head (eyebrow 14/700, h2 32/500, lede
+   16/1.54, 24 and 16 between them) with a single secondary button under
+   it. The only local decision is the lede measure: this paragraph is
+   long, so it runs to 828 rather than the 608 used for short ledes —
+   the same cap the band headline uses.
+   ===================================================================== */
+.h-plat{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+.h-plat .s-head{align-items:center;text-align:center}
+.h-plat .lede{max-width:828px;margin-left:auto;margin-right:auto}
+.h-plat .btn-row{margin-top:var(--layout-03);display:flex;justify-content:center}
+.h-plat .btn-s{background:#fff;color:var(--blue);border:2px solid var(--blue);
+  padding:8px 24px;border-radius:var(--r-sm,4px);
+  font-family:var(--body);font-weight:500;font-size:14px;line-height:1.5;
+  text-decoration:none;display:inline-flex;align-items:center;min-height:40px}
+.h-plat .btn-s:hover{background:var(--lgray,#F5F7FA)}
+@media (max-width:767px){
+  .h-plat{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  .h-plat .lede{max-width:none}
+  .h-plat .btn-row{margin-top:var(--spacing-06)}
+  .h-plat .btn-s{width:100%;justify-content:center;min-height:44px}
+}
+
+/* =====================================================================
+   SECTION HEAD  —  no cap on the headline.
+   The 699 cap I put on .s-head .h2 was forcing "Security, Observability,
+   Search, and AI" onto two lines for no reason: a headline is a few
+   words, it does not need a measure the way a paragraph does. The cap
+   only ever changed where lines broke.
+   The paragraph keeps a measure, set to 805.
+   ===================================================================== */
+.s-head .h2,.h-plat .h2,.home-diff .h2{max-width:none!important}
+.s-head .lede,.h-plat .lede,.home-diff .lede{
+  max-width:805px!important;margin-left:auto;margin-right:auto}
+@media (max-width:767px){
+  .s-head .lede,.h-plat .lede,.home-diff .lede{max-width:none!important}
+}
+
+/* =====================================================================
+   TICKER  —  seven proof points on the system's spacing.
+   The items were 19px with ASCII emoticons between them, so the size was
+   off-scale and the separators read as decoration rather than structure.
+   Now: 16px body copy, a 4px dot between items, and a real gap either
+   side of the dot from the layout scale (48 desktop / 32 mobile) instead
+   of relying on whitespace inside the strings.
+   The set is rendered twice so the marquee loops seamlessly; the second
+   copy is aria-hidden so a screen reader reads the list once.
+   ===================================================================== */
+.tk-track{display:flex;align-items:center;gap:0;width:max-content}
+.tk-item{font-family:var(--body);font-weight:400;font-size:16px!important;
+  line-height:1.54;color:var(--ink);white-space:nowrap;letter-spacing:0}
+.tk-sep{flex:0 0 auto;width:4px;height:4px;border-radius:50%;
+  background:var(--dgray,#ABB4C4);
+  margin-inline:var(--layout-04,48px)}
+@media (max-width:767px){
+  .tk-item{font-size:14px!important}
+  .tk-sep{margin-inline:var(--layout-03,32px)}
+}
+
+/* =====================================================================
+   FIGMA 4370:5290  —  pixel corrections, homepage only.
+   Verified against get_design_context on the individual nodes, not from
+   the screenshot. Where the board is stale it is noted and ignored.
+   ===================================================================== */
+
+/* --- 1. EYEBROW  14/700 -> 16/600 -------------------------------------
+   Board: Geist Mono SemiBold 16, tracking 3.2px (= .2em), #0B64DD.
+   Confirmed on 4370:6317 (Solutions) and 4370:6724 (Platform), so it is
+   the board's rule, not a one-off. Scoped to the homepage: the four
+   solution pages still run the 14/700 system eyebrow, and changing that
+   is a separate decision. ---------------------------------------------*/
+.hero .kick,.solutions .kick,.h-plat .kick,.news .kick,
+.customers .kick,.deploy .kick,.faq-sec .kick,.ticker .kick,
+.s-head .kick{
+  font-family:var(--mono)!important;font-weight:600!important;
+  font-size:16px!important;line-height:1.2!important;
+  letter-spacing:3.2px!important;text-transform:uppercase;color:#0B64DD!important}
+
+/* --- 2. SOLUTIONS LEDE  weight + colour ------------------------------
+   Board: Inter Regular 400, #343741 (Ink). Ours was 500 / Dark Ink. ----*/
+.solutions .lede,.h-plat .lede,.news .lede{
+  font-family:var(--body)!important;font-weight:400!important;
+  font-size:16px!important;line-height:1.54!important;color:#343741!important}
+.h-plat .lede{max-width:821px!important}          /* board 821, ours 805 */
+
+/* --- 3. NEWS CARDS  height + internal gap + gradient ------------------
+   Board: 219 fixed height, 24 internal gap, and card 1 carries a
+   174.9deg white -> Elastic Blue gradient. Ours: 223 / 32 / flat. ------*/
+.news .nc{height:219px!important;row-gap:var(--spacing-06)!important;
+  gap:var(--spacing-06)!important;padding:24px!important}
+.news .nc:first-child{
+  background-image:linear-gradient(174.9deg,#ffffff 37.373%,#0B64DD 632.61%)!important}
+.news .nc [class*="tag"],.news .nc [class*="badge"]{padding:2px 6px!important;
+  border-radius:2px!important;letter-spacing:1.12px!important;line-height:1.14!important}
+
+/* --- 4. CTA BAND  two columns, 253 tall ------------------------------
+   Board 4370:6454: headline left at x96 capped 821, button right at
+   83.33%, band 253 tall. Ours stacked them and ran to 349. ------------*/
+.cta,.s-cta{min-height:253px!important;display:flex;align-items:center}
+.cta > .container,.s-cta > .container{width:100%;
+  display:grid!important;grid-template-columns:minmax(0,821px) auto!important;
+  align-items:center;gap:var(--layout-03);justify-content:space-between}
+.cta h2,.cta .h2,.s-cta h2,.s-cta .h2{
+  max-width:821px!important;margin:0!important;text-align:left!important}
+.cta .btn-row,.s-cta .btn-row{margin:0!important;justify-self:end}
+.cta .btn,.s-cta .btn{font-size:15px!important;line-height:1.3!important;
+  height:40px;padding:8px 24px!important;border-radius:4px!important}
+
+@media (max-width:991px){
+  .cta > .container,.s-cta > .container{grid-template-columns:minmax(0,1fr)!important;
+    gap:var(--spacing-06)}
+  .cta .btn-row,.s-cta .btn-row{justify-self:start}
+  .cta,.s-cta{min-height:0!important}
+}
+@media (max-width:767px){
+  .hero .kick,.solutions .kick,.h-plat .kick,.news .kick,.customers .kick,
+  .deploy .kick,.faq-sec .kick,.ticker .kick,.s-head .kick{font-size:14px!important;
+    letter-spacing:2.8px!important}
+  .news .nc{height:auto!important}
+  .h-plat .lede{max-width:none!important}
+}
+
+/* the 253 is the BAND height, not the content height: the container was
+   carrying 80/80 of its own padding and a 253 min-height, then the
+   section added 48/48 on top — 253 + 96 = 349. The band owns the height
+   and the padding; the container just centres inside it. */
+.cta,.s-cta{min-height:253px!important;height:253px;
+  padding-top:0!important;padding-bottom:0!important;
+  display:flex;align-items:center}
+.cta > .container,.s-cta > .container{
+  min-height:0!important;height:auto!important;
+  padding-top:0!important;padding-bottom:0!important}
+@media (max-width:991px){
+  .cta,.s-cta{height:auto;min-height:0!important;
+    padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+}
+@media (max-width:767px){
+  .cta,.s-cta{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+}
+
+/* =====================================================================
+   TICKER  —  corrected against Figma 4370:6359 / 4370:6363.
+   I got this wrong twice:
+     1. I switched the text to Inter 16 because 19px looked off-scale.
+        The board specifies Geist Mono MEDIUM 19px, lh 1.54,
+        tracking -0.38px, Dark Ink. 19 is intentional here.
+     2. I deleted the ASCII emoticons and replaced them with grey dots.
+        Those emoticons ARE the graphic — the board draws them in
+        Elastic Blue as the separator between each figure.
+   Band per 4370:6360: white, 1px #DCE2EA, radius 16, drop shadow
+   0 4 20 rgba(0,0,0,.13), 77 tall.
+   ===================================================================== */
+.ticker{background:transparent;padding-top:var(--layout-03)!important;
+  padding-bottom:var(--layout-03)!important}
+.ticker > .container,.ticker .tk-wrap{max-width:none;padding:0}
+.tk-band,.ticker .tk-outer{display:block}
+.ticker{position:relative}
+.ticker::before{content:"";position:absolute;left:-53px;right:-53px;
+  top:50%;transform:translateY(-50%);height:77px;
+  background:#fff;border:1px solid #DCE2EA;border-radius:16px;
+  box-shadow:0 4px 20px 0 rgba(0,0,0,.13);pointer-events:none}
+.tk-track{position:relative;z-index:1;display:flex;align-items:center;
+  gap:0;width:max-content}
+
+.tk-item{font-family:var(--mono)!important;font-weight:500!important;
+  font-size:19px!important;line-height:1.54!important;
+  letter-spacing:-0.38px!important;color:#1C1E23!important;white-space:nowrap}
+
+/* the emoticon separator, Elastic Blue, same size as the text */
+.tk-face{font-family:var(--mono);font-weight:500;font-size:19px;line-height:1.54;
+  letter-spacing:-0.38px;color:#0B64DD;white-space:pre;
+  margin-inline:var(--spacing-06,24px);flex:0 0 auto}
+.tk-sep{display:none}
+
+@media (max-width:767px){
+  .tk-item,.tk-face{font-size:16px!important}
+  .tk-face{margin-inline:var(--spacing-05,16px)}
+  .ticker::before{left:-16px;right:-16px;height:64px;border-radius:12px}
+}
+
+/* =====================================================================
+   1. SOLUTIONS TABS WIDTH  1248 -> 1034
+   Board 4370:6251 puts the tab row at x203..1237 = 1034, and the product
+   UI at x195..1245 = 1050 — concentric on 720, the image 8px wider each
+   side. I had widened the tabs to the full 1248 container earlier, which
+   is what made the image look mismatched against the row above it.
+   ===================================================================== */
+.home-diff .pd-tabs{max-width:1034px!important;margin-inline:auto!important}
+.home-diff .pd-panel{max-width:1050px;margin-inline:auto}
+.home-diff .pd-shot{max-width:1050px;margin-inline:auto}
+
+/* =====================================================================
+   2. NEWS CARD 1 GRADIENT  ->  hover only
+   The blue wash is the HOVER state, not the resting colour. I had it as
+   the default background on card one.
+   ===================================================================== */
+.news .nc,.news .nc:first-child{
+  background-image:none!important;background-color:#fff!important;
+  transition:background-image .18s ease}
+.news .nc:hover,.news .nc:focus-within{
+  background-image:linear-gradient(174.9deg,#ffffff 37.373%,#0B64DD 632.61%)!important}
+
+@media (max-width:1100px){
+  .home-diff .pd-tabs,.home-diff .pd-panel,.home-diff .pd-shot{max-width:none!important}
+}
+
+/* =====================================================================
+   SECTION RHYTHM  —  the last two 109.44 margins, and one even gap.
+   .customers and .cta kept `margin-top:109.44px` from the original
+   homepage clamp; the blanket `section{margin:0}` never out-specified
+   them, so those two seams sat 109 wider than every other. That is why
+   the rhythm read as uneven rather than merely large.
+   With the margins gone the gap is padding only. The board runs ~80
+   between sections, so the rhythm is 40/40 and the sections that carry
+   their own band padding (ticker, hero) keep theirs.
+   ===================================================================== */
+section,section.customers,section.cta,section.deploy,section.news,
+section.solutions,section.h-plat,section.faq-sec,section.parade,section.ticker,
+.customers,.cta,.deploy,.news,.solutions,.h-plat,.faq-sec,.parade,.ticker{
+  margin-top:0!important;margin-bottom:0!important}
+
+/* 40 + 40 = 80 between neighbours, matching the board */
+section{padding-top:var(--layout-08,40px)!important;padding-bottom:var(--layout-08,40px)!important}
+.hero{padding-top:0!important}
+.ticker{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+.cta,.s-cta{padding-top:0!important;padding-bottom:0!important}
+
+:root{--layout-08:40px}
+
+@media (max-width:767px){
+  section{padding-top:var(--layout-02,24px)!important;padding-bottom:var(--layout-02,24px)!important}
+  .hero{padding-top:0!important}
+  .ticker{padding-top:var(--layout-01)!important;padding-bottom:var(--layout-01)!important}
+}
+
+/* .h-plat and .deploy carried their own 48 from earlier blocks, and the
+   parade/ticker their own 32 — so the rhythm read 72 / 80 / 88 rather
+   than one value. Everything on 40, so every seam is 80. */
+.h-plat,.deploy,.parade,.ticker,.solutions,.news,.customers,.faq-sec{
+  padding-top:var(--layout-08,40px)!important;
+  padding-bottom:var(--layout-08,40px)!important}
+.hero{padding-top:0!important;padding-bottom:var(--layout-08,40px)!important}
+.cta,.s-cta{padding-top:0!important;padding-bottom:0!important}
+@media (max-width:767px){
+  .h-plat,.deploy,.parade,.ticker,.solutions,.news,.customers,.faq-sec{
+    padding-top:var(--layout-02,24px)!important;
+    padding-bottom:var(--layout-02,24px)!important}
+  .hero{padding-top:0!important;padding-bottom:var(--layout-02,24px)!important}
+}
+
+/* =====================================================================
+   TICKER  —  three corrections.
+
+   1. BAND TREATMENT REMOVED.
+      I had added the board's white card with a 1px #DCE2EA border,
+      16 radius and a 0 4 20 drop shadow. On the page it reads as a stray
+      box around the text rather than a band, so it's gone — the ticker
+      is now just the moving line on the page ground.
+
+   2. SPEED.  The track is 9423 wide, so a 42s loop was travelling
+      4712px in 42s = 112 px/sec. That is roughly double a comfortable
+      reading pace; a line leaves the viewport before you finish it.
+      90s puts it at 52 px/sec, which reads at a glance without racing.
+
+   3. BREATHING ROOM.  Platform -> ticker -> news were all on the 80
+      rhythm, and because the ticker is only 82 tall the three stacked
+      into one dense block. The ticker now carries 64 of its own, so the
+      seam either side is 104 and it reads as a separate beat.
+   ===================================================================== */
+.ticker::before{content:none!important}
+.ticker{background:transparent!important;border:0!important;box-shadow:none!important;
+  padding-top:var(--layout-05,64px)!important;padding-bottom:var(--layout-05,64px)!important}
+
+.tk-track{animation-duration:90s!important;animation-timing-function:linear!important}
+
+@media (max-width:767px){
+  .ticker{padding-top:var(--layout-03,32px)!important;
+    padding-bottom:var(--layout-03,32px)!important}
+  .tk-track{animation-duration:70s!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .tk-track{animation:none!important;transform:translate(0,-50%)!important}
+}
+
+/* =====================================================================
+   TICKER CARD  —  the board's band, built as a real element.
+   Per 4370:6360: white, 1px #DCE2EA, radius 16, drop shadow
+   0 4 20 rgba(0,0,0,.13), 77 tall.
+   Previously I faked this with a ::before pinned at left/right:-53px.
+   That is what looked wrong: the pseudo sat behind the text with its
+   rounded corners off-screen, so you saw a stray edge and a shadow with
+   no visible card. It is now a real box, contained to the 1248 grid so
+   the corners and shadow actually read, with the text clipped inside it
+   and a fade at each end so lines enter and leave instead of being cut.
+   ===================================================================== */
+.ticker::before{content:none!important}
+.ticker{background:transparent!important;border:0!important;box-shadow:none!important;
+  padding-top:var(--layout-05,64px)!important;padding-bottom:var(--layout-05,64px)!important}
+.ticker > .container{max-width:1440px;padding-inline:96px}
+
+.tk-card{
+  position:relative;overflow:hidden;
+  height:77px;display:flex;align-items:center;
+  background:#fff;
+  border:1px solid #DCE2EA;
+  border-radius:16px;
+  box-shadow:0 4px 20px 0 rgba(0,0,0,.13);
+  /* lines fade in and out at the card edges rather than being clipped hard */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%)}
+.tk-card .tk-track{position:relative;top:auto;transform:none}
+.tk-card .tk-track{animation-name:tk-x!important;animation-duration:90s!important;
+  animation-timing-function:linear!important;animation-iteration-count:infinite!important}
+@keyframes tk-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+@media (max-width:991px){
+  .ticker > .container{padding-inline:48px}
+}
+@media (max-width:767px){
+  .ticker{padding-top:var(--layout-03,32px)!important;
+    padding-bottom:var(--layout-03,32px)!important}
+  .ticker > .container{padding-inline:16px}
+  .tk-card{height:64px;border-radius:12px;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%)}
+  .tk-card .tk-track{animation-duration:70s!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .tk-card .tk-track{animation:none!important;transform:translateX(0)!important}
+}
+
+/* the ticker section has no .container child — the track was always a
+   direct child, so `.ticker > .container{padding-inline:96px}` matched
+   nothing and the card ran the full 1440 edge to edge. Constrain the
+   card itself to the 1248 grid so its corners and shadow sit on the page
+   rather than bleeding off it. */
+.ticker{padding-left:96px!important;padding-right:96px!important}
+.tk-card{max-width:1248px;margin-inline:auto;width:100%}
+@media (max-width:991px){ .ticker{padding-left:48px!important;padding-right:48px!important} }
+@media (max-width:767px){ .ticker{padding-left:16px!important;padding-right:16px!important} }
+
+/* the mask was on the CARD, so it faded the card's own border, radius
+   and shadow along with the text — which is why the band looked washed
+   out at both ends. The card is solid; the mask belongs on an inner
+   viewport that clips the track. */
+.tk-card{
+  -webkit-mask-image:none!important;mask-image:none!important;
+  overflow:hidden;padding:0}
+.tk-card > .tk-track{margin:0}
+.tk-card{display:block;position:relative}
+.tk-card::after{content:none}
+.tk-viewport,.tk-card > .tk-track{
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%)}
+.tk-card{display:flex;align-items:center}
+@media (max-width:767px){
+  .tk-viewport,.tk-card > .tk-track{
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%)}
+}
 </style>
 </head>
 <body>
@@ -1708,11 +2070,10 @@ section.customers,section/* --- buttons were 15px, a size used nowhere else in t
   <div class="container in">
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1 class="h1">The context database for AI</h1>
-        <p class="b16">Elasticsearch stores every shape of data economically, searches it anywhere, and retrieves ranked context — for Elastic Security, Elastic Observability, and whatever you build next.</p>
+        <h1 class="h1">The search database for AI</h1>
+        <p class="b16">Powers Elastic Security, Elastic Observability, and whatever you build next.</p>
         <div class="btn-row">
-          <a class="btn btn-p" href="#">Start free trial</a>
-          <a class="btn btn-s" href="#">Documentation</a>
+          <a class="btn btn-p" href="https://cloud.elastic.co/registration?pg=en-home&amp;plcmt=hero">Get started</a>
         </div>
       </div>
       <div class="hero-art-wrap">
@@ -1798,27 +2159,27 @@ section.customers,section/* --- buttons were 15px, a size used nowhere else in t
   <div class="container in">
     <div class="s-head">
       <p class="kick">Solutions</p>
-      <h2 class="h2">Solution intro text here</h2>
-      <p class="lede">A SIEM spots threats. Observability finds the root cause. Vector search pulls relevant info. Agents scan your data for answers &mdash; all in one optimized database.</p>
+      <h2 class="h2">Security, Observability, Search, and AI</h2>
+      <p class="lede">A SIEM ingests and stores your data to detect threats. Observability does the same to identify the root cause. Vector search retrieves the relevant passage. Agents search across your data to find the right answer. One efficient and performant search database powers each job.</p>
     </div>
     <div class="pd-tabs" role="tablist" aria-label="Elastic solutions">
         <button class="pd-tab is-active" type="button" data-panel="search" data-sol="search"
                 role="tab" aria-selected="true" aria-controls="home-pd-panel">
           <span class="pd-tab-title">Search</span>
           <span class="pd-tab-body">Hybrid search, reranking, and inference in one API, and ES|QL to query data in Elasticsearch and beyond</span>
-          <span class="pd-tab-cta">Discover Elastic Search &nbsp;--&gt;</span>
+          <span class="pd-tab-cta">Discover Elasticsearch &nbsp;&rarr;</span>
         </button>
         <button class="pd-tab" type="button" data-panel="obs" data-sol="obs"
                 role="tab" aria-selected="false" aria-controls="home-pd-panel">
           <span class="pd-tab-title">Observability</span>
-          <span class="pd-tab-body">Full-scale agentic observability at half the cost</span>
-          <span class="pd-tab-cta">Discover Elastic Observability &nbsp;--&gt;</span>
+          <span class="pd-tab-body">Full-signal agentic observability at half the cost</span>
+          <span class="pd-tab-cta">Discover Observability &nbsp;&rarr;</span>
         </button>
         <button class="pd-tab" type="button" data-panel="sec" data-sol="sec"
                 role="tab" aria-selected="false" aria-controls="home-pd-panel">
           <span class="pd-tab-title">Security</span>
           <span class="pd-tab-body">The agentic security operations platform for SIEM, endpoint protection, and native automation</span>
-          <span class="pd-tab-cta">Discover Elastic Security &nbsp;--&gt;</span>
+          <span class="pd-tab-cta">Discover Security &nbsp;&rarr;</span>
         </button>
     </div>
     <div class="pd-panel" id="home-pd-panel" role="tabpanel">
@@ -1834,9 +2195,25 @@ section.customers,section/* --- buttons were 15px, a size used nowhere else in t
     </div>
   </div>
 </section>
+<section class="h-plat">
+  <div class="container in">
+    <div class="s-head">
+      <p class="kick">Platform</p>
+      <h2 class="h2">Platform headline here</h2>
+      <p class="lede">A SIEM spots threats. Observability finds the root cause. Vector search pulls relevant info. Agents scan your data for answers&mdash;all in one optimized database. A SIEM spots threats. Observability finds the root cause. Vector search pulls relevant info. Agents scan your data for answers&mdash;all in one optimized database. A SIEM spots threats. Observability finds the root cause. Vector search pulls relevant info.</p>
+      <div class="btn-row">
+        <a class="btn btn-s" href="#">Explore the platform</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <!-- ======================= NEWS ======================= -->
+<section class="ticker" aria-label="Elastic by the numbers">
+  <div class="tk-card"><div class="tk-track"><span class="tk-item">Queries up to 30x faster than Prometheus, Mimir</span><span class="tk-face" aria-hidden="true">└[∵]┐</span><span class="tk-item">#1 Search Engine per DB-Engines</span><span class="tk-face" aria-hidden="true">(⊙_⊙)</span><span class="tk-item">Vector memory cut ~95% with BBQ</span><span class="tk-face" aria-hidden="true">( ._.)</span><span class="tk-item">Filtered vector search up to 8x faster than OpenSearch</span><span class="tk-face" aria-hidden="true">★·.·´¯</span><span class="tk-item">Full-fidelity telemetry retention at half the cost of Datadog</span><span class="tk-face" aria-hidden="true">(^_^)</span><span class="tk-item">Up to 2.5x more storage efficient than Prometheus, Mimir</span><span class="tk-face" aria-hidden="true">┌[∵]┘</span><span class="tk-item">Proficio found 34% faster investigations, $1 million in projected savings with automated triage</span><span class="tk-face" aria-hidden="true">(·_·)</span><span class="tk-item" aria-hidden="true">Queries up to 30x faster than Prometheus, Mimir</span><span class="tk-face" aria-hidden="true">└[∵]┐</span><span class="tk-item" aria-hidden="true">#1 Search Engine per DB-Engines</span><span class="tk-face" aria-hidden="true">(⊙_⊙)</span><span class="tk-item" aria-hidden="true">Vector memory cut ~95% with BBQ</span><span class="tk-face" aria-hidden="true">( ._.)</span><span class="tk-item" aria-hidden="true">Filtered vector search up to 8x faster than OpenSearch</span><span class="tk-face" aria-hidden="true">★·.·´¯</span><span class="tk-item" aria-hidden="true">Full-fidelity telemetry retention at half the cost of Datadog</span><span class="tk-face" aria-hidden="true">(^_^)</span><span class="tk-item" aria-hidden="true">Up to 2.5x more storage efficient than Prometheus, Mimir</span><span class="tk-face" aria-hidden="true">┌[∵]┘</span><span class="tk-item" aria-hidden="true">Proficio found 34% faster investigations, $1 million in projected savings with automated triage</span><span class="tk-face" aria-hidden="true">(·_·)</span></div></div>
+</section>
 <section class="news">
   <div class="container in">
     <div class="news-head">
@@ -1870,12 +2247,7 @@ section.customers,section/* --- buttons were 15px, a size used nowhere else in t
 </section>
 
 <!-- ======================= STAT TICKER (full bleed) ======================= -->
-<section class="ticker" aria-label="Elastic by the numbers">
-  <div class="tk-track">
-    <span class="tk-item">#1 Search Engine per DB-engines  <b>&#9492;[&#8757;]&#9496;</b>  Vector memory cut ~95% with BBQ  <b>(&#9737;_&#9737;)</b>  Filtered vector search up to 8x faster than OpenSearch  <b>( ._.)</b>  50% of the Fortune 500 use Elastic    <b>&#9733;&#183;.&#183;&#180;&#175;</b>    Up to 25x faster than Prometheus    <b>(^_^)</b>    </span>
-    <span class="tk-item" aria-hidden="true">#1 Search Engine per DB-engines  <b>&#9492;[&#8757;]&#9496;</b>  Vector memory cut ~95% with BBQ  <b>(&#9737;_&#9737;)</b>  Filtered vector search up to 8x faster than OpenSearch  <b>( ._.)</b>  50% of the Fortune 500 use Elastic    <b>&#9733;&#183;.&#183;&#180;&#175;</b>    Up to 25x faster than Prometheus    <b>(^_^)</b>    </span>
-  </div>
-</section>
+
 
 <!-- ======================= CUSTOMERS ======================= -->
 <section class="customers">
