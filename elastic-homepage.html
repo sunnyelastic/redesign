@@ -1970,6 +1970,72 @@ section{padding-top:var(--layout-08,40px)!important;padding-bottom:var(--layout-
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
     mask-image:linear-gradient(90deg,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%)}
 }
+
+/* =====================================================================
+   TICKER  —  full-bleed band, edge to edge.
+   I constrained the card to the 1248 grid; the board does not. Node
+   4370:6360 puts it at x-53, width 1546, in a 1440 frame — so it runs
+   53px PAST each edge of the viewport. The radius is real but its
+   corners sit off-screen, which is why the band reads as a full-width
+   rule with a top and bottom edge rather than a card on the page.
+   Section padding removed, card widened past both edges, and the
+   section clipped so the overhang cannot create a scrollbar.
+   ===================================================================== */
+.ticker{padding-left:0!important;padding-right:0!important;overflow:hidden}
+.ticker > .container{max-width:none!important;padding-inline:0!important}
+
+.tk-card{
+  width:calc(100% + 106px)!important;
+  max-width:none!important;
+  margin-left:-53px!important;margin-right:-53px!important;
+  height:77px;display:flex;align-items:center;
+  background:#fff;
+  border:1px solid #DCE2EA;
+  border-radius:16px;
+  box-shadow:0 4px 20px 0 rgba(0,0,0,.13);
+  overflow:hidden;
+  -webkit-mask-image:none!important;mask-image:none!important}
+
+/* the fade stays on the track, so the card's own edges stay solid */
+.tk-card > .tk-track{
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 96px,#000 calc(100% - 96px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 96px,#000 calc(100% - 96px),transparent 100%)}
+
+@media (max-width:991px){
+  .ticker{padding-left:0!important;padding-right:0!important}
+  .tk-card{width:calc(100% + 64px)!important;margin-left:-32px!important;margin-right:-32px!important}
+}
+@media (max-width:767px){
+  .tk-card{height:64px;border-radius:12px;
+    width:calc(100% + 40px)!important;margin-left:-20px!important;margin-right:-20px!important}
+  .tk-card > .tk-track{
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32px,#000 calc(100% - 32px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 32px,#000 calc(100% - 32px),transparent 100%)}
+}
+
+/* =====================================================================
+   TICKER  —  the clipped bottom edge.
+   .ticker kept a fixed height from the original markup (the old track
+   was absolutely positioned inside it). With box-sizing:border-box and
+   64/64 padding that left a content box of ZERO, so the 77px card
+   overflowed the section by 13px and `overflow:hidden` sliced off its
+   bottom border and the entire drop shadow — which then read as the
+   band mashing into the news section below.
+   Height is now auto so the card sits inside its own section, and the
+   clip is horizontal only so the shadow can still cast downward.
+   ===================================================================== */
+.ticker{height:auto!important;min-height:0!important;
+  overflow-x:clip;overflow-y:visible!important;
+  padding-top:var(--layout-05,64px)!important;
+  padding-bottom:var(--layout-05,64px)!important}
+
+/* the horizontal clip lives on a wrapper so the shadow is free vertically */
+.ticker > .container,.ticker > .tk-card{position:relative}
+
+@media (max-width:767px){
+  .ticker{padding-top:var(--layout-03,32px)!important;
+    padding-bottom:var(--layout-03,32px)!important}
+}
 </style>
 </head>
 <body>
