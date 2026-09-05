@@ -194,6 +194,78 @@ code{font-family:var(--mono);font-size:14px;background:var(--soft);
     padding-top:12px;padding-bottom:12px}
   .demo-links{gap:16px} .demo-links a{font-size:13px} .demo-sep{display:none}
 }
+
+/* =====================================================================
+   SMALL MEDIA  —  height capped at 129, every layout.
+   It was a 3:1 ratio, so its height tracked the column and came out
+   different in each layout: 186 at 2×2, 115 at 3×1, 79 at 4×1. A "small"
+   asset should be one size wherever it sits, the same way the 1×1 band
+   is a fixed 314 rather than a ratio. Width still fills the column;
+   the height is the constant.
+   ===================================================================== */
+.media.sm{
+  aspect-ratio:auto!important;
+  width:100%;height:129px!important;max-height:129px!important}
+
+/* below the single-column breakpoint the card is already narrow, so a
+   fixed 129 would crop oddly — fall back to the ratio there. */
+@media (max-width:820px){
+  .media.sm{height:auto!important;aspect-ratio:3/1!important;max-height:none!important}
+}
+
+/* small media removed: it produced a different height in every layout and
+   at 3-up and 4-up left a card that was mostly image. One 16:9 slot. */
+.media.sm{display:none!important}
+
+/* =====================================================================
+   4 × 2 TITLE-ONLY CARD
+   The same component with four slots omitted. Because there is no
+   paragraph to size the text track, the cards are equal height and the
+   arrow is pinned bottom-right with margin-top:auto — so the arrows sit
+   on one baseline per row however long the titles run.
+   ===================================================================== */
+.grid.is-4x2{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--l3,32px)}
+.card--titleonly{
+  grid-row:auto!important;display:flex!important;flex-direction:column;
+  min-height:132px;padding:24px;
+  background:#fff;border:1px solid var(--ink);border-bottom-width:4px}
+.card--titleonly .title{
+  font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.2;
+  letter-spacing:-.02em;color:var(--ink);margin:0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card--titleonly .cta{
+  margin-top:auto;padding-top:24px;align-self:flex-start;
+  font-family:var(--ui);font-weight:500;font-size:18px;line-height:1;
+  color:var(--blue);text-decoration:none}
+.card--titleonly .cta:hover{text-decoration:none;transform:translateX(2px)}
+
+/* centred section head above the grid */
+.s-head-demo{max-width:608px;margin:0 auto 48px;text-align:center}
+.s-head-demo h3{font-family:var(--mono);font-weight:500;font-size:32px;line-height:1.2;
+  letter-spacing:-.02em;color:var(--ink);margin:0 0 16px}
+.s-head-demo p{font-size:16px;line-height:1.54;margin:0}
+
+@media (max-width:1100px){ .grid.is-4x2{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:820px){
+  .grid.is-4x2{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .card--titleonly{min-height:108px;padding:12px}
+  .s-head-demo{margin-bottom:32px}
+  .s-head-demo h3{font-size:24px}
+}
+@media (max-width:390px){ .grid.is-4x2{grid-template-columns:minmax(0,1fr)} }
+
+/* one-sentence line under each title. Clamped to two lines so a longer
+   sentence cannot push the arrow off the shared baseline. */
+.card--titleonly .tline{
+  font-family:var(--ui);font-size:14px;line-height:1.5;color:#5F6673;
+  margin:8px 0 0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card--titleonly{min-height:168px}
+@media (max-width:820px){ .card--titleonly{min-height:150px} }
+
+.code{font-family:var(--mono);font-size:13px;line-height:1.6;background:var(--soft);
+  border:1px solid var(--line);border-radius:4px;padding:16px;overflow-x:auto;
+  margin:0 0 16px;color:var(--ink)}
 </style></head><body>
 <div class="page">
 <header class="demo-nav">
@@ -213,15 +285,14 @@ code{font-family:var(--mono);font-size:14px;background:var(--soft);
 
 
 <h1>Feature card</h1>
-<p class="lede">A single card component that scales across four grid layouts and two media
-sizes. Nothing about the card changes between layouts except how much copy fits — the
+<p class="lede">A single card component that scales across four grid layouts. Nothing about the card changes between layouts except how much copy fits — the
 markup, the spacing ladder and the alignment behaviour are identical every time.</p>
 
 <nav class="toc">
   <a href="#anatomy">Anatomy</a>
   <a href="#lay-1up">1 × 1</a><a href="#lay-2up">2 × 2</a>
-  <a href="#lay-3up">3 × 1</a><a href="#lay-4up">4 × 1</a>
-  <a href="#media">Media</a><a href="#alignment">Alignment</a><a href="#code">Implementation</a>
+  <a href="#lay-3up">3 × 1</a><a href="#lay-4up">4 × 1</a><a href="#lay-4x2">4 × 2 title-only</a>
+  <a href="#media">Media</a><a href="#minheight">Card height</a><a href="#alignment">Alignment</a><a href="#code">Implementation</a>
 </nav>
 
 <section class="doc" id="anatomy">
@@ -261,10 +332,11 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
         <div class="tok"><dt>Title</dt><dd>100 characters</dd><dd class="d">2 lines, then clamps</dd></div>
         <div class="tok"><dt>Paragraph</dt><dd>326 characters</dd><dd class="d">4 lines · 250 translation-safe</dd></div>
         <div class="tok"><dt>CTA</dt><dd>30 characters</dd><dd class="d">one line</dd></div>
+        <div class="tok"><dt>Media</dt><dd>image, video, code</dd><dd class="d">full width · 314 max · video allowed</dd></div>
         <div class="tok"><dt>Tags</dt><dd>9</dd><dd class="d">23 characters each</dd></div>
   </dl>
 
-  <p class="cap">Media &mdash; full width, 314 max height</p>
+  <p class="cap">Media &mdash; full width, 314 max height &middot; image, video or code block</p>
   <div class="grid is-1up">
       <article class="card">
         <div class="text">
@@ -273,7 +345,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; video &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>More things</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Link tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Link tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Link tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Link tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Link tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Link tag</span></div>
       </article>
   </div>
@@ -291,10 +363,11 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
         <div class="tok"><dt>Title</dt><dd>100 characters</dd><dd class="d">2 lines, then clamps</dd></div>
         <div class="tok"><dt>Paragraph</dt><dd>326 characters</dd><dd class="d">4 lines · 250 translation-safe</dd></div>
         <div class="tok"><dt>CTA</dt><dd>30 characters</dd><dd class="d">one line</dd></div>
+        <div class="tok"><dt>Media</dt><dd>image, video, code</dd><dd class="d">16:9 · video allowed</dd></div>
         <div class="tok"><dt>Tags</dt><dd>3</dd><dd class="d">16 characters each</dd></div>
   </dl>
 
-  <p class="cap">Large media &mdash; 16:9</p>
+  <p class="cap">Media &mdash; 16:9 &middot; image, video or code block</p>
   <div class="grid is-2up">
       <article class="card">
         <div class="text">
@@ -303,7 +376,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; video &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>More things</span></div>
       </article>
       <article class="card">
@@ -313,35 +386,10 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; video &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>More things</span></div>
       </article>
-  </div>
-
-  <p class="cap">Small media &mdash; 3:1</p>
-  <div class="grid is-2up">
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Best in class efficiency for logs and metrics</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>More things</span></div>
-      </article>
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Deploy the agent</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>More things</span></div>
-      </article>
-  </div>
-</section>
+  </div></section>
 
 <section class="block" id="lay-3up">
   <div class="bhead">
@@ -354,10 +402,11 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
         <div class="tok"><dt>Title</dt><dd>58 characters</dd><dd class="d">2 lines, then clamps</dd></div>
         <div class="tok"><dt>Paragraph</dt><dd>204 characters</dd><dd class="d">4 lines · 157 translation-safe</dd></div>
         <div class="tok"><dt>CTA</dt><dd>30 characters</dd><dd class="d">one line</dd></div>
+        <div class="tok"><dt>Media</dt><dd>image, code</dd><dd class="d">16:9 · no video at this size</dd></div>
         <div class="tok"><dt>Tags</dt><dd>2</dd><dd class="d">15 characters each</dd></div>
   </dl>
 
-  <p class="cap">Large media &mdash; 16:9</p>
+  <p class="cap">Media &mdash; 16:9 &middot; image or code block, no video</p>
   <div class="grid is-3up">
       <article class="card">
         <div class="text">
@@ -366,7 +415,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span></div>
       </article>
       <article class="card">
@@ -376,7 +425,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span></div>
       </article>
       <article class="card">
@@ -386,45 +435,10 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span></div>
       </article>
-  </div>
-
-  <p class="cap">Small media &mdash; 3:1</p>
-  <div class="grid is-3up">
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Best in class efficiency for logs and metrics</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span></div>
-      </article>
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Deploy the agent</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span></div>
-      </article>
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Investigate at machine speed</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Another tag</span></div>
-      </article>
-  </div>
-</section>
+  </div></section>
 
 <section class="block" id="lay-4up">
   <div class="bhead">
@@ -437,10 +451,11 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
         <div class="tok"><dt>Title</dt><dd>36 characters</dd><dd class="d">2 lines, then clamps</dd></div>
         <div class="tok"><dt>Paragraph</dt><dd>128 characters</dd><dd class="d">4 lines · 98 translation-safe</dd></div>
         <div class="tok"><dt>CTA</dt><dd>30 characters</dd><dd class="d">one line</dd></div>
+        <div class="tok"><dt>Media</dt><dd>image, code</dd><dd class="d">16:9 · no video at this size</dd></div>
         <div class="tok"><dt>Tags</dt><dd>1</dd><dd class="d">23 characters each</dd></div>
   </dl>
 
-  <p class="cap">Large media &mdash; 16:9</p>
+  <p class="cap">Media &mdash; 16:9 &middot; image or code block, no video</p>
   <div class="grid is-4up">
       <article class="card">
         <div class="text">
@@ -449,7 +464,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
       </article>
       <article class="card">
@@ -459,7 +474,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
       </article>
       <article class="card">
@@ -469,7 +484,7 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
       </article>
       <article class="card">
@@ -479,69 +494,129 @@ markup, the spacing ladder and the alignment behaviour are identical every time.
           <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
           <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
         </div>
-        <div class="media lg"><span>Image · video · code block</span></div>
+        <div class="media lg"><span>Image &middot; code block</span></div>
         <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
       </article>
-  </div>
+  </div></section>
 
-  <p class="cap">Small media &mdash; 3:1</p>
-  <div class="grid is-4up">
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Best in class efficiency for logs and metrics</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
+<section class="block" id="lay-4x2">
+  <div class="bhead">
+    <h2>4 × 2 &mdash; title only</h2>
+    <p class="dims">8 cards &middot; 4 per row, 2 rows &middot; card 288px</p>
+  </div>
+  <p class="prose">A stripped variant of the same card: <strong>title, one-line paragraph and arrow</strong>
+  &mdash; no eyebrow, no media, no tags. Use it as a directory of links where the
+  title names the thing and the single line qualifies it. The section
+  head carries the context that the cards no longer need to.</p>
+
+  <dl class="tokens">
+    <div class="tok"><dt>Title</dt><dd>36 characters</dd>
+      <dd class="d">2 lines, then clamps</dd></div>
+    <div class="tok"><dt>CTA</dt><dd>arrow only</dd>
+      <dd class="d">bottom-right, no label</dd></div>
+    <div class="tok"><dt>Paragraph</dt><dd>one sentence</dd><dd class="d">1&ndash;2 lines, then clamps</dd></div>
+    <div class="tok"><dt>Slots omitted</dt><dd>3</dd><dd class="d">eyebrow, media, tags</dd></div>
+  </dl>
+
+  <p class="cap">Centred section head, then the grid</p>
+  <div class="titleonly-demo">
+    <div class="s-head-demo">
+      <h3>Placeholder section title goes here</h3>
+      <p>Placeholder paragraph text sits under the section title and carries the context
+      the individual cards no longer have to. Keep it to a couple of lines.</p>
+    </div>
+    <div class="grid is-4x2">
+      <article class="card card--titleonly">
+        <h4 class="title">Log analytics</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="Log analytics">&rarr;</a>
       </article>
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Deploy the agent</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
+      <article class="card card--titleonly">
+        <h4 class="title">Infrastructure monitoring</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="Infrastructure monitoring">&rarr;</a>
       </article>
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Investigate at machine speed</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
+      <article class="card card--titleonly">
+        <h4 class="title">APM and distributed tracing</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="APM and distributed tracing">&rarr;</a>
       </article>
-      <article class="card">
-        <div class="text">
-          <p class="eyebrow">Eyebrow</p>
-          <h4 class="title">Respond without hand-offs</h4>
-          <p class="body">AI agents lead investigations, surface root cause, and automate remediation workflows with full transparency, so SREs stay in control.</p>
-          <a class="cta" href="#">Discover the thing &nbsp;&rarr;</a>
-        </div>
-        <div class="media sm"><span>Logo · icon · small UI</span></div>
-        <div class="tags"><span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg>Vector database</span></div>
+      <article class="card card--titleonly">
+        <h4 class="title">OpenTelemetry</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="OpenTelemetry">&rarr;</a>
       </article>
+      <article class="card card--titleonly">
+        <h4 class="title">Digital experience monitoring</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="Digital experience monitoring">&rarr;</a>
+      </article>
+      <article class="card card--titleonly">
+        <h4 class="title">Agentic investigations</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="Agentic investigations">&rarr;</a>
+      </article>
+      <article class="card card--titleonly">
+        <h4 class="title">Workflow automation</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="Workflow automation">&rarr;</a>
+      </article>
+      <article class="card card--titleonly">
+        <h4 class="title">LLM Observability</h4>
+        <p class="tline">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="cta" href="#" aria-label="LLM Observability">&rarr;</a>
+      </article>
+    </div>
   </div>
 </section>
 
+
 <section class="doc" id="media">
   <h2>Media</h2>
-  <p>Media size is a separate axis from layout. It is a class on the media slot, not a
-  different card, so any layout can carry either size.</p>
+  <p>Every card carries one media slot at <strong>16:9</strong>. What that slot may
+  hold depends on the size of the card, not on a separate media variant.</p>
+
   <dl class="anat">
-    <div><dt>Large — 16:9</dt><dd>Big UI, video, code blocks, content-dense pages. Use
-      when the image carries information the reader has to actually see.</dd></div>
-    <div><dt>Small — 3:1</dt><dd>Logos, icons, illustrations, small UI. Use when the
-      image is decoration or identification rather than content.</dd></div>
+    <div><dt>Big cards — 1 × 1, 2 × 2</dt>
+      <dd><strong>Image, video or code block.</strong> At 608px and wider the slot is big
+      enough that a video is legible and a code block can show a meaningful number of
+      lines without wrapping.</dd></div>
+    <div><dt>Small cards — 3 × 1, 4 × 1</dt>
+      <dd><strong>Image or code block only — no video.</strong> At 395 and 288 the slot is
+      134–194px tall. Video controls alone eat most of that, and a viewer cannot read
+      what is playing. A short code block or a still image still reads at this size.</dd></div>
   </dl>
+
+  <p>One ratio and one asset per card, so the same file is valid in any layout. There is
+  no second media size: a shorter variant produced a different height in every layout and
+  left the narrow cards mostly image with no room for the copy they support.</p>
   <p>One asset serves every layout. The image is authored once and scales down to fit a
   narrower column; it never scales up. At 1 × 1 it stops at its natural width and the
   slot carries the remaining space, so marketing supplies one file rather than four crops.</p>
+</section>
+
+<section class="doc" id="minheight">
+  <h2>Card height</h2>
+  <p>A card has no fixed height. It is sized by the slots it actually contains, and each
+  slot combination carries its own minimum &mdash; so removing the paragraph makes the card
+  shorter rather than leaving a gap where the paragraph used to be.</p>
+  <dl class="anat">
+    <div><dt>title only</dt><dd>no minimum &mdash; content-sized, about 117px at 3-up</dd></div>
+    <div><dt>+ paragraph</dt><dd><code>min-height: 148px</code></dd></div>
+    <div><dt>+ media</dt><dd><code>min-height: 240px</code></dd></div>
+  </dl>
+  <p>The floor belongs to the slot combination, not to a variant class. A single blanket
+  <code>min-height</code> is what causes the hole: it is a floor for every variant, so the
+  card stays tall after a slot is removed and the space collects above the CTA.</p>
+  <p>The rule reads the card&rsquo;s own contents:</p>
+  <pre class="code">.card                        { min-height: 0 }
+.card:has(.body)             { min-height: 148px }
+.card:has(.media)            { min-height: 240px }</pre>
+  <p>Add or remove a slot in the markup and the floor follows. There is no variant class to
+  remember and nothing to keep in sync. <code>:has()</code> is supported in Chrome and Edge
+  105+, Safari 15.4+ and Firefox 121+; wrap the floors in
+  <code>@supports selector(:has(*))</code> and fall back to explicit variant classes if you
+  need to support older browsers.</p>
 </section>
 
 <section class="doc" id="alignment">
