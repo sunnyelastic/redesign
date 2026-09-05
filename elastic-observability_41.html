@@ -3604,6 +3604,215 @@ section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
    paths, no host, nothing pointing outside the delivered files. */
 .demo-nav .demo-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
 .demo-nav .demo-links a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* =====================================================================
+   FEATURE GRID  —  3 × 3, title only.
+   The same card with four slots omitted: no eyebrow, no paragraph, no
+   media, no tags. Just the capability name and an arrow. Nine features
+   fill three rows of three exactly, so the last row is never orphaned.
+   Cards are equal height and the arrow is pinned bottom-left with
+   margin-top:auto, so every arrow in a row sits on one baseline however
+   long the title runs.
+   ===================================================================== */
+.o-feat{padding-top:var(--layout-04)!important;padding-bottom:var(--layout-04)!important}
+.o-feat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--layout-03);margin-top:var(--gap-sec-head,48px)}
+.fcard{display:flex;flex-direction:column;min-height:148px;
+  padding:var(--spacing-06);background:#fff;
+  border:1px solid var(--ink);border-bottom-width:4px}
+.fcard-t{font-family:var(--mono);font-weight:600;font-size:18px;line-height:1.2;
+  letter-spacing:-.02em;color:var(--ink);margin:0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fcard-cta{margin-top:auto;padding-top:var(--spacing-06);align-self:flex-start;
+  font-family:var(--body);font-weight:500;font-size:18px;line-height:1;
+  color:var(--blue);text-decoration:none}
+.fcard-cta:hover{text-decoration:none}
+
+@media (max-width:991px){
+  .o-feat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:767px){
+  .o-feat{padding-top:var(--layout-03)!important;padding-bottom:var(--layout-03)!important}
+  .o-feat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--spacing-04);
+    margin-top:var(--layout-03)}
+  .fcard{min-height:112px;padding:var(--spacing-04)}
+  .fcard-cta{padding-top:var(--spacing-05)}
+}
+@media (max-width:390px){
+  .o-feat-grid{grid-template-columns:minmax(0,1fr)}
+}
+
+/* =====================================================================
+   FEATURE CARD HEIGHT  —  sized by content, not a floor.
+   min-height:148 held the card open, so margin-top:auto stretched the
+   title→arrow gap to 31px plus the 24 padding. Removing the paragraph
+   should make the card shorter, not leave a hole where it was.
+   The card now sizes to title + 24 + arrow. Equal heights across a row
+   still come from the grid stretching them, so the arrows stay on one
+   baseline when a title wraps to two lines.
+   ===================================================================== */
+.fcard{height:100%}   /* floor comes from the :has() rules below */
+.o-feat-grid{align-items:stretch}
+.fcard-cta{margin-top:auto!important;padding-top:var(--spacing-06)!important}
+@media (max-width:767px){
+  .fcard-cta{padding-top:var(--spacing-05)!important}
+}
+
+/* The arrow was pinned to the card bottom with margin-top:auto. That
+   keeps arrows on one baseline across a row, but when one title wraps to
+   two lines every other card in that row gets its gap stretched — 46px
+   against the intended 24.
+   The gap matters more than the baseline here, because the gap is what
+   reads as broken. The arrow now sits a fixed 24 under the title and the
+   leftover height collects at the BOTTOM of the card instead of above
+   the arrow. Cards still stretch to equal height, so the row still looks
+   even; only the arrow's vertical position varies with title length.
+   ===================================================================== */
+.fcard-cta{margin-top:0!important;padding-top:var(--spacing-06)!important}
+@media (max-width:767px){
+  .fcard-cta{padding-top:var(--spacing-05)!important}
+}
+
+/* =====================================================================
+   VARIANT-AWARE MIN-HEIGHT
+   The problem with one blanket `min-height` is that it is a floor for
+   every variant, so removing a slot leaves a hole instead of a shorter
+   card. The floor should belong to the SLOT COMBINATION, not the class.
+   `:has()` lets the card declare its own minimum from its own contents:
+       title only              -> no floor, content-sized
+       title + paragraph       -> 148
+       title + paragraph + media -> 240
+   Add or remove a slot in the markup and the floor follows, with no
+   variant class to remember and nothing to keep in sync.
+   Supported in every current browser (Chrome/Edge 105+, Safari 15.4+,
+   Firefox 121+); the @supports block below is the pre-:has() fallback.
+   ===================================================================== */
+.fcard{min-height:0}                                   /* title only */
+.fcard:has(.fcard-p){min-height:148px}                 /* + paragraph */
+.fcard:has(.fcard-media){min-height:240px}             /* + media */
+
+@media (max-width:767px){
+  .fcard:has(.fcard-p){min-height:120px}
+  .fcard:has(.fcard-media){min-height:200px}
+}
+
+/* browsers without :has(): fall back to a floor only where a variant
+   class is present, so nothing gets a hole by default */
+@supports not selector(:has(*)){
+  .fcard{min-height:0}
+  .fcard--withtext{min-height:148px}
+  .fcard--withmedia{min-height:240px}
+}
+
+/* the optional paragraph slot, so the rule above has something to test */
+.fcard-p{font-family:var(--body);font-size:14px;line-height:1.5;color:var(--ink2);
+  margin:var(--spacing-03) 0 0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* an earlier `.fcard{min-height:0!important}` was beating the :has()
+   rules, so the floor never applied. The !important is gone from the
+   base rule; these carry it instead so nothing upstream can win. */
+.fcard{min-height:0}
+.fcard:has(.fcard-p){min-height:148px!important}
+.fcard:has(.fcard-media){min-height:240px!important}
+@media (max-width:767px){
+  .fcard:has(.fcard-p){min-height:120px!important}
+  .fcard:has(.fcard-media){min-height:200px!important}
+}
+
+/* =====================================================================
+   FEATURE GRID  —  4 × 2 plus a full-width Integrations card.
+   Eight capability cards across four columns in two rows, then a single
+   card spanning the whole grid for the integration list. The span card
+   is a grid item rather than its own section, so it inherits the grid's
+   32 row-gap and reads as the last member of the set.
+   ===================================================================== */
+.o-feat-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.fcard--span{grid-column:1 / -1;min-height:0!important}
+.fcard--span .fcard-t{margin:0 0 var(--spacing-06)}
+.fcard-tags{display:flex;flex-wrap:wrap;gap:var(--spacing-04);align-items:center;
+  margin:0 0 var(--spacing-06)}
+.fcard--span .fcard-cta{margin-top:0!important;padding-top:0!important}
+
+@media (max-width:1100px){
+  .o-feat-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media (max-width:767px){
+  .o-feat-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .fcard--span .fcard-t{margin-bottom:var(--spacing-05)}
+  .fcard-tags{gap:var(--spacing-04);margin-bottom:var(--spacing-05)}
+}
+@media (max-width:390px){
+  .o-feat-grid{grid-template-columns:minmax(0,1fr)!important}
+}
+
+/* .fcard-tags was picking up the padding from an earlier
+   [class*="-tags"] wildcard, so title -> tags measured 48 instead of 24.
+   The span card owns its own ladder: title 24, tags 24, then the arrow. */
+.fcard--span .fcard-tags{padding:0!important;margin:0 0 var(--spacing-06)!important;
+  gap:var(--spacing-04)!important}
+.fcard--span .fcard-t{margin:0 0 var(--spacing-06)!important}
+.fcard--span .fcard-cta{margin:0!important;padding:0!important}
+@media (max-width:767px){
+  .fcard--span .fcard-t{margin-bottom:var(--spacing-05)!important}
+  .fcard--span .fcard-tags{margin-bottom:var(--spacing-05)!important}
+}
+
+/* the Integrations card takes the full sentence as its title, with the
+   inline link kept, and a labelled CTA instead of a bare arrow. Because
+   the title is now a sentence rather than a label it gets the measure
+   cap so it does not run the full 1200. */
+.fcard--span .fcard-t{max-width:var(--measure-body,608px)}
+.fcard--span .fcard-t-link{color:var(--blue);text-decoration:underline;
+  text-underline-offset:2px}
+.fcard--span .fcard-t-link:hover{text-decoration-thickness:2px}
+.fcard-cta--label{font-family:var(--body)!important;font-weight:500!important;
+  font-size:14px!important;line-height:1.5!important;color:var(--blue);
+  text-decoration:none;white-space:nowrap}
+.fcard-cta--label:hover{text-decoration:underline}
+@media (max-width:767px){
+  .fcard--span .fcard-t{max-width:none}
+}
+
+/* =====================================================================
+   INTEGRATION CHIPS
+   Nine of Elastic's most-used data integrations. The marks are simple
+   monochrome glyphs drawn to sit on the 16px chip icon grid — they are
+   NOT the vendors' official logos. Real brand SVGs have to come from
+   each vendor's brand kit; drawing them from memory would be both
+   inaccurate and a trademark reproduction. These stand in until the
+   licensed assets are dropped in, and they inherit currentColor so they
+   pick up the chip's ink automatically.
+   ===================================================================== */
+.itag{align-items:center}
+.itag-mark{width:16px;height:16px;flex:0 0 16px;color:var(--ink)}
+.itag .tag-label{line-height:1.5}
+
+/* Integrations card: short label title, with the sentence moved down to
+   a one-line paragraph. The paragraph carries the measure cap now — the
+   title is a label again and does not need one. */
+.fcard--span .fcard-t{max-width:none!important;margin:0 0 var(--spacing-03)!important}
+.fcard--span .fcard-p{font-family:var(--body);font-size:14px;line-height:1.5;
+  color:var(--ink2);max-width:var(--measure-body,608px);
+  margin:0 0 var(--spacing-06)!important;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:767px){
+  .fcard--span .fcard-p{max-width:none;margin-bottom:var(--spacing-05)!important}
+}
+
+/* =====================================================================
+   FEATURE CARD TITLE  —  16px, this instance only.
+   The system card title is 18. These eight are a dense 4×2 directory of
+   capability names rather than headlines, and several run to two lines at
+   288px, so 16 lets more of them sit on one line without changing the
+   scale anywhere else. Scoped to .o-feat so it cannot leak: the
+   Integrations span card keeps 18, and every other card on every page is
+   untouched.
+   ===================================================================== */
+
+/* feature card titles back to the system 18/600; the 16px one-off is
+   gone, so the page heading inventory returns to 18/24/32/64. */
+.o-feat .fcard .fcard-t{font-size:18px!important;line-height:1.2!important}
 </style>
 </head>
 <body>
@@ -3716,32 +3925,7 @@ section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
 </section>
 
 <!-- ======================= KEY MESSAGES ======================= -->
-<section class="o-keys">
-  <div class="container in">
-    <div class="o-keys-head">
-      <p class="kick">Why does ____ matter</p>
-      <h2 class="h2">Key messages</h2>
-    </div>
-    <p class="o-keys-note">Module can be 1, 2, 3, 4 boxes.</p>
-    <div class="o-keys-grid">
-      <article class="o-key">
-        <p class="eyebrow">Eyebrow</p>
-        <div><h3 class="t">Key value message # 1</h3>
-        <p class="d">Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-      </article>
-      <article class="o-key">
-        <p class="eyebrow">Eyebrow</p>
-        <div><h3 class="t">Key value message # 2</h3>
-        <p class="d">Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-      </article>
-      <article class="o-key">
-        <p class="eyebrow">Eyebrow</p>
-        <div><h3 class="t">Key value message # 3</h3>
-        <p class="d">Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-      </article>
-    </div>
-  </div>
-</section>
+
 
 <!-- ======================= CAPABILITIES ======================= -->
 <section class="o-cap">
@@ -3808,27 +3992,6 @@ section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
         </div>
         <div class="o-tags"><a class="chip" href="#"><svg class="chip-ico" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="2.46" r="2.2" stroke="#343741" stroke-width="1"/><path d="M4.15 8.1a3.85 3.85 0 0 1 7.7 0" stroke="#343741" stroke-width="1"/><path d="M0 8h16" stroke="#343741" stroke-width="1"/><path d="M1.1 8.4 2.43 12h11.14L14.9 8.4" stroke="#343741" stroke-width="1"/><path d="M2.43 12h11.14v3.6H2.43z" fill="#343741"/></svg><span class="chip-label">Vector database</span></a></div>
       </article>
-    
-<article class="card is-1up card--span">
-      <div class="card-text">
-        <p class="kick card-eyebrow">Eyebrow</p>
-        <h3 class="card-title h4">One platform for everything</h3>
-        <p class="card-body p3">All signals, one source of truth &mdash; with logs as the center of investigations. 450+ one-click integrations across clouds, CI/CD, databases, and more.</p>
-        <a class="cta" href="#">Discover the thing&nbsp;&nbsp;--&gt;</a>
-      </div>
-      <div class="card-tags">
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Log analytics</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Digital experience monitoring</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Infrastructure monitoring</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">APM and distributed tracing</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Agentic investigations</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Workflow automation</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">OpenTelemetry</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Metrics monitoring</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">LLM Observability</span></span>
-          <span class="tag"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" stroke="currentColor"/><path d="M1.5 6.5h13M5 9.5h6" stroke="currentColor"/></svg><span class="tag-label">Vector database</span></span>
-      </div>
-    </article>
       </div>
 
     <!-- removed: duplicate full-width card carrying placeholder "Link tag" chips;
@@ -3836,6 +3999,50 @@ section:last-of-type,.s-cta,.cta.v8-cta,.faq-sec{
 
   </div>
 </section>
+<section class="o-feat">
+  <div class="container in">
+    <div class="s-head">
+      <p class="kick">Features</p>
+      <h2 class="h2">One platform for everything</h2>
+      <p class="lede">All signals, one source of truth &mdash; with logs as the center of investigations.</p>
+    </div>
+    <div class="o-feat-grid">
+        <article class="fcard">
+          <h3 class="fcard-t">Log analytics</h3>
+          <a class="fcard-cta" href="#" aria-label="Log analytics">&rarr;</a>
+        </article>
+        <article class="fcard">
+          <h3 class="fcard-t">Infrastructure monitoring</h3>
+          <a class="fcard-cta" href="#" aria-label="Infrastructure monitoring">&rarr;</a>
+        </article>
+        <article class="fcard">
+          <h3 class="fcard-t">APM and distributed tracing</h3>
+          <a class="fcard-cta" href="#" aria-label="APM and distributed tracing">&rarr;</a>
+        </article>
+        <article class="fcard">
+          <h3 class="fcard-t">OpenTelemetry</h3>
+          <a class="fcard-cta" href="#" aria-label="OpenTelemetry">&rarr;</a>
+        </article>
+        <article class="fcard">
+          <h3 class="fcard-t">Digital experience monitoring</h3>
+          <a class="fcard-cta" href="#" aria-label="Digital experience monitoring">&rarr;</a>
+        </article>
+        <article class="fcard">
+          <h3 class="fcard-t">Agentic investigations</h3>
+          <a class="fcard-cta" href="#" aria-label="Agentic investigations">&rarr;</a>
+        </article>
+        <article class="fcard">
+          <h3 class="fcard-t">Workflow automation</h3>
+          <a class="fcard-cta" href="#" aria-label="Workflow automation">&rarr;</a>
+        </article>
+        <article class="fcard">
+          <h3 class="fcard-t">Metrics monitoring</h3>
+          <a class="fcard-cta" href="#" aria-label="Metrics monitoring">&rarr;</a>
+        </article>
+      </div>
+  </div>
+</section>
+
 
 
 <!-- ======================= CAPABILITIES (Figma 3593:11066) ======================= -->
